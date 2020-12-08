@@ -4,7 +4,7 @@
   "description": "Matte is a UI component library on top of MUI and other react libraries.",
   "author": "Squaredev",
   "license": "Apache-2.0",
-  "repository": "ovieokeh/npm-react-typescript-template",
+  "repository": "https://github.com/squaredev-io/matte",
   "main": "dist/index.js",
   "engines": {
     "node": ">=8",
