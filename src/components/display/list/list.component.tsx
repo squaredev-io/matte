@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React, { Fragment,MouseEvent } from 'react'
 import { createStyles, makeStyles } from '@material-ui/core/styles'
 import {
   List as MuiList,
@@ -17,6 +17,7 @@ export interface ListItemProps {
   primary: string
   secondary?: string
   to?: string
+  handleClick?: React.MouseEventHandler
   icon?: React.ReactElement
   primaryEnd?: string | number
   secondaryEnd?: string | number
@@ -26,11 +27,15 @@ export interface ListProps {
   /**
    * CSS class name
    */
-  className?: string
+  className?: string;
   /**
    * Whether a divider is shown between two item lists
    */
-  divider?: boolean
+  divider?: boolean;
+  /**
+   * An array of params that will be passed to the `handleClick` method of each menu item.
+   */
+  handleClickParams?: (string | number)[];
   /**
    * An array of objects with the following properties:
    *
@@ -44,9 +49,10 @@ export interface ListProps {
    * icon | React.ReactElement | If set, an icon is showed before text. If both `avatar` and `icon` are set only `avatar` will be shown. | -
    * primaryEnd | string | Primary text to show at the right side of the item. | -
    * secondaryEnd | string | Secondary text to show at the right side of the item. | -
+   * handleClick | function | A function that will be executed on item's `onClick` method, e.g. `(e) => console.log(e)`. By default, `e`, the React's synthetic event, is passed to that function. When additional parameters are passed by another API implementation, e.g. `Table`, it is explicitly documented. | -
    *
    */
-  items: ListItemProps[]
+  items: ListItemProps[];
 }
 
 const useStyles = makeStyles(() =>
@@ -93,7 +99,17 @@ const useStyles = makeStyles(() =>
 )
 
 export type ListItemBaseProps = ListItemProps & {
-  component?: React.ElementType
+  component?: React.ElementType;
+    /**
+   * A function that will be executed on item's `onClick` method,
+   * e.g. `(e) => console.log(e)`. By default, `e`, the React's synthetic event, is passed to that
+   * function. When additional parameters are passed by another API implementation, e.g. `Table`,
+   * it is explicitly documented.
+   */
+  handleClick?: (
+    event: MouseEvent<HTMLButtonElement | HTMLAnchorElement>,
+    x?: string 
+  ) => void
 }
 
 const ListItemBase = ({
@@ -104,6 +120,7 @@ const ListItemBase = ({
   primary,
   secondary,
   to,
+  handleClick,
   primaryEnd,
   secondaryEnd,
 }: ListItemBaseProps) => {
@@ -113,6 +130,7 @@ const ListItemBase = ({
       button={!!to as true}
       className={classes.listItem}
       // component={component}
+      onClick={handleClick}
       disableGutters
     >
       {avatar ? <ListItemAvatar>{avatar}</ListItemAvatar> : null}
@@ -147,6 +165,7 @@ const ListItemLink = ({
   primary,
   secondary,
   to,
+  handleClick,
   primaryEnd,
   secondaryEnd,
 }: ListItemBaseProps) => {
@@ -167,6 +186,7 @@ const ListItemLink = ({
       primary={primary}
       secondary={secondary}
       to={to}
+      handleClick={handleClick}
       primaryEnd={primaryEnd}
       secondaryEnd={secondaryEnd}
     />
@@ -180,61 +200,63 @@ const ListItemLink = ({
  */
 export const List: React.FC<ListProps> = ({
   className,
+  handleClickParams,
   items,
   divider = false,
 }) => {
-  const classes = useStyles()
+  const classes = useStyles();
+
+  const handleClick = (e: any, item: any) => {
+    const params =
+      handleClickParams && handleClickParams.length
+        ? [e, ...handleClickParams]
+        : [e]
+    if (item.handleClick) {
+      item.handleClick(...params)
+    }
+  }
+
   return (
     <MuiList className={`${classes.list} ${className}`}>
-      {items.map(
-        (
-          {
-            avatar,
-            circularProgressBar,
-            icon,
-            primary,
-            secondary,
-            to,
-            primaryEnd,
-            secondaryEnd,
-          },
-          i
-        ) => {
-          if (to) {
-            return (
-              <Fragment key={i}>
-                {i > 0 && divider && <Divider component="li" />}
-                <li>
-                  <ListItemLink
-                    avatar={avatar}
-                    circularProgressBar={circularProgressBar}
-                    icon={icon}
-                    primary={primary}
-                    secondary={secondary}
-                    to={to}
-                    primaryEnd={primaryEnd}
-                    secondaryEnd={secondaryEnd}
-                  />
-                </li>
-              </Fragment>
-            )
-          }
+      {items.map((item, i) => {
+        if (item.to) {
           return (
             <Fragment key={i}>
               {i > 0 && divider && <Divider component="li" />}
-              <ListItemBase
-                avatar={avatar}
-                circularProgressBar={circularProgressBar}
-                icon={icon}
-                primary={primary}
-                secondary={secondary}
-                primaryEnd={primaryEnd}
-                secondaryEnd={secondaryEnd}
-              />
+              <li>
+                <ListItemLink
+                  avatar={item.avatar}
+                  circularProgressBar={item.circularProgressBar}
+                  icon={item.icon}
+                  primary={item.primary}
+                  secondary={item.secondary}
+                  to={item.to}
+                  primaryEnd={item.primaryEnd}
+                  secondaryEnd={item.secondaryEnd}
+                  handleClick={(e:any) => handleClick(e, item)}
+                />
+              </li>
             </Fragment>
-          )
+          );
         }
-      )}
+        return (
+          <Fragment key={i}>
+            {i > 0 && divider && <Divider component="li" />}
+            <ListItemBase
+              avatar={item.avatar}
+              circularProgressBar={item.circularProgressBar}
+              icon={item.icon}
+              primary={item.primary}
+              secondary={item.secondary}
+              to={item.to}
+              primaryEnd={item.primaryEnd}
+              secondaryEnd={item.secondaryEnd}
+              handleClick={(e:any) => handleClick(e, item)}
+            />
+          </Fragment>
+        );
+      })}
     </MuiList>
-  )
-}
+  );
+};
+
