@@ -110,7 +110,8 @@ export const ListWithIcons = () => {
 };
 
 /**
- * A list with an avatar for each item.
+ * A list with an avatar for each item.If `handleClick` is passed, the item takes
+ * functionallity.
  */
 export const ListWithAvatars = () => {
   const classes = useStyles();
@@ -118,17 +119,17 @@ export const ListWithAvatars = () => {
     {
       avatar: <Avatar>JS</Avatar>,
       primary: 'Documents to sign',
-      to: '#',
+      handleClick: (e) => e,
     },
     {
       avatar: <Avatar>MV</Avatar>,
       primary: 'Our new pipeline is ready',
-      to: '#',
+      handleClick: (e) => e,
     },
     {
       avatar: <Avatar>SE</Avatar>,
       primary: 'A sacrifice must be done',
-      to: '#',
+      handleClick: (e) => e,
     },
   ];
   return (
@@ -150,6 +151,7 @@ export const SecondaryText = () => {
       secondary:
         'Hey guys, can you please sign these documents and send them back to me?',
       to: '#',
+      handleClick: (e) => e,
     },
     {
       avatar: <Avatar>MV</Avatar>,
@@ -157,12 +159,14 @@ export const SecondaryText = () => {
       secondary:
         'Hi there, just to let you know our new CI/CD process is up and running! Njoy.',
       to: '#',
+      handleClick: (e) => e,
     },
     {
       avatar: <Avatar>SE</Avatar>,
       primary: 'A sacrifice must be done',
       secondary: 'It is important to understand that a sacrifice must be made.',
       to: '#',
+      handleClick: (e) => e,
     },
   ];
   return (
