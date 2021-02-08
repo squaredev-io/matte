@@ -35,6 +35,12 @@ const webpackReactBaseConfigFactory = ({
     resolve: {
       // This is needed to resolve paths like @shared (ts aliases) in the produced bundle
       extensions: ['.ts', '.tsx', '.js', 'scss'],
+      alias: {
+        'core-js/modules': path.resolve(
+          __dirname,
+          'node_modules/@storybook/core/node_modules/core-js/modules'
+        ),
+      },
     },
 
     // Configure how and where it should output produced bundles
