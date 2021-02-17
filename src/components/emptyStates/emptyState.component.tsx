@@ -88,7 +88,7 @@ export const EmptyState: FC<EmptyStateProps> = ({
       >
         <Grid item xs={6}>
           <div className={classes.illustration}>
-            <img src={`/images/${illustration}`} />
+            <img src={`images/${illustration}`} />
           </div>
           <h2 className={classes.title}>{tagline}</h2>
           <p className={classes.description}>{description}</p>

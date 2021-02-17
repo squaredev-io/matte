@@ -1,6 +1,6 @@
 {
   "name": "matte-ui",
-  "version": "0.8.2",
+  "version": "0.8.3",
   "description": "Matte is a UI component library on top of MUI and other react libraries.",
   "author": "Squaredev",
   "license": "Apache-2.0",
@@ -13,7 +13,10 @@
   "scripts": {
     "build": "rollup -c",
     "start": "rollup -c -w",
-    "storybook": "start-storybook -s ./ -p 9090"
+    "storybook": "start-storybook -s ./ -p 9090",
+    "predeploy-storybook": "build-storybook && npm run copy-storybook-assets",
+    "deploy-storybook": "storybook-to-ghpages -e storybook-static",
+    "copy-storybook-assets": "copyfiles images/* storybook-static"
   },
   "dependencies": {
     "@material-ui/core": "^4.9.5",
@@ -38,9 +41,10 @@
     "@storybook/addon-info": "^5.3.21"
   },
   "devDependencies": {
-    "@storybook/addon-docs": "^6.1.10",
+    "@storybook/addon-docs": "^6.1.17",
     "@storybook/addon-info": "^5.3.21",
-    "@storybook/react": "^6.1.10",
+    "@storybook/react": "^6.1.17",
+    "@storybook/storybook-deployer": "2.8.7",
     "@types/react": "^16.3.13",
     "@types/react-dom": "^16.0.5",
     "babel-core": "^6.26.3",

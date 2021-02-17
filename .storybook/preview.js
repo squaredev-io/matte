@@ -19,4 +19,5 @@ addParameters({
      */
     showRoots: true,
   },
+  viewMode: 'docs',
 })
