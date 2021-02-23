@@ -9,7 +9,6 @@ import { IconButton } from '../inputs/button/button.component'
 import { Menu as MenuIcon, ChevronLeft, LogOut, User } from 'react-feather'
 import { List, ListItemProps } from '../display/list/list.component'
 import { Menu } from '../navigation/menu/menu.component'
-import { Logo } from '../../components/branding/logo/logo.component'
 import { useLocation } from 'react-router-dom'
 
 const drawerWidth = 240
@@ -18,6 +17,7 @@ export interface LayoutProps {
   children?: React.ReactNode
   menuItems: ListItemProps[]
   onLogout?(): any
+  logo: string
 }
 
 /**
@@ -97,6 +97,13 @@ const useStyles = makeStyles((theme: Theme) =>
       minHeight: 59,
       height: 59,
     },
+    logo: {
+      width: 120,
+      '& img': {
+        height: 'auto',
+        width: '100%',
+      },
+    },
     content: {
       flexGrow: 1,
       marginTop: 60,
@@ -142,7 +149,12 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 )
 
-export const Layout: FC<LayoutProps> = ({ children, menuItems, onLogout }) => {
+export const Layout: FC<LayoutProps> = ({
+  children,
+  menuItems,
+  onLogout,
+  logo,
+}) => {
   const [open, setOpen] = React.useState(true)
   const handleDrawerOpen = () => setOpen(true)
   const handleDrawerClose = () => setOpen(false)
@@ -211,7 +223,9 @@ export const Layout: FC<LayoutProps> = ({ children, menuItems, onLogout }) => {
         }}
       >
         <div className={classes.toolbar}>
-          <Logo />
+          <div className={classes.logo}>
+            <img src={logo} />
+          </div>
           <IconButton icon={<ChevronLeft />} onClick={handleDrawerClose} />
         </div>
         <Divider />

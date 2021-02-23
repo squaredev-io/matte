@@ -1,4 +1,4 @@
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createMuiTheme } from '@material-ui/core/styles'
 
 const theme = createMuiTheme({
   palette: {
@@ -40,13 +40,13 @@ const theme = createMuiTheme({
   ],
   typography: {
     fontFamily: [
-      '"M PLUS Rounded 1c"',
-      'Roboto',
+      '"Open Sans"',
+      'Quicksand',
       '"Helvetica Neue"',
       'Arial',
       'sans-serif',
     ].join(','),
   },
-});
+})
 
-export default theme;
+export default theme

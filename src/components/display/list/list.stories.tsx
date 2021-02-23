@@ -75,7 +75,7 @@ export const SimpleList = () => {
     { primary: 'Inbox' },
     { primary: 'Drafts' },
     { primary: 'Trash' },
-  ];
+  ]
   return (
     <div className={classes.list}>
       <List divider items={menuItems} />

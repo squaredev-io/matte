@@ -1,6 +1,6 @@
 // Import custom font
-@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Damion&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
 
 body,
 html,
@@ -8,12 +8,10 @@ html,
   height: 100%;
   width: 100%;
   margin: 0;
-  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-family: 'Quicksand', sans-serif !important;
   box-sizing: border-box;
-  // TODO: Font smoothing does not go well with M PLUS Rounded 1c.
-  // The fonts look much thinner. Do we really need it?
-  // -webkit-font-smoothing: antialiased;
-  // -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   background: #f9fafb;
 }
 
@@ -21,4 +19,13 @@ html,
 *::before,
 *::after {
   box-sizing: inherit;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Open Sans', sans-serif !important;
 }

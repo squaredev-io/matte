@@ -26,6 +26,7 @@ interface MockData {
   surname: string;
   birthYear: number;
   to?: string;
+  handleCopy?: React.MouseEventHandler;
 }
 
 export const Tables = () => {
@@ -134,6 +135,54 @@ export const RowActions = () => {
   return (
     <div className={classes.table}>
       <Table<MockData> columns={columns} data={data} actions={actions} />
+    </div>
+  );
+};
+
+/**
+ * You can enable copy to clipbaoard for a column. Each cell of this column,
+ * when hovered, will show a `Copy` indication. When clicked, the content of
+ * the cell will be copied to clipboard.
+ */
+export const copyToClipboard = () => {
+  const classes = useStyles();
+  const columns: Column<MockData>[] = [
+    { title: '#', field: 'index' },
+    { title: 'Name', field: 'name', enableCopyToClipboard: true },
+    { title: 'Surname', field: 'surname' },
+    { title: 'Birth year', field: 'birthYear' },
+  ];
+
+  const data: MockData[] = [
+    {
+      index: 1,
+      name: 'Daenerys',
+      surname: 'Targaryen',
+      birthYear: 1977,
+      to: '#',
+      handleCopy: (e) => console.log(e),
+    },
+    {
+      index: 2,
+      name: 'Jon',
+      surname: 'Snow',
+      birthYear: 1980,
+      to: '#',
+      handleCopy: (e) => console.log(e),
+    },
+    {
+      index: 3,
+      name: 'Arya',
+      surname: 'Stark',
+      birthYear: 1987,
+      to: '#',
+      handleCopy: (e) => console.log(e),
+    },
+  ];
+
+  return (
+    <div className={classes.table}>
+      <Table<MockData> columns={columns} data={data} />
     </div>
   );
 };

@@ -1,5 +1,5 @@
-import React, { Fragment,MouseEvent } from 'react'
-import { createStyles, makeStyles } from '@material-ui/core/styles'
+import React, { Fragment, MouseEvent } from 'react';
+import { createStyles, makeStyles } from '@material-ui/core/styles';
 import {
   List as MuiList,
   ListItem,
@@ -7,20 +7,20 @@ import {
   ListItemText,
   ListItemAvatar,
   Divider,
-} from '@material-ui/core'
+} from '@material-ui/core';
 
 // TODO: how to solve the component problem?
 
 export interface ListItemProps {
-  avatar?: React.ReactElement
-  circularProgressBar?: React.ReactElement
-  primary: string
-  secondary?: string
-  to?: string
-  handleClick?: React.MouseEventHandler
-  icon?: React.ReactElement
-  primaryEnd?: string | number
-  secondaryEnd?: string | number
+  avatar?: React.ReactElement;
+  circularProgressBar?: React.ReactElement;
+  primary: string;
+  secondary?: string;
+  to?: string;
+  handleClick?: React.MouseEventHandler;
+  icon?: React.ReactElement;
+  primaryEnd?: string | number;
+  secondaryEnd?: string | number;
 }
 
 export interface ListProps {
@@ -93,14 +93,15 @@ const useStyles = makeStyles(() =>
     },
     circularProgressBar: {
       width: 60,
+      minWidth: 60,
       marginRight: '10%',
     },
   })
-)
+);
 
 export type ListItemBaseProps = ListItemProps & {
   component?: React.ElementType;
-    /**
+  /**
    * A function that will be executed on item's `onClick` method,
    * e.g. `(e) => console.log(e)`. By default, `e`, the React's synthetic event, is passed to that
    * function. When additional parameters are passed by another API implementation, e.g. `Table`,
@@ -108,9 +109,9 @@ export type ListItemBaseProps = ListItemProps & {
    */
   handleClick?: (
     event: MouseEvent<HTMLButtonElement | HTMLAnchorElement>,
-    x?: string 
-  ) => void
-}
+    x?: string
+  ) => void;
+};
 
 const ListItemBase = ({
   avatar,
@@ -124,7 +125,7 @@ const ListItemBase = ({
   primaryEnd,
   secondaryEnd,
 }: ListItemBaseProps) => {
-  const classes = useStyles()
+  const classes = useStyles();
   return (
     <ListItem
       button={!!to as true}
@@ -155,8 +156,8 @@ const ListItemBase = ({
         />
       )}
     </ListItem>
-  )
-}
+  );
+};
 
 const ListItemLink = ({
   avatar,
@@ -190,8 +191,8 @@ const ListItemLink = ({
       primaryEnd={primaryEnd}
       secondaryEnd={secondaryEnd}
     />
-  )
-}
+  );
+};
 
 /**
  * Lists are a continuous group of text or images. They are composed of items
@@ -210,11 +211,11 @@ export const List: React.FC<ListProps> = ({
     const params =
       handleClickParams && handleClickParams.length
         ? [e, ...handleClickParams]
-        : [e]
+        : [e];
     if (item.handleClick) {
-      item.handleClick(...params)
+      item.handleClick(...params);
     }
-  }
+  };
 
   return (
     <MuiList className={`${classes.list} ${className}`}>
@@ -233,7 +234,7 @@ export const List: React.FC<ListProps> = ({
                   to={item.to}
                   primaryEnd={item.primaryEnd}
                   secondaryEnd={item.secondaryEnd}
-                  handleClick={(e:any) => handleClick(e, item)}
+                  handleClick={(e: any) => handleClick(e, item)}
                 />
               </li>
             </Fragment>
@@ -251,7 +252,7 @@ export const List: React.FC<ListProps> = ({
               to={item.to}
               primaryEnd={item.primaryEnd}
               secondaryEnd={item.secondaryEnd}
-              handleClick={(e:any) => handleClick(e, item)}
+              handleClick={(e: any) => handleClick(e, item)}
             />
           </Fragment>
         );
@@ -259,4 +260,3 @@ export const List: React.FC<ListProps> = ({
     </MuiList>
   );
 };
-
