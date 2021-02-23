@@ -1,4 +1,5 @@
 import React, { Fragment, MouseEvent } from 'react';
+import { Link, LinkProps } from 'react-router-dom';
 import { createStyles, makeStyles } from '@material-ui/core/styles';
 import {
   List as MuiList,
@@ -100,7 +101,7 @@ const useStyles = makeStyles(() =>
 );
 
 export type ListItemBaseProps = ListItemProps & {
-  component?: React.ElementType;
+  component?: any; // TODO: find proper typing
   /**
    * A function that will be executed on item's `onClick` method,
    * e.g. `(e) => console.log(e)`. By default, `e`, the React's synthetic event, is passed to that
@@ -115,7 +116,7 @@ export type ListItemBaseProps = ListItemProps & {
 
 const ListItemBase = ({
   avatar,
-  // component,
+  component,
   circularProgressBar,
   icon,
   primary,
@@ -130,7 +131,7 @@ const ListItemBase = ({
     <ListItem
       button={!!to as true}
       className={classes.listItem}
-      // component={component}
+      component={component}
       onClick={handleClick}
       disableGutters
     >
@@ -170,19 +171,19 @@ const ListItemLink = ({
   primaryEnd,
   secondaryEnd,
 }: ListItemBaseProps) => {
-  // const renderLink = React.useMemo(
-  //   () =>
-  //     React.forwardRef<any, Omit<LinkProps, 'to'>>((itemProps, ref) => (
-  //       <Link to={to} ref={ref} {...itemProps} />
-  //     )),
-  //   [to]
-  // )
+  const renderLink = React.useMemo(
+    () =>
+      React.forwardRef<any, Omit<LinkProps, 'to'>>((itemProps, ref) => (
+        <Link to={to as string} ref={ref} {...itemProps} />
+      )),
+    [to]
+  );
 
   return (
     <ListItemBase
       avatar={avatar}
       circularProgressBar={circularProgressBar}
-      // component={renderLink}
+      component={renderLink}
       icon={icon}
       primary={primary}
       secondary={secondary}
