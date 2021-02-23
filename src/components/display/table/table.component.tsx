@@ -1,53 +1,69 @@
-import React from 'react'
+import React from 'react';
 import {
   Table as MuiTable,
   makeStyles,
   createStyles,
   Theme,
-} from '@material-ui/core'
-import { TableBody, TableCell, TableHead, TableRow } from '@material-ui/core'
-import { Link } from 'react-router-dom'
-import { IconButton } from '../../inputs/button/button.component'
-import { MoreVertical } from 'react-feather'
-import { Menu, MenuItem } from '../../navigation/menu/menu.component'
+} from '@material-ui/core';
+import { TableBody, TableCell, TableHead, TableRow } from '@material-ui/core';
+import { Link } from 'react-router-dom';
+import { IconButton } from '../../inputs/button/button.component';
+import { MoreVertical } from 'react-feather';
+import { Menu, MenuItem } from '../../navigation/menu/menu.component';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 /**
  * Interface for a table's column
  */
 export interface Column<DataType> {
   /**
-   * The text appears at the header cell of the column
+   * The text that appears at the header cell of the column
    */
-  title: string
+  title: string;
   /**
    * The name of the field for this column
    */
-  field: keyof DataType
+  field: keyof DataType;
   /**
    * If set, text within cells in this column, becomes a link
    */
-  link?: boolean
+  link?: boolean;
+  /**
+   * If set, when text in this cell is clicked, it will be copied to clipboard
+   */
+  enableCopyToClipboard?: boolean;
 }
 
 /**
  * Adds "to" property in the data provided to the table, so it can be used as a link
  */
 // TODO: Make this more generic and required for Table component
-export type TableData<DataType> = (DataType & { to?: string })[]
+export type TableData<DataType> = (DataType & { to?: string } & {
+  handleCopy?: React.MouseEventHandler;
+})[];
 
 export interface TableProps<DataType> {
   /**
-   * An array of objects containing the `title` and the `field` name of the column.
-   * For example: `{title: 'Name', field: 'name'}`.
+   * An array of objects with the following properties:
+   *
+   * Name | Type | Description | Default
+   * --- | --- | --- | ---
+   * title* | string | The text that appears at the header cell of the column. | -
+   * field* | keyof DataType | The name of the field for this column. | -
+   * link | boolean | If set, text within cells in this column, becomes a link. | -
+   * enableCopyToClipboard | boolean | If set, when text in this cell is clicked, it will be copied to clipboard. | -
+   *
    */
-  columns: Column<DataType>[]
+  columns: Column<DataType>[];
   /**
    * An array of objects representing the rows of the table. For example:
    * `{ index: 1, name: 'Daenerys', surname: 'Targaryen', birthYear: 1977 }`.
    * Each property of this object must exist as `field` in `columns`. If `link`
-   * is set in `columns`, `to` must be given a url to follow.
+   * is set in `columns`, `to` must be given a url to follow. If `enableCopyToClipboard`
+   * is set in `columns`, `handleOnCopy` must be passed a method to handle `onCopy` event.
+   * Full example: `{ index: 1, name: 'Daenerys', surname: 'Targaryen', birthYear: 1977, to: '#', handleCopy: e => console.log(e) }`
    */
-  data: TableData<DataType>
+  data: TableData<DataType>;
   /**
    * If set, a menu with a list of actions is shown per row.
    * It must be an array of objects with the following properties:
@@ -58,7 +74,7 @@ export interface TableProps<DataType> {
    * * `icon`: If set, an icon is showed before text.
    * * `text`: Item's text.
    */
-  actions?: MenuItem[]
+  actions?: MenuItem[];
 }
 
 /**
@@ -87,8 +103,44 @@ const useStyles = makeStyles<Theme>(({ palette }) =>
     actions: {
       padding: 8,
     },
+    copy: {
+      '& span': {
+        opacity: 0,
+        marginLeft: 6,
+        fontSize: 12,
+        fontWeight: 400,
+        color: palette.primary.main,
+      },
+      '&:hover': {
+        cursor: 'pointer',
+        '& span': {
+          opacity: 1,
+        },
+      },
+    },
   })
-)
+);
+
+const getCellContent = (row: any, col: any, classes: any) => {
+  if (col.link) {
+    return (
+      <Link className={classes.link} to={row.to as string}>
+        {row[col.field]}
+      </Link>
+    );
+  }
+  if (col.enableCopyToClipboard) {
+    return (
+      <CopyToClipboard text={row[col.field]} onCopy={row.handleCopy}>
+        <div className={classes.copy}>
+          {row[col.field]}
+          <span>Copy</span>
+        </div>
+      </CopyToClipboard>
+    );
+  }
+  return row[col.field];
+};
 
 /**
  * Tables display information in a grid-like format of rows and columns and provide
@@ -99,10 +151,10 @@ export const Table = <DataType extends any>({
   data,
   actions,
 }: TableProps<DataType>) => {
-  const classes = useStyles()
+  const classes = useStyles();
 
   // Create anchor for actions menu that will appear in each row
-  const anchor = <IconButton icon={<MoreVertical />} />
+  const anchor = <IconButton icon={<MoreVertical />} />;
 
   return (
     <>
@@ -122,13 +174,7 @@ export const Table = <DataType extends any>({
             <TableRow hover key={rowIndex}>
               {columns.map((col, i) => (
                 <TableCell className={classes.cell} key={i}>
-                  {col.link ? (
-                    <Link className={classes.link} to={row.to as string}>
-                      {row[col.field]}
-                    </Link>
-                  ) : (
-                    row[col.field]
-                  )}
+                  {getCellContent(row, col, classes)}
                 </TableCell>
               ))}
               {actions && (
@@ -147,5 +193,5 @@ export const Table = <DataType extends any>({
         </TableBody>
       </MuiTable>
     </>
-  )
-}
+  );
+};

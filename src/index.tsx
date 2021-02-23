@@ -8,7 +8,6 @@ const Package: React.FC = () => (
 
 export default Package
 
-export * from './components/branding/logo/logo.component'
 export * from './components/dataviz/bar/bar.component'
 export * from './components/dataviz/circularProgressBar/circularProgressBar.component'
 export * from './components/dataviz/line/line.component'
