@@ -8,7 +8,7 @@ import {
 import { TableBody, TableCell, TableHead, TableRow } from '@material-ui/core';
 import { Link } from 'react-router-dom';
 import { IconButton } from '../../inputs/button/button.component';
-import { MoreVertical } from 'react-feather';
+import { MoreVertical, Copy } from 'react-feather';
 import { Menu, MenuItem } from '../../navigation/menu/menu.component';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
@@ -104,16 +104,18 @@ const useStyles = makeStyles<Theme>(({ palette }) =>
       padding: 8,
     },
     copy: {
-      '& span': {
+      '& button': {
         opacity: 0,
         marginLeft: 6,
-        fontSize: 12,
-        fontWeight: 400,
         color: palette.primary.main,
+      },
+      '& svg': {
+        width: 18,
+        height: 18,
       },
       '&:hover': {
         cursor: 'pointer',
-        '& span': {
+        '& button': {
           opacity: 1,
         },
       },
@@ -134,7 +136,7 @@ const getCellContent = (row: any, col: any, classes: any) => {
       <CopyToClipboard text={row[col.field]} onCopy={row.handleCopy}>
         <div className={classes.copy}>
           {row[col.field]}
-          <span>Copy</span>
+          <IconButton className={classes.copy} icon={<Copy />} />
         </div>
       </CopyToClipboard>
     );
