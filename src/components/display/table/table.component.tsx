@@ -134,10 +134,10 @@ const getCellContent = (row: any, col: any, classes: any) => {
   if (col.enableCopyToClipboard) {
     return (
       <CopyToClipboard text={row[col.field]} onCopy={row.handleCopy}>
-        <div className={classes.copy}>
+        <span className={classes.copy}>
           {row[col.field]}
           <IconButton className={classes.copy} icon={<Copy />} />
-        </div>
+        </span>
       </CopyToClipboard>
     );
   }

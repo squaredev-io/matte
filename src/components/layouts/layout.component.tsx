@@ -1,33 +1,33 @@
-import React, { FC } from 'react'
-import clsx from 'clsx'
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles'
-import Drawer from '@material-ui/core/Drawer'
-import AppBar from '@material-ui/core/AppBar'
-import Toolbar from '@material-ui/core/Toolbar'
-import Divider from '@material-ui/core/Divider'
-import { IconButton } from '../inputs/button/button.component'
-import { Menu as MenuIcon, ChevronLeft, LogOut, User } from 'react-feather'
-import { List, ListItemProps } from '../display/list/list.component'
-import { Menu } from '../navigation/menu/menu.component'
-import { useLocation } from 'react-router-dom'
+import React, { FC } from 'react';
+import clsx from 'clsx';
+import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
+import Drawer from '@material-ui/core/Drawer';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Divider from '@material-ui/core/Divider';
+import { IconButton } from '../inputs/button/button.component';
+import { Menu as MenuIcon, ChevronLeft, LogOut, User } from 'react-feather';
+import { List, ListItemProps } from '../display/list/list.component';
+import { Menu } from '../navigation/menu/menu.component';
+import { useLocation } from 'react-router-dom';
 
-const drawerWidth = 240
+const drawerWidth = 240;
 
 export interface LayoutProps {
-  children?: React.ReactNode
-  menuItems: ListItemProps[]
-  onLogout?(): any
-  logo: string
+  children?: React.ReactNode;
+  menuItems: ListItemProps[];
+  onLogout?(): any;
+  logo: string;
 }
 
 /**
  * An object to hold values for `top` CSS property of active menu
  */
 const getActiveMenuPos = {
-  invitations: 63,
+  sessions: 63,
   customers: 108,
   reports: 153,
-}
+};
 
 /**
  * Inject styles for Layout
@@ -147,7 +147,7 @@ const useStyles = makeStyles((theme: Theme) =>
       },
     },
   })
-)
+);
 
 export const Layout: FC<LayoutProps> = ({
   children,
@@ -155,12 +155,12 @@ export const Layout: FC<LayoutProps> = ({
   onLogout,
   logo,
 }) => {
-  const [open, setOpen] = React.useState(true)
-  const handleDrawerOpen = () => setOpen(true)
-  const handleDrawerClose = () => setOpen(false)
-  const { pathname } = useLocation()
-  const activeMenuPos = getActiveMenuPos[pathname.slice(11)] || 18
-  const classes = useStyles(activeMenuPos)
+  const [open, setOpen] = React.useState(true);
+  const handleDrawerOpen = () => setOpen(true);
+  const handleDrawerClose = () => setOpen(false);
+  const { pathname } = useLocation();
+  const activeMenuPos = getActiveMenuPos[pathname.slice(11)] || 18;
+  const classes = useStyles(activeMenuPos);
 
   const userAvatar = (
     <IconButton icon={<User />} />
@@ -168,7 +168,7 @@ export const Layout: FC<LayoutProps> = ({
     // alt="Jef Stals"
     // src="https://trello-members.s3.amazonaws.com/5beb16e3702e685947ac265b/1c3591a18413a2382f7e0823cac7991a/original.png"
     // />
-  )
+  );
 
   const userMenuItems = [
     {
@@ -176,7 +176,7 @@ export const Layout: FC<LayoutProps> = ({
       icon: <LogOut />,
       handleClick: () => onLogout && onLogout(),
     },
-  ]
+  ];
 
   return (
     <div className={classes.root}>
@@ -233,5 +233,5 @@ export const Layout: FC<LayoutProps> = ({
       </Drawer>
       <main className={classes.content}>{children}</main>
     </div>
-  )
-}
+  );
+};

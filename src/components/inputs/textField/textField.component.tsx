@@ -7,6 +7,7 @@ import {
   makeStyles,
   FormControl,
   FormHelperText,
+  InputAdornment,
 } from '@material-ui/core';
 
 export interface TextFieldProps {
@@ -18,6 +19,10 @@ export interface TextFieldProps {
    * Whether the `input` element is disabled.
    */
   disabled?: boolean;
+  /**
+   * An icon that will be shown before text. Must be an icon component.
+   */
+  icon?: React.ReactNode;
   /**
    * Text for the placeholder.
    */
@@ -115,6 +120,7 @@ export const TextField: FC<TextFieldProps> = ({
   id,
   placeholder,
   disabled = false,
+  icon,
   value,
   defaultValue,
   error = false,
@@ -156,6 +162,9 @@ export const TextField: FC<TextFieldProps> = ({
         inputRef={inputRef}
         name={name}
         type={type}
+        startAdornment={
+          icon ? <InputAdornment position="start">{icon}</InputAdornment> : null
+        }
       />
       {helperText && (
         <FormHelperText error={error} id={`${id}-helper-text`}>

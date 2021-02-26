@@ -141,7 +141,7 @@ export const RowActions = () => {
 
 /**
  * You can enable copy to clipbaoard for a column. Each cell of this column,
- * when hovered, will show a `Copy` indication. When clicked, the content of
+ * when hovered, will show a copy icon. When clicked, the content of
  * the cell will be copied to clipboard.
  */
 export const copyToClipboard = () => {
