@@ -16,7 +16,7 @@ const useStyles = makeStyles(() =>
     wrapper: {
       height: '100%',
     },
-  }),
+  })
 );
 
 export const emptyState = () => {
@@ -61,7 +61,7 @@ export const CallToAction = () => {
       <EmptyState
         btnTxt="Add customer"
         description="A customer is added automatically after they accept an invitation, but you can also add one manually."
-        illustration="undraw_empty_xct9.svg"
+        illustration="images/undraw_empty_xct9.svg"
         tagline="Nothing here yet"
         to={'some/nice/url'}
       />
