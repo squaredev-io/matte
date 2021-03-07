@@ -1,6 +1,8 @@
 import React, { FC } from 'react';
 import { LinearProgress, LinearProgressProps } from '@material-ui/core';
 
+//TODO: Move this to a better place
+
 /**
  * Linear progress bar
  */

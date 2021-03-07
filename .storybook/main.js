@@ -1,18 +1,18 @@
-const path = require('path')
-const { webpackReactBaseConfigFactory } = require('../webpack.config')
+const path = require('path');
+const { webpackReactBaseConfigFactory } = require('../webpack.config');
 
-const outputPath = path.join(__dirname, '/dist')
-const tsconfigPath = path.resolve(__dirname, '../tsconfig.json')
+const outputPath = path.join(__dirname, '/dist');
+const tsconfigPath = path.resolve(__dirname, '../tsconfig.json');
 
 // Construct base react config to reuse in storybook webpack config
 const webpackReactBaseConfig = webpackReactBaseConfigFactory({
   outputPath,
   tsconfigPath,
-})
+});
 
 module.exports = {
   // Define storybook stories pattern
-  stories: ['../src/**/*.stories.tsx'],
+  stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.tsx'],
   addons: ['@storybook/addon-docs'],
 
   /**
@@ -22,15 +22,17 @@ module.exports = {
    */
   webpackFinal: async (config) => {
     // Push module rules
-    config.module.rules.push(...webpackReactBaseConfig.module.rules)
+    config.module.rules.push(...webpackReactBaseConfig.module.rules);
 
     // Push resolve extensions
-    config.resolve.extensions.push(...webpackReactBaseConfig.resolve.extensions)
+    config.resolve.extensions.push(
+      ...webpackReactBaseConfig.resolve.extensions
+    );
 
     // No need to merge aliases since storybook does not use any. So just use the default
-    config.resolve.alias = webpackReactBaseConfig.resolve.alias
+    config.resolve.alias = webpackReactBaseConfig.resolve.alias;
 
     // Webpack final config
-    return config
+    return config;
   },
-}
+};

@@ -1,6 +1,7 @@
-import React, { FC } from 'react'
-import { ResponsiveBar, BarSvgProps } from '@nivo/bar'
-import { theme, mono } from '../../../theme/nivoTheme'
+import React, { FC } from 'react';
+import { useTheme } from '@material-ui/core';
+import { ResponsiveBar, BarSvgProps } from '@nivo/bar';
+import { MatteTheme } from '../../utilities/createMatteTheme.component';
 
 /**
  * Use bar charts to show changes over time or differences between categories.
@@ -11,13 +12,14 @@ import { theme, mono } from '../../../theme/nivoTheme'
  * - Use when type of data is discrete or categorical
  */
 export const Bar: FC<BarSvgProps> = (props) => {
+  const { nivo }: MatteTheme = useTheme();
   return (
     <ResponsiveBar
-      colors={mono}
+      colors={nivo?.colorShemes?.mono}
       borderRadius={2}
       innerPadding={3}
       padding={0.5}
-      theme={theme}
+      theme={nivo}
       margin={{ top: 30, right: 20, bottom: 75, left: 50 }}
       enableLabel={false}
       legends={[
@@ -43,5 +45,5 @@ export const Bar: FC<BarSvgProps> = (props) => {
       }}
       {...props}
     />
-  )
-}
+  );
+};

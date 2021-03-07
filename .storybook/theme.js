@@ -5,5 +5,5 @@ export default create({
   fontBase: '"M PLUS Rounded 1c", sans-serif',
   brandTitle: 'Matte',
   brandImage: 'images/matte-logo-storybook.png',
-  brandUrl: '?path=/docs/*',
-})
+  brandUrl: '?path=/story/design-system-intro--page',
+});
