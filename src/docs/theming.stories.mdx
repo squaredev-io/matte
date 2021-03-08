@@ -1,0 +1,182 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+
+<Meta title="User Interface/Theming" />
+
+# Theming
+
+You can use Matte's default theme by creating a theme with `createMatteTheme` component,
+and then passing it to Material UI's `ThemeProvider`:
+
+```jsx
+const theme: MatteTheme = createMatteTheme();
+
+<ThemeProvider theme={theme}>{children}</ThemeProvider>;
+```
+
+This is the easiest way to get started with Matte and get the feel
+and look you see in this storybook. The default theme includes settings
+(colours, texts, shadows and more) for Material UI components and Nivo charts.
+You can see it at the end of this page.
+
+## Customising the default theme
+
+You can customise the default theme by passing your own theme.
+
+First create your theme with `createMatteTheme`:
+
+```jsx
+// theme.tsx
+
+// Create your theme from the default theme:
+// Copy the default theme and change the properties you want
+const const myMatteTheme = {
+  palette: {
+    primary: {
+      main: '#727CF5',
+    },
+    secondary: {
+      main: '#7987A1',
+    },
+    ....
+  },
+};
+
+// Create the theme
+const theme = createMatteTheme(myMatteTheme);
+
+export default theme;
+```
+
+Then pass it pass it to Material UI's `ThemeProvider`:
+
+```jsx
+// app.tsx
+
+import * as React from 'react';
+import * as ReactDOM from 'react-dom';
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/core/styles';
+import theme from './theme';
+
+const app = (
+  <MatteThemeProvider theme={theme}>
+    <Button />
+  </MatteThemeProvider>
+);
+
+ReactDOM.render(app, document.getElementById('root'));
+```
+
+## Default theme
+
+```jsx
+const matteTheme = {
+  palette: {
+    primary: {
+      main: '#727CF5',
+    },
+    secondary: {
+      main: '#7987A1',
+    },
+    error: {
+      main: '#FF3366',
+    },
+    success: {
+      main: '#66D1D1',
+      contrastText: '#FFFFFF',
+    },
+    background: {
+      default: '#F9FAFB',
+    },
+  },
+  props: {
+    MuiButtonBase: {
+      disableRipple: false,
+    },
+    MuiButton: {
+      disableElevation: true,
+    },
+  },
+  shadows: [
+    'none',
+    '0 0 10px 0 rgba(183, 192, 206, 0.2)',
+    'none',
+    'none',
+    'none',
+    'none',
+    'none',
+    'none',
+    '0 0 10px 0 rgba(183, 192, 206, 0.2)',
+    'none',
+    'none',
+    'none',
+    'none',
+    'none',
+    'none',
+    'none',
+    'none',
+    'none',
+    'none',
+    'none',
+    'none',
+    'none',
+    'none',
+    'none',
+    'none',
+  ] as Shadows,
+  typography: {
+    fontFamily: [
+      '"Open Sans"',
+      'Quicksand',
+      '"Helvetica Neue"',
+      'Arial',
+      'sans-serif',
+    ].join(','),
+  },
+  nivo: {
+    axis: {
+      ticks: {
+        line: { stroke: '#777', strokeWidth: 1 },
+        text: {
+          fill: '#686868',
+          fontSize: 12,
+          fontFamily: 'M PLUS Rounded 1c, sans-serif',
+          whiteSpace: 'normal' as 'normal',
+          maxWidth: 50,
+        },
+      },
+    },
+    grid: {
+      line: {
+        strokeOpacity: 0.5,
+      },
+    },
+    tooltip: {
+      container: {
+        fontSize: 14,
+      },
+    },
+    labels: {
+      text: {
+        fill: '#686868',
+        fontSize: 14,
+        fontFamily: 'M PLUS Rounded 1c, sans-serif',
+        whiteSpace: 'normal' as 'normal',
+      },
+    },
+    legends: {
+      text: {
+        fill: '#686868',
+        fontSize: 12,
+        fontFamily: 'M PLUS Rounded 1c, sans-serif',
+        textTransform: 'capitalize' as 'capitalize',
+        whiteSpace: 'normal' as 'normal',
+      },
+    },
+    colorShemes: {
+      mono: ['#6200EE', '#A166F5', '#BC9FE6', '#EFE5FD', '#4A148C'],
+      dual: ['#6200EE', '#FF3366'],
+    },
+  },
+};
+```

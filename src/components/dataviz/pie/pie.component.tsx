@@ -1,16 +1,18 @@
-import React, { FC } from 'react'
-import { ResponsivePie, PieSvgProps } from '@nivo/pie'
-import { theme, mono } from '../../../theme/nivoTheme'
+import React, { FC } from 'react';
+import { useTheme } from '@material-ui/core';
+import { ResponsivePie, PieSvgProps } from '@nivo/pie';
+import { MatteTheme } from '../../utilities/createMatteTheme.component';
 
 /**
  * Pie charts can be used to show proportion, which expresses a partial
  * value in comparison to a total value.
  */
 export const Pie: FC<PieSvgProps> = (props) => {
+  const { nivo }: MatteTheme = useTheme();
   return (
     <ResponsivePie
-      colors={mono}
-      theme={theme}
+      colors={nivo?.colorShemes?.mono}
+      theme={nivo}
       padAngle={1}
       innerRadius={0.5}
       cornerRadius={2}
@@ -20,5 +22,5 @@ export const Pie: FC<PieSvgProps> = (props) => {
       radialLabelsSkipAngle={10}
       {...props}
     />
-  )
-}
+  );
+};

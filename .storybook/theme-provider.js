@@ -1,7 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ThemeProvider } from '@material-ui/core/styles';
-import theme from '../src/theme/theme';
+import { createMatteTheme } from '../src/components/utilities/createMatteTheme.component';
+
+const theme = createMatteTheme();
 
 const Theme = ({ children }) => {
   return <ThemeProvider theme={theme}>{children}</ThemeProvider>;

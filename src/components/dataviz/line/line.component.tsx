@@ -1,6 +1,7 @@
 import React, { FC } from 'react';
 import { ResponsiveLine, LineSvgProps } from '@nivo/line';
-import { theme, mono } from '../../../theme/nivoTheme';
+import { useTheme } from '@material-ui/core';
+import { MatteTheme } from '../../utilities/createMatteTheme.component';
 
 /**
  * Use line charts to show changes over time where data is continuous and variations in data are minor.
@@ -11,10 +12,11 @@ import { theme, mono } from '../../../theme/nivoTheme';
  * - Vary a line’s texture to represent different data types
  */
 export const Line: FC<LineSvgProps> = (props) => {
+  const { nivo }: MatteTheme = useTheme();
   return (
     <ResponsiveLine
-      colors={mono}
-      theme={theme}
+      colors={nivo?.colorShemes?.mono}
+      theme={nivo}
       margin={{ top: 30, right: 20, bottom: 50, left: 50 }}
       axisLeft={{
         tickValues: 5,
