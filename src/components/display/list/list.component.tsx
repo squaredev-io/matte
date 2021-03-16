@@ -9,6 +9,7 @@ import {
   ListItemAvatar,
   Divider,
 } from '@material-ui/core';
+import clsx from 'clsx';
 
 // TODO: how to solve the component problem?
 
@@ -112,6 +113,10 @@ export type ListItemBaseProps = ListItemProps & {
     event: MouseEvent<HTMLButtonElement | HTMLAnchorElement>,
     x?: string
   ) => void;
+  /**
+   * Classname to be passed to ListItem. It is used internally to pass active class
+   */
+  className?: string;
 };
 
 const ListItemBase = ({
@@ -125,12 +130,13 @@ const ListItemBase = ({
   handleClick,
   primaryEnd,
   secondaryEnd,
+  className,
 }: ListItemBaseProps) => {
   const classes = useStyles();
   return (
     <ListItem
       button={!!to as true}
-      className={classes.listItem}
+      className={`${classes.listItem} ${className}`}
       component={component}
       onClick={handleClick}
       disableGutters
@@ -207,8 +213,10 @@ export const List: React.FC<ListProps> = ({
   divider = false,
 }) => {
   const classes = useStyles();
+  const [activeLi, setActiveLi] = React.useState(-1);
 
-  const handleClick = (e: any, item: any) => {
+  const handleClick = (e: any, item: any, i: number) => {
+    setActiveLi(i);
     const params =
       handleClickParams && handleClickParams.length
         ? [e, ...handleClickParams]
@@ -225,7 +233,7 @@ export const List: React.FC<ListProps> = ({
           return (
             <Fragment key={i}>
               {i > 0 && divider && <Divider component="li" />}
-              <li>
+              <li className={clsx({ active: activeLi === i })}>
                 <ListItemLink
                   avatar={item.avatar}
                   circularProgressBar={item.circularProgressBar}
@@ -235,7 +243,7 @@ export const List: React.FC<ListProps> = ({
                   to={item.to}
                   primaryEnd={item.primaryEnd}
                   secondaryEnd={item.secondaryEnd}
-                  handleClick={(e: any) => handleClick(e, item)}
+                  handleClick={(e: any) => handleClick(e, item, i)}
                 />
               </li>
             </Fragment>
@@ -253,7 +261,8 @@ export const List: React.FC<ListProps> = ({
               to={item.to}
               primaryEnd={item.primaryEnd}
               secondaryEnd={item.secondaryEnd}
-              handleClick={(e: any) => handleClick(e, item)}
+              handleClick={(e: any) => handleClick(e, item, i)}
+              className={clsx({ active: activeLi === i })}
             />
           </Fragment>
         );
