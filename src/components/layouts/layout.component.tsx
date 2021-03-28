@@ -9,7 +9,6 @@ import { IconButton } from '../inputs/button/button.component';
 import { Menu as MenuIcon, ChevronLeft, LogOut, User } from 'react-feather';
 import { List, ListItemProps } from '../display/list/list.component';
 import { Menu } from '../navigation/menu/menu.component';
-import { useLocation } from 'react-router-dom';
 
 const drawerWidth = 240;
 
@@ -19,15 +18,6 @@ export interface LayoutProps {
   onLogout?(): any;
   logo: string;
 }
-
-/**
- * An object to hold values for `top` CSS property of active menu
- */
-const getActiveMenuPos = {
-  sessions: 63,
-  customers: 108,
-  reports: 153,
-};
 
 /**
  * Inject styles for Layout
@@ -131,19 +121,25 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     menu: {
       position: 'relative',
-      paddingTop: 16,
-      [theme.breakpoints.up('sm')]: {
-        paddingLeft: 8,
+      paddingTop: 20,
+      '& li': {
+        color: theme.palette.grey[600],
+        borderRadius: 16,
+        margin: 8,
+        '& a': {
+          borderRadius: 16,
+          padding: '12px 16px',
+        },
+        '& .MuiListItemIcon-root': {
+          minWidth: 40,
+        },
       },
-      '&:after': {
-        position: 'absolute',
-        content: '""',
-        top: (activeMenuPos: any) => activeMenuPos,
-        left: 0,
-        height: 41,
-        width: 5,
-        background: theme.palette.primary.main,
-        transition: 'top .2s ease-in-out',
+      '& li.active, li.active a:hover': {
+        background: theme.palette.primary.light,
+        color: theme.palette.primary.main,
+        '& svg': {
+          stroke: theme.palette.primary.main,
+        },
       },
     },
   })
@@ -158,17 +154,11 @@ export const Layout: FC<LayoutProps> = ({
   const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => setOpen(true);
   const handleDrawerClose = () => setOpen(false);
-  const { pathname } = useLocation();
-  const activeMenuPos = getActiveMenuPos[pathname.slice(11)] || 18;
-  const classes = useStyles(activeMenuPos);
+  // const { pathname } = useLocation();
+  // const activeMenuPos = getActiveMenuPos[pathname.slice(11)] || 18;
+  const classes = useStyles();
 
-  const userAvatar = (
-    <IconButton icon={<User />} />
-    // <Avatar
-    // alt="Jef Stals"
-    // src="https://trello-members.s3.amazonaws.com/5beb16e3702e685947ac265b/1c3591a18413a2382f7e0823cac7991a/original.png"
-    // />
-  );
+  const userAvatar = <IconButton icon={<User />} />;
 
   const userMenuItems = [
     {
@@ -197,9 +187,6 @@ export const Layout: FC<LayoutProps> = ({
           />
           <div className={classes.search} />
           <div className={classes.nav}>
-            {/* <IconButton icon={<Grid />} />
-            <IconButton icon={<Mail />} />
-            <IconButton icon={<Bell />} /> */}
             <Menu
               id="menu-with-icon"
               items={userMenuItems}
