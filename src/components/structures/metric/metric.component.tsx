@@ -1,20 +1,20 @@
-import React, { FC } from 'react'
-import { Line } from '../../dataviz/line/line.component'
-import { makeStyles, createStyles, Theme } from '@material-ui/core'
-import { chain } from 'mathjs'
-import { ArrowUp, ArrowDown } from 'react-feather'
-import { Serie } from '@nivo/line'
+import React, { FC } from 'react';
+import { Line } from '../../dataviz/line/line.component';
+import { makeStyles, createStyles, Theme } from '@material-ui/core';
+import { chain } from 'mathjs';
+import { ArrowUp, ArrowDown } from 'react-feather';
+import { Serie } from '@nivo/line';
 
 export interface MetricProps {
   /**
    * An object as expect by Nivo's line chart. For more info look at
    * the line chart stories.
    */
-  data: Serie[]
+  data: Serie[];
   /**
    * The value of the metric.
    */
-  metric: number | string
+  metric: number | string;
 }
 
 export interface VariantProps {
@@ -22,25 +22,25 @@ export interface VariantProps {
    * An object as expect by Nivo's line chart. For more info look at
    * the line chart stories.
    */
-  data: Serie[]
+  data: Serie[];
 }
 
 const getVariation = (data: Serie[]): number => {
-  const points = data?.[0].data
-  const lastMonthVal = parseInt(points?.[points.length - 1]?.y as string, 10)
+  const points = data?.[0].data;
+  const lastMonthVal = parseInt(points?.[points.length - 1]?.y as string, 10);
   const previousThanLastMonthVal = parseInt(
     points?.[points.length - 2]?.y as string,
     10
-  )
+  );
   return chain(lastMonthVal)
     .subtract(previousThanLastMonthVal)
     .multiply(100)
     .divide(previousThanLastMonthVal)
     .round(2)
-    .done()
-}
+    .done();
+};
 
-const useStyles = makeStyles<Theme, VariantProps>(({ palette }) =>
+const useStyles = makeStyles<Theme, VariantProps>(({ palette, shadows }) =>
   createStyles({
     body: {
       display: 'flex',
@@ -60,37 +60,58 @@ const useStyles = makeStyles<Theme, VariantProps>(({ palette }) =>
       height: 60,
     },
     variation: ({ data }) => {
-      const variation = getVariation(data)
+      const variation = getVariation(data);
       return {
         display: 'flex',
         alignItems: 'center',
-        color: variation < 0 ? palette.error.main : palette.success.main,
+        justifyContent: 'center',
+        borderRadius: 16,
+        padding: '2px 8px',
+        color: variation > 0 ? palette.error.dark : palette.success.dark,
+        backgroundColor:
+          variation > 0 ? palette.error.light : palette.success.light,
         fontSize: '.875rem',
         '& svg': {
           height: 16,
         },
         marginTop: 8,
-      }
+      };
+    },
+    tooltip: {
+      padding: '2px 8px',
+      background: 'white',
+      boxShadow: shadows[1],
+      fontWeight: 600,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      '& span': {
+        display: 'block',
+        height: 8,
+        width: 8,
+        borderRadius: '50%',
+        marginRight: 8,
+      },
     },
   })
-)
+);
 
 const Variation: FC<VariantProps> = ({ data }) => {
-  const classes = useStyles({ data })
-  const variation = getVariation(data) || 0
-  const sign = variation < 0 ? '' : '+'
-  const icon = variation < 0 ? <ArrowDown /> : <ArrowUp />
+  const classes = useStyles({ data });
+  const variation = getVariation(data) || 0;
+  const sign = variation < 0 ? '' : '+';
+  const icon = variation < 0 ? <ArrowDown /> : <ArrowUp />;
 
   return (
     <span className={classes.variation}>
       {`${sign}${variation}%`}
       {icon}
     </span>
-  )
-}
+  );
+};
 
 export const Metric: FC<MetricProps> = ({ data, metric }) => {
-  const classes = useStyles({ data })
+  const classes = useStyles({ data });
 
   return (
     <div className={classes.body}>
@@ -110,9 +131,16 @@ export const Metric: FC<MetricProps> = ({ data, metric }) => {
           }}
           axisLeft={null}
           axisBottom={null}
-          useMesh={true}
+          curve="basis"
+          enableSlices="x"
+          sliceTooltip={({ slice }) => (
+            <div className={classes.tooltip}>
+              <span style={{ backgroundColor: slice.points[0].serieColor }} />
+              {slice.points[0].data.y}
+            </div>
+          )}
         />
       </div>
     </div>
-  )
-}
+  );
+};

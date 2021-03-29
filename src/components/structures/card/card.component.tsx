@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC } from 'react';
 import {
   makeStyles,
   Theme,
@@ -10,33 +10,33 @@ import {
   CardActions as MuiCardActions,
   CardMedia,
   CardActionArea,
-} from '@material-ui/core'
+} from '@material-ui/core';
 
 export interface CardProps {
   /**
    * An 'Avatar' component. If set, the card header is shown with `title` and `subtitle`.
    */
-  avatar?: React.ReactNode
+  avatar?: React.ReactNode;
   /**
    * The `CardBody` and `CardActions` components.
    */
-  children?: React.ReactNode
+  children?: React.ReactNode;
   /**
    * If set, the card acts as button that follows this URL.
    */
-  href?: string
+  href?: string;
   /**
    * The 'src' attribute for the image to be displayed above content area.
    */
-  image?: string
+  image?: string;
   /**
    * Text for card's subtitle.
    */
-  subtitle?: string
+  subtitle?: string;
   /**
    * Text for card's title.
    */
-  title?: string
+  title?: string;
 }
 
 /**
@@ -45,7 +45,7 @@ export interface CardProps {
  */
 export const CardActions: FC = ({ children }) => (
   <MuiCardActions>{children}</MuiCardActions>
-)
+);
 
 /**
  * Main body of the card
@@ -59,7 +59,7 @@ export const CardBody: FC<{ className?: string }> = ({
   <Typography className={className} component="div" variant="body2">
     {children}
   </Typography>
-)
+);
 
 /**
  * Inject styles for Card
@@ -79,10 +79,8 @@ const useStyles = makeStyles((theme: Theme) =>
       padding: 24,
     },
     title: {
-      textTransform: 'uppercase',
       marginBottom: 20,
-      fontSize: '.875rem',
-      fontWeight: 700,
+      fontWeight: 600,
     },
     subtitle: {
       color: theme.palette.grey[600],
@@ -90,7 +88,7 @@ const useStyles = makeStyles((theme: Theme) =>
       fontSize: '.875rem',
     },
   })
-)
+);
 
 /**
  * Cards are surfaces that display content and actions on a single topic. They should be easy to scan for relevant and
@@ -110,7 +108,7 @@ export const Card: FC<CardProps> = ({
   subtitle,
   title,
 }) => {
-  const classes = useStyles()
+  const classes = useStyles();
 
   /**
    * Avatar component
@@ -122,25 +120,25 @@ export const Card: FC<CardProps> = ({
       title={title}
       subheader={subtitle}
     />
-  )
+  );
   /**
    * CardBody component if set
    */
   const body = React.Children.toArray(children)?.find(
     ({ type }: any) => type === CardBody
-  )
+  );
   /**
    * CardActions component if set
    */
   const actions = React.Children.toArray(children)?.find(
     ({ type }: any) => type === CardActions
-  )
+  );
   /**
    * Image part of the card
    */
   const media = image && (
     <CardMedia component="img" image={image} title={title} />
-  )
+  );
 
   /**
    * Card's main content. Includes title, subtitle and the contents of CardBody
@@ -158,7 +156,7 @@ export const Card: FC<CardProps> = ({
         {body}
       </CardContent>
     </>
-  )
+  );
 
   return (
     <MuiCard className={classes.root}>
@@ -166,5 +164,5 @@ export const Card: FC<CardProps> = ({
       {href ? <CardActionArea href={href}>{content}</CardActionArea> : content}
       {actions}
     </MuiCard>
-  )
-}
+  );
+};

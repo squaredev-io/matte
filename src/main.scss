@@ -1,6 +1,5 @@
 // Import custom font
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700;800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
 body,
 html,
@@ -8,7 +7,7 @@ html,
   height: 100%;
   width: 100%;
   margin: 0;
-  font-family: 'Quicksand', sans-serif !important;
+  font-family: 'Poppins', sans-serif !important;
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -27,5 +26,5 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Open Sans', sans-serif !important;
+  font-family: 'Poppins', sans-serif !important;
 }

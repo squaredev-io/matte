@@ -13,20 +13,32 @@ export type MatteTheme = MuiTheme & {
 const matteTheme = {
   palette: {
     primary: {
-      main: '#727CF5',
+      light: '#CDE7FB',
+      main: '#006EFF',
+      dark: '#01459D',
     },
     secondary: {
-      main: '#7987A1',
+      light: '#C7ECF0',
+      main: '#1EB1C2',
+      dark: '#105961',
+      contrastText: '#FFFFFF',
     },
     error: {
-      main: '#FF3366',
+      light: '#FDD8D8',
+      main: '#F46363',
+      dark: '#B74B4B',
     },
     success: {
-      main: '#66D1D1',
+      light: '#CBF5DD',
+      main: '#2ED477',
+      dark: '#1D854B',
       contrastText: '#FFFFFF',
     },
     background: {
       default: '#F9FAFB',
+    },
+    action: {
+      hover: '#fafafa',
     },
   },
   props: {
@@ -65,13 +77,9 @@ const matteTheme = {
     'none',
   ] as Shadows,
   typography: {
-    fontFamily: [
-      '"Open Sans"',
-      'Quicksand',
-      '"Helvetica Neue"',
-      'Arial',
-      'sans-serif',
-    ].join(','),
+    fontFamily: ['Poppins', '"Helvetica Neue"', 'Arial', 'sans-serif'].join(
+      ','
+    ),
   },
   nivo: {
     axis: {
@@ -80,7 +88,7 @@ const matteTheme = {
         text: {
           fill: '#686868',
           fontSize: 12,
-          fontFamily: 'M PLUS Rounded 1c, sans-serif',
+          fontFamily: 'Poppins, sans-serif',
           whiteSpace: 'normal' as 'normal',
           maxWidth: 50,
         },
@@ -100,7 +108,7 @@ const matteTheme = {
       text: {
         fill: '#686868',
         fontSize: 14,
-        fontFamily: 'M PLUS Rounded 1c, sans-serif',
+        fontFamily: 'Poppins, sans-serif',
         whiteSpace: 'normal' as 'normal',
       },
     },
@@ -108,14 +116,14 @@ const matteTheme = {
       text: {
         fill: '#686868',
         fontSize: 12,
-        fontFamily: 'M PLUS Rounded 1c, sans-serif',
+        fontFamily: 'Poppins, sans-serif',
         textTransform: 'capitalize' as 'capitalize',
         whiteSpace: 'normal' as 'normal',
       },
     },
     colorShemes: {
-      mono: ['#6200EE', '#A166F5', '#BC9FE6', '#EFE5FD', '#4A148C'],
-      dual: ['#6200EE', '#FF3366'],
+      mono: ['#006EFF', '#59A0FF', '#97C3FF', '#CDE7FB', '#01459D'],
+      dual: ['#006EFF', '#F46363'],
     },
   },
 };

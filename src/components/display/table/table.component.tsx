@@ -83,14 +83,22 @@ export interface TableProps<DataType> {
  */
 const useStyles = makeStyles<Theme>(({ palette }) =>
   createStyles({
+    row: {
+      '&:nth-of-type(odd)': {
+        backgroundColor: palette.action.hover,
+      },
+    },
     headerCell: {
-      color: palette.grey[700],
+      color: palette.grey[600],
       fontSize: '.75rem',
       textTransform: 'uppercase',
       padding: 14,
     },
     cell: {
       padding: 14,
+      fontSize: 13,
+      color: palette.grey[600],
+      borderBottom: 0,
     },
     link: {
       color: palette.primary.main,
@@ -160,7 +168,7 @@ export const Table = <DataType extends any>({
 
   return (
     <>
-      <MuiTable className={classes.table} aria-label="simple table">
+      <MuiTable className={classes.table}>
         <TableHead>
           <TableRow>
             {columns.map((col, cellIndex) => (
@@ -173,7 +181,7 @@ export const Table = <DataType extends any>({
         </TableHead>
         <TableBody>
           {data.map((row, rowIndex) => (
-            <TableRow hover key={rowIndex}>
+            <TableRow className={classes.row} hover key={rowIndex}>
               {columns.map((col, i) => (
                 <TableCell className={classes.cell} key={i}>
                   {getCellContent(row, col, classes)}
