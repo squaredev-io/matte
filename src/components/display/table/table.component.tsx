@@ -107,7 +107,6 @@ const useStyles = makeStyles<Theme>(({ palette }) =>
       fontSize: '.875rem',
       color: palette.grey[600],
       borderBottom: `1px solid ${palette.grey[200]}`,
-      fontWeight: 500,
     },
     link: {
       color: palette.primary.main,
