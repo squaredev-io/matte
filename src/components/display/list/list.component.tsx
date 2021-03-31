@@ -35,6 +35,10 @@ export interface ListProps {
    */
   divider?: boolean;
   /**
+   * If true, the left and right padding for the item content is removed.
+   */
+  disableGutters?: boolean;
+  /**
    * An array of params that will be passed to the `handleClick` method of each menu item.
    */
   handleClickParams?: (string | number)[];
@@ -62,9 +66,9 @@ const useStyles = makeStyles(() =>
     list: {
       padding: 0,
     },
-    listItem: {
-      padding: '12px 20px',
-    },
+    listItem: ({ disableGutters }: any) => ({
+      padding: disableGutters ? '12px 8px' : '12px 24px',
+    }),
     listItemText: {
       margin: 0,
       lineHeight: 1,
@@ -117,6 +121,10 @@ export type ListItemBaseProps = ListItemProps & {
    * Classname to be passed to ListItem. It is used internally to pass active class
    */
   className?: string;
+  /**
+   * If true, the left and right padding for the item content is removed.
+   */
+  disableGutters?: boolean;
 };
 
 const ListItemBase = ({
@@ -131,15 +139,15 @@ const ListItemBase = ({
   primaryEnd,
   secondaryEnd,
   className,
+  disableGutters,
 }: ListItemBaseProps) => {
-  const classes = useStyles();
+  const classes = useStyles({ disableGutters });
   return (
     <ListItem
       button={!!to as true}
       className={`${classes.listItem} ${className}`}
       component={component}
       onClick={handleClick}
-      disableGutters
     >
       {avatar ? <ListItemAvatar>{avatar}</ListItemAvatar> : null}
       {circularProgressBar && !avatar ? (
@@ -176,6 +184,7 @@ const ListItemLink = ({
   handleClick,
   primaryEnd,
   secondaryEnd,
+  disableGutters,
 }: ListItemBaseProps) => {
   const renderLink = React.useMemo(
     () =>
@@ -197,6 +206,7 @@ const ListItemLink = ({
       handleClick={handleClick}
       primaryEnd={primaryEnd}
       secondaryEnd={secondaryEnd}
+      disableGutters={disableGutters}
     />
   );
 };
@@ -211,8 +221,9 @@ export const List: React.FC<ListProps> = ({
   handleClickParams,
   items,
   divider = false,
+  disableGutters = false,
 }) => {
-  const classes = useStyles();
+  const classes = useStyles({ disableGutters });
   const [activeLi, setActiveLi] = React.useState(-1);
 
   const handleClick = (e: any, item: any, i: number) => {
@@ -232,7 +243,7 @@ export const List: React.FC<ListProps> = ({
         if (item.to) {
           return (
             <Fragment key={i}>
-              {i > 0 && divider && <Divider component="li" />}
+              {i > 0 && divider && <Divider component="li" light />}
               <li className={clsx({ active: activeLi === i })}>
                 <ListItemLink
                   avatar={item.avatar}
@@ -244,6 +255,7 @@ export const List: React.FC<ListProps> = ({
                   primaryEnd={item.primaryEnd}
                   secondaryEnd={item.secondaryEnd}
                   handleClick={(e: any) => handleClick(e, item, i)}
+                  disableGutters={disableGutters}
                 />
               </li>
             </Fragment>
@@ -251,7 +263,7 @@ export const List: React.FC<ListProps> = ({
         }
         return (
           <Fragment key={i}>
-            {i > 0 && divider && <Divider component="li" />}
+            {i > 0 && divider && <Divider component="li" light />}
             <ListItemBase
               avatar={item.avatar}
               circularProgressBar={item.circularProgressBar}
@@ -263,6 +275,7 @@ export const List: React.FC<ListProps> = ({
               secondaryEnd={item.secondaryEnd}
               handleClick={(e: any) => handleClick(e, item, i)}
               className={clsx({ active: activeLi === i })}
+              disableGutters={disableGutters}
             />
           </Fragment>
         );

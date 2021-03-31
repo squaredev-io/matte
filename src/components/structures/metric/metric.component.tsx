@@ -75,6 +75,7 @@ const useStyles = makeStyles<Theme, VariantProps>(({ palette, shadows }) =>
           height: 16,
         },
         marginTop: 8,
+        width: 'max-content',
       };
     },
     tooltip: {

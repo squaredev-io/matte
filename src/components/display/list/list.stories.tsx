@@ -5,6 +5,7 @@ import { Inbox, Drafts, Delete } from '@material-ui/icons';
 import { Avatar } from '../avatar/avatar.component';
 import { AlertTriangle, Check } from 'react-feather';
 import { CircularProgressBar } from '../../dataviz/circularProgressBar/circularProgressBar.component';
+import { Card, CardBody } from '../../..';
 
 export default {
   title: 'Components/Display/List',
@@ -18,10 +19,13 @@ export default {
 const useStyles = makeStyles({
   list: {
     background: '#f5f5f5',
-    padding: '20px',
+    padding: 20,
     '& ul': {
       background: 'white',
-      maxWidth: '350px',
+      maxWidth: 450,
+    },
+    '& .MuiCard-root': {
+      maxWidth: 450,
     },
   },
 });
@@ -75,7 +79,7 @@ export const SimpleList = () => {
     { primary: 'Inbox' },
     { primary: 'Drafts' },
     { primary: 'Trash' },
-  ]
+  ];
   return (
     <div className={classes.list}>
       <List divider items={menuItems} />
@@ -239,6 +243,52 @@ export const Scorecard = () => {
   return (
     <div className={classes.list}>
       <List divider items={menuItems} />
+    </div>
+  );
+};
+
+/**
+ * You can wrap a list with a `Card` for better looks.
+ */
+export const ListInACard = () => {
+  const classes = useStyles();
+  const items = [
+    {
+      icon: <Check color="green" />,
+      primary: 'Gambling',
+      primaryEnd: '€25,98',
+      secondaryEnd: '1% of monthly income',
+    },
+    {
+      icon: <AlertTriangle color="red" />,
+      primary: 'Loan repayments',
+      primaryEnd: '€480,65',
+      secondaryEnd: '25% of monthly income',
+    },
+    {
+      icon: <AlertTriangle color="red" />,
+      primary: 'Cash withdrawals',
+      primaryEnd: '€120,62',
+      secondaryEnd: '9% of monthly income',
+    },
+    {
+      icon: <Check color="green" />,
+      primary: 'Transfers',
+      primaryEnd: '€25,62',
+      secondaryEnd: '1% of monthly income',
+    },
+  ];
+
+  return (
+    <div className={classes.list}>
+      <Card
+        title="Indicators"
+        subtitle="Special items that require your attention."
+      >
+        <CardBody>
+          <List items={items} disableGutters />
+        </CardBody>
+      </Card>
     </div>
   );
 };

@@ -22,6 +22,10 @@ export interface CardProps {
    */
   children?: React.ReactNode;
   /**
+   * If true, the left and right padding for the card content is removed.
+   */
+  disableGutters?: boolean;
+  /**
    * If set, the card acts as button that follows this URL.
    */
   href?: string;
@@ -75,18 +79,20 @@ const useStyles = makeStyles((theme: Theme) =>
     header: {
       padding: 24,
     },
-    content: {
-      padding: 24,
-    },
-    title: {
+    content: ({ disableGutters }: any) => ({
+      padding: disableGutters ? '24px 0' : 24,
+    }),
+    title: ({ disableGutters }: any) => ({
+      paddingLeft: disableGutters ? 24 : 0,
       marginBottom: 20,
       fontWeight: 600,
-    },
-    subtitle: {
+    }),
+    subtitle: ({ disableGutters }: any) => ({
+      paddingLeft: disableGutters ? 24 : 0,
       color: theme.palette.grey[600],
       marginBottom: 16,
       fontSize: '.875rem',
-    },
+    }),
   })
 );
 
@@ -107,8 +113,9 @@ export const Card: FC<CardProps> = ({
   image,
   subtitle,
   title,
+  disableGutters = false,
 }) => {
-  const classes = useStyles();
+  const classes = useStyles({ disableGutters });
 
   /**
    * Avatar component

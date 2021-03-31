@@ -124,10 +124,9 @@ const useStyles = makeStyles((theme: Theme) =>
       paddingTop: 20,
       '& li': {
         color: theme.palette.grey[600],
-        borderRadius: 16,
         margin: 8,
         '& a': {
-          borderRadius: 16,
+          borderRadius: 8,
           padding: '12px 16px',
         },
         '& .MuiListItemIcon-root': {
@@ -135,7 +134,6 @@ const useStyles = makeStyles((theme: Theme) =>
         },
       },
       '& li.active, li.active a:hover': {
-        background: theme.palette.primary.light,
         color: theme.palette.primary.main,
         '& svg': {
           stroke: theme.palette.primary.main,
@@ -154,8 +152,6 @@ export const Layout: FC<LayoutProps> = ({
   const [open, setOpen] = React.useState(true);
   const handleDrawerOpen = () => setOpen(true);
   const handleDrawerClose = () => setOpen(false);
-  // const { pathname } = useLocation();
-  // const activeMenuPos = getActiveMenuPos[pathname.slice(11)] || 18;
   const classes = useStyles();
 
   const userAvatar = <IconButton icon={<User />} />;

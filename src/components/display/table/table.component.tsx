@@ -25,7 +25,7 @@ export interface Column<DataType> {
    */
   field: keyof DataType;
   /**
-   * If set, text within cells in this column, becomes a link
+   * If set, text within cells in this column, becomes a link.
    */
   link?: boolean;
   /**
@@ -43,6 +43,17 @@ export type TableData<DataType> = (DataType & { to?: string } & {
 })[];
 
 export interface TableProps<DataType> {
+  /**
+   * If set, a menu with a list of actions is shown per row.
+   * It must be an array of objects with the following properties:
+   *
+   * * `handleClick`: A function that will be executed on item's `onClick` method,
+   * e.g. `(e) => console.log(e)`. Except for `e`, the React's synthetic event, `rowId`
+   * is also available.
+   * * `icon`: If set, an icon is showed before text.
+   * * `text`: Item's text.
+   */
+  actions?: MenuItem[];
   /**
    * An array of objects with the following properties:
    *
@@ -65,16 +76,13 @@ export interface TableProps<DataType> {
    */
   data: TableData<DataType>;
   /**
-   * If set, a menu with a list of actions is shown per row.
-   * It must be an array of objects with the following properties:
-   *
-   * * `handleClick`: A function that will be executed on item's `onClick` method,
-   * e.g. `(e) => console.log(e)`. Except for `e`, the React's synthetic event, `rowId`
-   * is also available.
-   * * `icon`: If set, an icon is showed before text.
-   * * `text`: Item's text.
+   * If `true`, the table row will shade on hover.
    */
-  actions?: MenuItem[];
+  hover?: boolean;
+  /**
+   * If `true`, odd rows will have a background color. Avoid using this with hover.
+   */
+  striped?: boolean;
 }
 
 /**
@@ -83,22 +91,23 @@ export interface TableProps<DataType> {
  */
 const useStyles = makeStyles<Theme>(({ palette }) =>
   createStyles({
-    row: {
+    row: ({ striped }: any) => ({
       '&:nth-of-type(odd)': {
-        backgroundColor: palette.action.hover,
+        backgroundColor: striped ? palette.grey[50] : 'transparent',
       },
-    },
+    }),
     headerCell: {
       color: palette.grey[600],
       fontSize: '.75rem',
       textTransform: 'uppercase',
-      padding: 14,
+      padding: '14px 4px 14px 24px',
     },
     cell: {
-      padding: 14,
-      fontSize: 13,
+      padding: '14px 4px 14px 24px',
+      fontSize: '.875rem',
       color: palette.grey[600],
-      borderBottom: 0,
+      borderBottom: `1px solid ${palette.grey[200]}`,
+      fontWeight: 500,
     },
     link: {
       color: palette.primary.main,
@@ -110,6 +119,8 @@ const useStyles = makeStyles<Theme>(({ palette }) =>
     },
     actions: {
       padding: 8,
+      color: palette.grey[600],
+      borderBottom: `1px solid ${palette.grey[200]}`,
     },
     copy: {
       '& button': {
@@ -157,11 +168,14 @@ const getCellContent = (row: any, col: any, classes: any) => {
  * ways to query and manipulate data so that users can look for patterns and insights.
  */
 export const Table = <DataType extends any>({
+  actions,
   columns,
   data,
-  actions,
+  hover = true,
+  striped = false,
 }: TableProps<DataType>) => {
-  const classes = useStyles();
+  console.log(striped);
+  const classes = useStyles({ striped });
 
   // Create anchor for actions menu that will appear in each row
   const anchor = <IconButton icon={<MoreVertical />} />;
@@ -181,7 +195,7 @@ export const Table = <DataType extends any>({
         </TableHead>
         <TableBody>
           {data.map((row, rowIndex) => (
-            <TableRow className={classes.row} hover key={rowIndex}>
+            <TableRow className={classes.row} hover={hover} key={rowIndex}>
               {columns.map((col, i) => (
                 <TableCell className={classes.cell} key={i}>
                   {getCellContent(row, col, classes)}
