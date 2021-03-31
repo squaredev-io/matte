@@ -58,13 +58,13 @@ export const Tables = () => {
 };
 
 /**
- * You can wrap tables with a `Card` for better looks.
+ * When `striped` is set to true, odd rows will be shown with a background color
  */
-export const ContainedTable = () => {
+export const Striped = () => {
   const classes = useStyles();
   const columns: Column<MockData>[] = [
     { title: '#', field: 'index' },
-    { title: 'Name', field: 'name', link: true },
+    { title: 'Name', field: 'name' },
     { title: 'Surname', field: 'surname' },
     { title: 'Birth year', field: 'birthYear' },
   ];
@@ -75,22 +75,44 @@ export const ContainedTable = () => {
       name: 'Daenerys',
       surname: 'Targaryen',
       birthYear: 1977,
-      to: '#',
     },
-    { index: 2, name: 'Jon', surname: 'Snow', birthYear: 1980, to: '#' },
-    { index: 3, name: 'Arya', surname: 'Stark', birthYear: 1987, to: '#' },
+    { index: 2, name: 'Jon', surname: 'Snow', birthYear: 1980 },
+    { index: 3, name: 'Arya', surname: 'Stark', birthYear: 1987 },
   ];
 
   return (
     <div className={classes.table}>
-      <Card
-        title="Basic table"
-        subtitle="Those who fought against the Walkers."
-      >
-        <CardBody>
-          <Table<MockData> columns={columns} data={data} />
-        </CardBody>
-      </Card>
+      <Table<MockData> columns={columns} data={data} striped hover={false} />
+    </div>
+  );
+};
+
+/**
+ * By default hovering over a row, will change its background. You can disable this by setting `hover` to `false`.
+ */
+export const Hoverable = () => {
+  const classes = useStyles();
+  const columns: Column<MockData>[] = [
+    { title: '#', field: 'index' },
+    { title: 'Name', field: 'name' },
+    { title: 'Surname', field: 'surname' },
+    { title: 'Birth year', field: 'birthYear' },
+  ];
+
+  const data: MockData[] = [
+    {
+      index: 1,
+      name: 'Daenerys',
+      surname: 'Targaryen',
+      birthYear: 1977,
+    },
+    { index: 2, name: 'Jon', surname: 'Snow', birthYear: 1980 },
+    { index: 3, name: 'Arya', surname: 'Stark', birthYear: 1987 },
+  ];
+
+  return (
+    <div className={classes.table}>
+      <Table<MockData> columns={columns} data={data} />
     </div>
   );
 };
@@ -183,6 +205,45 @@ export const copyToClipboard = () => {
   return (
     <div className={classes.table}>
       <Table<MockData> columns={columns} data={data} />
+    </div>
+  );
+};
+
+/**
+ * You can wrap tables with a `Card` for better looks. Hint: Use `disableGutters` prop when wrapping a table with a card.
+ */
+export const TableInACard = () => {
+  const classes = useStyles();
+  const columns: Column<MockData>[] = [
+    { title: '#', field: 'index' },
+    { title: 'Name', field: 'name', link: true },
+    { title: 'Surname', field: 'surname' },
+    { title: 'Birth year', field: 'birthYear' },
+  ];
+
+  const data: MockData[] = [
+    {
+      index: 1,
+      name: 'Daenerys',
+      surname: 'Targaryen',
+      birthYear: 1977,
+      to: '#',
+    },
+    { index: 2, name: 'Jon', surname: 'Snow', birthYear: 1980, to: '#' },
+    { index: 3, name: 'Arya', surname: 'Stark', birthYear: 1987, to: '#' },
+  ];
+
+  return (
+    <div className={classes.table}>
+      <Card
+        title="Basic table"
+        subtitle="Those who fought against the Walkers."
+        disableGutters
+      >
+        <CardBody>
+          <Table<MockData> columns={columns} data={data} />
+        </CardBody>
+      </Card>
     </div>
   );
 };
