@@ -70,7 +70,8 @@ export interface TableProps<DataType> {
    * An array of objects representing the rows of the table. For example:
    * `{ index: 1, name: 'Daenerys', surname: 'Targaryen', birthYear: 1977 }`.
    * Each property of this object must exist as `field` in `columns`. If `link`
-   * is set in `columns`, `to` must be given a url to follow. If `enableCopyToClipboard`
+   * is set in `columns`, `to` must be given a url to follow. If an empty string
+   * is passed to `to` the link will be disabled. If `enableCopyToClipboard`
    * is set in `columns`, `handleOnCopy` must be passed a method to handle `onCopy` event.
    * Full example: `{ index: 1, name: 'Daenerys', surname: 'Targaryen', birthYear: 1977, to: '#', handleCopy: e => console.log(e) }`
    */
@@ -116,6 +117,12 @@ const useStyles = makeStyles<Theme>(({ palette }) =>
         color: palette.primary.dark,
       },
     },
+    linkDisabled: {
+      color: palette.grey[600],
+      textDecoration: 'none',
+      backgroundColor: 'transparent',
+      pointerEvents: 'none',
+    },
     actions: {
       padding: 8,
       color: palette.grey[600],
@@ -144,7 +151,10 @@ const useStyles = makeStyles<Theme>(({ palette }) =>
 const getCellContent = (row: any, col: any, classes: any) => {
   if (col.link) {
     return (
-      <Link className={classes.link} to={row.to as string}>
+      <Link
+        className={row.to ? classes.link : classes.linkDisabled}
+        to={row.to as string}
+      >
         {row[col.field]}
       </Link>
     );
@@ -173,7 +183,6 @@ export const Table = <DataType extends any>({
   hover = true,
   striped = false,
 }: TableProps<DataType>) => {
-  console.log(striped);
   const classes = useStyles({ striped });
 
   // Create anchor for actions menu that will appear in each row
