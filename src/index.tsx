@@ -30,3 +30,4 @@ export * from './components/structures/card/card.component';
 export * from './components/structures/metric/metric.component';
 export * from './components/structures/sidesheet/sidesheet.component';
 export * from './components/utilities/createMatteTheme.component';
+export * from './components/structures/stepper/stepper.component';
