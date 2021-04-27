@@ -19,6 +19,7 @@ export interface ListItemProps {
   primary: string;
   secondary?: string;
   to?: string;
+  disabled?: boolean;
   handleClick?: React.MouseEventHandler;
   icon?: React.ReactElement;
   primaryEnd?: string | number;
@@ -55,6 +56,7 @@ export interface ListProps {
    * icon | React.ReactElement | If set, an icon is showed before text. If both `avatar` and `icon` are set only `avatar` will be shown. | -
    * primaryEnd | string | Primary text to show at the right side of the item. | -
    * secondaryEnd | string | Secondary text to show at the right side of the item. | -
+   * disabled | boolean | Whether the `input` element is disabled. | false
    * handleClick | function | A function that will be executed on item's `onClick` method, e.g. `(e) => console.log(e)`. By default, `e`, the React's synthetic event, is passed to that function. When additional parameters are passed by another API implementation, e.g. `Table`, it is explicitly documented. | -
    *
    */
@@ -125,6 +127,10 @@ export type ListItemBaseProps = ListItemProps & {
    * If true, the left and right padding for the item content is removed.
    */
   disableGutters?: boolean;
+  /**
+   * Whether the `input` element is disabled.
+   */
+  disabled?: boolean;
 };
 
 const ListItemBase = ({
@@ -136,6 +142,7 @@ const ListItemBase = ({
   secondary,
   to,
   handleClick,
+  disabled = false,
   primaryEnd,
   secondaryEnd,
   className,
@@ -148,6 +155,7 @@ const ListItemBase = ({
       className={`${classes.listItem} ${className}`}
       component={component}
       onClick={handleClick}
+      disabled={disabled}
     >
       {avatar ? <ListItemAvatar>{avatar}</ListItemAvatar> : null}
       {circularProgressBar && !avatar ? (
@@ -181,6 +189,7 @@ const ListItemLink = ({
   primary,
   secondary,
   to,
+  disabled = false,
   handleClick,
   primaryEnd,
   secondaryEnd,
@@ -203,6 +212,7 @@ const ListItemLink = ({
       primary={primary}
       secondary={secondary}
       to={to}
+      disabled={disabled}
       handleClick={handleClick}
       primaryEnd={primaryEnd}
       secondaryEnd={secondaryEnd}
@@ -252,6 +262,7 @@ export const List: React.FC<ListProps> = ({
                   primary={item.primary}
                   secondary={item.secondary}
                   to={item.to}
+                  disabled={item.disabled}
                   primaryEnd={item.primaryEnd}
                   secondaryEnd={item.secondaryEnd}
                   handleClick={(e: any) => handleClick(e, item, i)}
@@ -271,6 +282,7 @@ export const List: React.FC<ListProps> = ({
               primary={item.primary}
               secondary={item.secondary}
               to={item.to}
+              disabled={item.disabled}
               primaryEnd={item.primaryEnd}
               secondaryEnd={item.secondaryEnd}
               handleClick={(e: any) => handleClick(e, item, i)}
