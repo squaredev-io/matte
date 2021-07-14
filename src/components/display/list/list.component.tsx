@@ -23,6 +23,7 @@ export interface ListItemProps {
   icon?: React.ReactElement;
   primaryEnd?: string | number;
   secondaryEnd?: string | number;
+  header?: boolean;
 }
 
 export interface ListProps {
@@ -56,6 +57,7 @@ export interface ListProps {
    * primaryEnd | string | Primary text to show at the right side of the item. | -
    * secondaryEnd | string | Secondary text to show at the right side of the item. | -
    * handleClick | function | A function that will be executed on item's `onClick` method, e.g. `(e) => console.log(e)`. By default, `e`, the React's synthetic event, is passed to that function. When additional parameters are passed by another API implementation, e.g. `Table`, it is explicitly documented. | -
+   * header | boolean | When true the list item becomes a header | false
    *
    */
   items: ListItemProps[];
@@ -102,6 +104,14 @@ const useStyles = makeStyles(() =>
       minWidth: 60,
       marginRight: '10%',
     },
+    header: {
+      padding: '24px 24px 8px 8px !important',
+      '& .MuiListItemText-primary': {
+        textTransform: 'uppercase',
+        fontSize: 12,
+        fontWeight: 600,
+      },
+    },
   })
 );
 
@@ -140,6 +150,7 @@ const ListItemBase = ({
   secondaryEnd,
   className,
   disableGutters,
+  header = false,
 }: ListItemBaseProps) => {
   const classes = useStyles({ disableGutters });
   return (
@@ -162,6 +173,7 @@ const ListItemBase = ({
         className={classes.listItemText}
         primary={primary}
         secondary={secondary}
+        inset={header}
       />
       {primaryEnd && (
         <ListItemText
@@ -227,7 +239,9 @@ export const List: React.FC<ListProps> = ({
   const [activeLi, setActiveLi] = React.useState(-1);
 
   const handleClick = (e: any, item: any, i: number) => {
-    setActiveLi(i);
+    if (!item.header) {
+      setActiveLi(i);
+    }
     const params =
       handleClickParams && handleClickParams.length
         ? [e, ...handleClickParams]
@@ -244,7 +258,12 @@ export const List: React.FC<ListProps> = ({
           return (
             <Fragment key={i}>
               {i > 0 && divider && <Divider component="li" light />}
-              <li className={clsx({ active: activeLi === i })}>
+              <li
+                className={clsx({
+                  active: activeLi === i,
+                  [classes.header]: item.header,
+                })}
+              >
                 <ListItemLink
                   avatar={item.avatar}
                   circularProgressBar={item.circularProgressBar}
@@ -274,7 +293,10 @@ export const List: React.FC<ListProps> = ({
               primaryEnd={item.primaryEnd}
               secondaryEnd={item.secondaryEnd}
               handleClick={(e: any) => handleClick(e, item, i)}
-              className={clsx({ active: activeLi === i })}
+              className={clsx({
+                active: activeLi === i,
+                [classes.header]: item.header,
+              })}
               disableGutters={disableGutters}
             />
           </Fragment>
