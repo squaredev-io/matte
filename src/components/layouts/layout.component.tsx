@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 import clsx from 'clsx';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -9,6 +9,7 @@ import { IconButton } from '../inputs/button/button.component';
 import { Menu as MenuIcon, ChevronLeft, LogOut, User } from 'react-feather';
 import { List, ListItemProps } from '../display/list/list.component';
 import { Menu } from '../navigation/menu/menu.component';
+import { useMediaQuery } from '@material-ui/core';
 
 const drawerWidth = 240;
 
@@ -56,28 +57,24 @@ const useStyles = makeStyles((theme: Theme) =>
       display: 'none',
     },
     drawer: {
-      width: drawerWidth,
       flexShrink: 0,
-      whiteSpace: 'nowrap',
     },
     drawerOpen: {
+      transform: 'translateX(0)',
       width: drawerWidth,
       zIndex: theme.zIndex.drawer + 1,
-      transition: theme.transitions.create('width', {
+      transition: theme.transitions.create('transform', {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.enteringScreen,
       }),
     },
     drawerClose: {
-      transition: theme.transitions.create('width', {
+      width: 0,
+      transform: `translateX(-${drawerWidth}px)`,
+      transition: theme.transitions.create('transform', {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
       }),
-      overflowX: 'hidden',
-      width: theme.spacing(7) + 1,
-      [theme.breakpoints.up('sm')]: {
-        width: theme.spacing(8) + 1,
-      },
     },
     toolbar: {
       display: 'flex',
@@ -155,6 +152,11 @@ export const Layout: FC<LayoutProps> = ({
   const classes = useStyles();
 
   const userAvatar = <IconButton icon={<User />} />;
+  const isWideScreen = useMediaQuery('(min-width:1280px)');
+
+  useEffect(() => {
+    setOpen(isWideScreen);
+  }, [isWideScreen]);
 
   const userMenuItems = [
     {
