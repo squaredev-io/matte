@@ -40,7 +40,7 @@ export const Lists = () => {
       primaryEnd: '2.225',
       to: '#',
     },
-    { primary: 'Trash', to: '#', icon: <Delete /> },
+    { primary: 'Trash', to: '#', icon: <Delete />, disabled: true },
     {
       primary: 'Drafts',
       secondary: 'You are editing 3 drafts',
