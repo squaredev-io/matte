@@ -58,23 +58,31 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     drawer: {
       flexShrink: 0,
+      transition: theme.transitions.create(['transform'], {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.enteringScreen,
+      }),
     },
     drawerOpen: {
       transform: 'translateX(0)',
-      width: drawerWidth,
       zIndex: theme.zIndex.drawer + 1,
-      transition: theme.transitions.create('transform', {
+      transition: theme.transitions.create(['transform'], {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.enteringScreen,
       }),
     },
     drawerClose: {
-      width: 0,
       transform: `translateX(-${drawerWidth}px)`,
-      transition: theme.transitions.create('transform', {
+      transition: theme.transitions.create(['transform'], {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
       }),
+    },
+    paperOpen: {
+      width: drawerWidth,
+    },
+    paperClose: {
+      width: 0,
     },
     toolbar: {
       display: 'flex',
@@ -197,8 +205,8 @@ export const Layout: FC<LayoutProps> = ({
       <Drawer
         variant="permanent"
         className={clsx(classes.drawer, {
-          [classes.drawerOpen]: open,
-          [classes.drawerClose]: !open,
+          [classes.paperOpen]: open,
+          [classes.paperClose]: !open,
         })}
         classes={{
           paper: clsx({
