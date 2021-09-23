@@ -65,6 +65,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     drawerOpen: {
       transform: 'translateX(0)',
+      width: drawerWidth,
       zIndex: theme.zIndex.drawer + 1,
       transition: theme.transitions.create(['transform'], {
         easing: theme.transitions.easing.sharp,
