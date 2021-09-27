@@ -8,7 +8,6 @@ import {
   FormControl,
   FormHelperText,
   InputAdornment,
-  InputBaseComponentProps,
 } from '@material-ui/core';
 
 export interface TextFieldProps {
@@ -69,9 +68,9 @@ export interface TextFieldProps {
    */
   type?: string;
   /**
-   * Attributes to be added in the html input
+   * The pattern attribute of the input
    */
-  inputProps?: InputBaseComponentProps;
+  pattern?: string;
 }
 
 /**
@@ -136,7 +135,7 @@ export const TextField: FC<TextFieldProps> = ({
   inputRef,
   name,
   type,
-  inputProps,
+  pattern,
 }) => {
   const classes = useStyles();
 
@@ -168,7 +167,9 @@ export const TextField: FC<TextFieldProps> = ({
         inputRef={inputRef}
         name={name}
         type={type}
-        inputProps={inputProps}
+        inputProps={{
+          pattern,
+        }}
         startAdornment={
           icon ? <InputAdornment position="start">{icon}</InputAdornment> : null
         }
