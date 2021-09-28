@@ -67,6 +67,10 @@ export interface TextFieldProps {
    * Type of input to be displayed.
    */
   type?: string;
+  /**
+   * The pattern attribute of the input
+   */
+  pattern?: string;
 }
 
 /**
@@ -131,6 +135,7 @@ export const TextField: FC<TextFieldProps> = ({
   inputRef,
   name,
   type,
+  pattern,
 }) => {
   const classes = useStyles();
 
@@ -162,6 +167,9 @@ export const TextField: FC<TextFieldProps> = ({
         inputRef={inputRef}
         name={name}
         type={type}
+        inputProps={{
+          pattern,
+        }}
         startAdornment={
           icon ? <InputAdornment position="start">{icon}</InputAdornment> : null
         }

@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import React, { FC } from 'react';
 import {
   makeStyles,
   Theme,
@@ -8,53 +8,60 @@ import {
   InputLabel,
   InputBase,
   FormControl,
-} from '@material-ui/core'
-import { KeyboardArrowDown } from '@material-ui/icons'
-import FormHelperText from '@material-ui/core/FormHelperText'
+} from '@material-ui/core';
+import { KeyboardArrowDown } from '@material-ui/icons';
+import FormHelperText from '@material-ui/core/FormHelperText';
 
 export interface Items {
-  value: string | number
-  text: string
+  value: string | number;
+  text: string;
 }
 
 export interface SelectProps {
   /**
    * Whether the `input` element is disabled.
    */
-  disabled?: boolean
+  disabled?: boolean;
   /**
    * Whether error state is true.
    */
-  error?: boolean
+  error?: boolean;
   /**
    * Helper text that appears below the input, useful for showing hints.
    */
-  helperText?: React.ReactNode
+  helperText?: React.ReactNode;
   /**
    * The id of the `input` element.
    */
-  id: string
+  id: string;
   /**
    * Any array of items that become select's `option` elements.
    */
-  items?: Items[]
+  items?: Items[];
   /**
    * The content of the label, if empty no label will be shown.
    */
-  label?: React.ReactNode
+  label?: React.ReactNode;
   /**
    * Text for the placeholder.
    */
-  placeholder?: string
+  placeholder?: string;
   /**
    * Whether this input is required, will append an asterisk if a label is used.
    */
-  required?: boolean
+  required?: boolean;
   /**
    * The value for the `input` element. Setting to an empty string '' selects
    * no option. Usually is controlled by the application state.
    */
-  value?: any
+  value?: any;
+  /**
+   * The function to be executed when an option is selected
+   */
+  onChange?: (
+    event: React.ChangeEvent<{ name?: string; value: unknown }>,
+    child: React.ReactNode
+  ) => void;
 }
 
 /**
@@ -100,8 +107,8 @@ const useStyles = makeStyles<Theme>(({ palette }) => {
         borderColor: '#FF3366',
       },
     },
-  })
-})
+  });
+});
 
 export const Select: FC<SelectProps> = ({
   id,
@@ -113,8 +120,9 @@ export const Select: FC<SelectProps> = ({
   label,
   required = false,
   items = [],
+  onChange,
 }) => {
-  const classes = useStyles()
+  const classes = useStyles();
 
   return (
     <FormControl
@@ -147,6 +155,7 @@ export const Select: FC<SelectProps> = ({
         displayEmpty={!!placeholder}
         value={value}
         disabled={disabled}
+        onChange={onChange}
       >
         {placeholder && (
           <MenuItem className={classes.menuItem} value="">
@@ -165,5 +174,5 @@ export const Select: FC<SelectProps> = ({
         </FormHelperText>
       )}
     </FormControl>
-  )
-}
+  );
+};
