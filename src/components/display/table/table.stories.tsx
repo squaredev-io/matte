@@ -1,8 +1,8 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import makeStyles from '@mui/styles/makeStyles';
 import { Table, Column, TableData } from './table.component';
 import { CardBody, Card } from '../../structures/card/card.component';
-import { Edit, Delete } from '@material-ui/icons';
+import { Edit, Delete } from '@mui/icons-material';
 
 export default {
   title: 'Components/Display/Table',

@@ -1,8 +1,8 @@
-import React, { Profiler } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import React from 'react';
+import makeStyles from '@mui/styles/makeStyles';
 import { Menu } from './menu.component';
 import { IconButton, Button } from '../../inputs/button/button.component';
-import { MoreVert, Person, ExitToApp } from '@material-ui/icons';
+import { MoreVert, Person, ExitToApp } from '@mui/icons-material';
 
 export default {
   title: 'Components/Navigation/Menu',

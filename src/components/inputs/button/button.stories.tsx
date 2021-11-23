@@ -1,11 +1,11 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import makeStyles from '@mui/styles/makeStyles';
 import {
   Delete,
   Send,
   MoreVertOutlined,
   CloudUpload,
-} from '@material-ui/icons';
+} from '@mui/icons-material';
 import { Button, IconButton } from './button.component';
 
 export default {

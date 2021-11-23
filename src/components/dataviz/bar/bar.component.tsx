@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { useTheme } from '@material-ui/core';
+import { useTheme } from '@mui/material';
 import { ResponsiveBar, BarSvgProps } from '@nivo/bar';
 import { MatteTheme } from '../../utilities/createMatteTheme.component';
 
@@ -11,6 +11,7 @@ import { MatteTheme } from '../../utilities/createMatteTheme.component';
  * - Use when series of data is 4 or fewer
  * - Use when type of data is discrete or categorical
  */
+// @ts-ignore
 export const Bar: FC<BarSvgProps> = (props) => {
   const { nivo }: MatteTheme = useTheme();
   return (

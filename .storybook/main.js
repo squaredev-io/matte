@@ -32,6 +32,12 @@ module.exports = {
     // No need to merge aliases since storybook does not use any. So just use the default
     config.resolve.alias = webpackReactBaseConfig.resolve.alias;
 
+    config.resolve.alias['core-js/modules'] = path.resolve(
+      __dirname,
+      '..',
+      'node_modules/core-js/modules'
+    );
+
     // Webpack final config
     return config;
   },

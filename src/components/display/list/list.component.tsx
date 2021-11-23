@@ -1,6 +1,7 @@
 import React, { Fragment, MouseEvent } from 'react';
 import { Link, LinkProps } from 'react-router-dom';
-import { createStyles, makeStyles } from '@material-ui/core/styles';
+import createStyles from '@mui/styles/createStyles';
+import makeStyles from '@mui/styles/makeStyles';
 import {
   List as MuiList,
   ListItem,
@@ -8,7 +9,7 @@ import {
   ListItemText,
   ListItemAvatar,
   Divider,
-} from '@material-ui/core';
+} from '@mui/material';
 import clsx from 'clsx';
 
 // TODO: how to solve the component problem?

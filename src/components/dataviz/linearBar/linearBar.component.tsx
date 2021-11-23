@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { LinearProgress, LinearProgressProps } from '@material-ui/core';
+import { LinearProgress, LinearProgressProps } from '@mui/material';
 
 //TODO: Move this to a better place
 

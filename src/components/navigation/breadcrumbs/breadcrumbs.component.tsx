@@ -1,10 +1,8 @@
 import React, { FC } from 'react';
-import {
-  Breadcrumbs as MuiBreadcrumbs,
-  makeStyles,
-  createStyles,
-  Theme,
-} from '@material-ui/core';
+import { Breadcrumbs as MuiBreadcrumbs, Theme } from '@mui/material';
+
+import makeStyles from '@mui/styles/makeStyles';
+import createStyles from '@mui/styles/createStyles';
 
 export interface BreadcrumbsProps {
   /**

@@ -1,13 +1,8 @@
 import React, { FC, MouseEventHandler } from 'react'
-import {
-  Button as MuiButton,
-  IconButton as MuiIconButton,
-  createStyles,
-  Theme,
-  makeStyles,
-} from '@material-ui/core'
-import { Palette } from '@material-ui/core/styles/createPalette'
-import { Link } from 'react-router-dom'
+import { Button as MuiButton, IconButton as MuiIconButton, Theme } from '@mui/material';
+import { createStyles, makeStyles } from '@mui/styles';
+import { Palette } from '@mui/material/styles';
+import { Link } from 'react-router-dom';
 
 export type ButtonColor = 'primary' | 'secondary' | 'error' | 'success' | 'info'
 

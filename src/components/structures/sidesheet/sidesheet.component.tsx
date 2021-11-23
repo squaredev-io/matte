@@ -1,8 +1,10 @@
 import React, { FC } from 'react'
-import Drawer from '@material-ui/core/Drawer'
-import { makeStyles, createStyles, Box, Typography } from '@material-ui/core'
+import Drawer from '@mui/material/Drawer'
+import { Box, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
+import createStyles from '@mui/styles/createStyles';
 import { IconButton } from '../../inputs/button/button.component'
-import { Close } from '@material-ui/icons'
+import { Close } from '@mui/icons-material'
 
 /**
  * Inject styles for Sidesheet
@@ -126,5 +128,5 @@ export const Sidesheet: FC<SidesheetProps> = ({
       </Box>
       {children}
     </Drawer>
-  )
+  );
 }

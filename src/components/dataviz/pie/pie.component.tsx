@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import { useTheme } from '@material-ui/core';
+import { useTheme } from '@mui/material';
 import { ResponsivePie, PieSvgProps } from '@nivo/pie';
 import { MatteTheme } from '../../utilities/createMatteTheme.component';
 
@@ -7,6 +7,7 @@ import { MatteTheme } from '../../utilities/createMatteTheme.component';
  * Pie charts can be used to show proportion, which expresses a partial
  * value in comparison to a total value.
  */
+// @ts-ignore
 export const Pie: FC<PieSvgProps> = (props) => {
   const { nivo }: MatteTheme = useTheme();
   return (

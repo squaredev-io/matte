@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import MuiGrid from '@material-ui/core/Grid'
+import MuiGrid from '@mui/material/Grid'
 
 export interface GridProps {
   /**

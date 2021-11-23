@@ -1,5 +1,7 @@
 import React, { FC, MouseEventHandler } from 'react';
-import { Container, makeStyles, createStyles } from '@material-ui/core';
+import { Container } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
+import createStyles from '@mui/styles/createStyles';
 import { Grid } from '../layout/grid/grid.component';
 import { Button } from '../inputs/button/button.component';
 import { Plus } from 'react-feather';
