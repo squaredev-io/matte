@@ -1,8 +1,7 @@
 import React, { FC } from 'react'
 import { CircularProgressbarWithChildren } from 'react-circular-progressbar'
 import 'react-circular-progressbar/dist/styles.css'
-import { useTheme } from '@material-ui/core/styles'
-import { Palette } from '@material-ui/core/styles/createPalette'
+import { useTheme, Palette } from '@mui/material/styles';
 
 export interface CircularProgressBarProps {
   /**

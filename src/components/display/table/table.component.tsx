@@ -1,11 +1,8 @@
 import React from 'react';
-import {
-  Table as MuiTable,
-  makeStyles,
-  createStyles,
-  Theme,
-} from '@material-ui/core';
-import { TableBody, TableCell, TableHead, TableRow } from '@material-ui/core';
+import { Table as MuiTable, Theme } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
+import createStyles from '@mui/styles/createStyles';
+import { TableBody, TableCell, TableHead, TableRow } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { IconButton } from '../../inputs/button/button.component';
 import { MoreVertical, Copy } from 'react-feather';

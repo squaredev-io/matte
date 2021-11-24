@@ -1,15 +1,17 @@
 import React, { FC, useEffect } from 'react';
 import clsx from 'clsx';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Divider from '@material-ui/core/Divider';
+import { Theme } from '@mui/material/styles';
+import createStyles from '@mui/styles/createStyles';
+import makeStyles from '@mui/styles/makeStyles';
+import Drawer from '@mui/material/Drawer';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Divider from '@mui/material/Divider';
 import { IconButton } from '../inputs/button/button.component';
 import { Menu as MenuIcon, ChevronLeft, LogOut, User } from 'react-feather';
 import { List, ListItemProps } from '../display/list/list.component';
 import { Menu } from '../navigation/menu/menu.component';
-import { useMediaQuery } from '@material-ui/core';
+import { useMediaQuery } from '@mui/material';
 
 const drawerWidth = 240;
 
@@ -191,7 +193,7 @@ export const Layout: FC<LayoutProps> = ({
               [classes.hide]: open,
             })}
             icon={<MenuIcon />}
-          />
+             />
           <div className={classes.search} />
           <div className={classes.nav}>
             <Menu

@@ -1,5 +1,5 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import makeStyles from '@mui/styles/makeStyles';
 import { Card, CardActions, CardBody } from './card.component';
 import { Button } from '../../inputs/button/button.component';
 import { Avatar } from '../../display/avatar/avatar.component';

@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { ResponsiveLine, LineSvgProps } from '@nivo/line';
-import { useTheme } from '@material-ui/core';
+import { useTheme } from '@mui/material';
 import { MatteTheme } from '../../utilities/createMatteTheme.component';
 
 /**

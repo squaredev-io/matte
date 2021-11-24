@@ -1,5 +1,4 @@
-import { createMuiTheme, Theme as MuiTheme } from '@material-ui/core';
-import { Shadows } from '@material-ui/core/styles/shadows';
+import { createTheme, Theme as MuiTheme, adaptV4Theme } from '@mui/material';
 import { Theme as NivoTheme, Colors } from '@nivo/core';
 
 export type ColorSchemes = {
@@ -75,7 +74,7 @@ const matteTheme = {
     'none',
     'none',
     'none',
-  ] as Shadows,
+  ] as any,
   typography: {
     fontFamily: ['Poppins', '"Helvetica Neue"', 'Arial', 'sans-serif'].join(
       ','
@@ -129,7 +128,9 @@ const matteTheme = {
 };
 
 export const createMatteTheme = (theme: MatteTheme): MatteTheme => {
-  const baseTheme = theme ? createMuiTheme(theme) : createMuiTheme(matteTheme);
+  const baseTheme = theme
+    ? createTheme(adaptV4Theme(theme))
+    : createTheme(adaptV4Theme(matteTheme));
 
   return { ...baseTheme, nivo: theme ? theme?.nivo : matteTheme?.nivo };
 };

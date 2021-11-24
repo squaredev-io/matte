@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import MuiDivider from '@material-ui/core/Divider';
+import MuiDivider from '@mui/material/Divider';
 
 export interface DividerProps {
   /**

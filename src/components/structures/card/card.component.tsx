@@ -1,8 +1,6 @@
 import React, { FC } from 'react';
 import {
-  makeStyles,
   Theme,
-  createStyles,
   Card as MuiCard,
   CardHeader,
   CardContent,
@@ -10,7 +8,10 @@ import {
   CardActions as MuiCardActions,
   CardMedia,
   CardActionArea,
-} from '@material-ui/core';
+} from '@mui/material';
+
+import makeStyles from '@mui/styles/makeStyles';
+import createStyles from '@mui/styles/createStyles';
 
 export interface CardProps {
   /**

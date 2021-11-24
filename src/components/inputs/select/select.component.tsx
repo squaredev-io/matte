@@ -1,16 +1,8 @@
 import React, { FC } from 'react';
-import {
-  makeStyles,
-  Theme,
-  createStyles,
-  Select as MuiSelect,
-  MenuItem,
-  InputLabel,
-  InputBase,
-  FormControl,
-} from '@material-ui/core';
-import { KeyboardArrowDown } from '@material-ui/icons';
-import FormHelperText from '@material-ui/core/FormHelperText';
+import { Theme, Select as MuiSelect, MenuItem, InputLabel, InputBase, FormControl } from '@mui/material';
+import { createStyles, makeStyles } from '@mui/styles';
+import { KeyboardArrowDown } from '@mui/icons-material';
+import FormHelperText from '@mui/material/FormHelperText';
 
 export interface Items {
   value: string | number;
@@ -58,10 +50,11 @@ export interface SelectProps {
   /**
    * The function to be executed when an option is selected
    */
-  onChange?: (
-    event: React.ChangeEvent<{ name?: string; value: unknown }>,
-    child: React.ReactNode
-  ) => void;
+  // onChange?: (
+  //   event: React.ChangeEvent<{ name?: string; value: unknown }>,
+  //   child: React.ReactNode
+  // ) => void;
+  onChange?: any;
 }
 
 /**

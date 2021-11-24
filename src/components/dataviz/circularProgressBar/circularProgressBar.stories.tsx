@@ -1,6 +1,7 @@
 import React from 'react';
 import { CircularProgressBar } from './circularProgressBar.component';
-import { makeStyles, createStyles } from '@material-ui/core/styles';
+import makeStyles from '@mui/styles/makeStyles';
+import createStyles from '@mui/styles/createStyles';
 
 export default {
   title: 'Components/Dataviz/CircularProgressBar',

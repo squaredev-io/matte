@@ -1,11 +1,11 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import makeStyles from '@mui/styles/makeStyles';
 import { List } from './list.component';
-import { Inbox, Drafts, Delete } from '@material-ui/icons';
+import { Inbox, Drafts, Delete } from '@mui/icons-material';
 import { Avatar } from '../avatar/avatar.component';
 import { AlertTriangle, Check } from 'react-feather';
 import { CircularProgressBar } from '../../dataviz/circularProgressBar/circularProgressBar.component';
-import { Card, CardBody } from '../../..';
+import { Card, CardBody } from '../../structures/card/card.component';
 
 export default {
   title: 'Components/Display/List',

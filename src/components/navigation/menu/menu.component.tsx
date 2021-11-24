@@ -1,22 +1,17 @@
 import React, { FC, MouseEvent } from 'react'
-import Popper from '@material-ui/core/Popper'
+import Popper from '@mui/material/Popper'
 import {
   usePopupState,
   bindToggle,
   bindPopper,
 } from 'material-ui-popup-state/hooks'
-import Paper from '@material-ui/core/Paper'
-import MenuItem from '@material-ui/core/MenuItem'
-import MenuList from '@material-ui/core/MenuList'
-import {
-  Fade,
-  ClickAwayListener,
-  makeStyles,
-  createStyles,
-  Theme,
-  ListItemIcon,
-  Typography,
-} from '@material-ui/core'
+import Paper from '@mui/material/Paper'
+import MenuItem from '@mui/material/MenuItem'
+import MenuList from '@mui/material/MenuList'
+import { Fade, ClickAwayListener, Theme, ListItemIcon, Typography } from '@mui/material';
+
+import makeStyles from '@mui/styles/makeStyles';
+import createStyles from '@mui/styles/createStyles';
 
 /**
  * Inject styles for Menu

@@ -2,13 +2,14 @@ import React, { FC } from 'react';
 import {
   InputLabel as MuiInputLabel,
   OutlinedInput as MuiOutlinedInput,
-  createStyles,
   Theme,
-  makeStyles,
   FormControl,
   FormHelperText,
   InputAdornment,
-} from '@material-ui/core';
+} from '@mui/material';
+
+import createStyles from '@mui/styles/createStyles';
+import makeStyles from '@mui/styles/makeStyles';
 
 export interface TextFieldProps {
   /**

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Metric } from './metric.component';
-import { makeStyles, createStyles } from '@material-ui/core';
+import makeStyles from '@mui/styles/makeStyles';
+import createStyles from '@mui/styles/createStyles';
 import { Card, CardBody } from '../card/card.component';
 
 export default {

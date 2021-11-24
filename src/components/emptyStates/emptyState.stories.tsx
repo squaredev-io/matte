@@ -1,6 +1,7 @@
 import React from 'react';
 import { EmptyState } from './emptyState.component';
-import { makeStyles, createStyles } from '@material-ui/core';
+import makeStyles from '@mui/styles/makeStyles';
+import createStyles from '@mui/styles/createStyles';
 
 export default {
   title: 'Components/EmptyStates/EmptyState',

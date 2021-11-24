@@ -1,14 +1,12 @@
 import React, { useState } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
+import makeStyles from '@mui/styles/makeStyles';
 import {
   Sidesheet,
   SidesheetActions,
-  SidesheetHeader,
   SidesheetBody,
 } from './sidesheet.component';
-import { Button, IconButton } from '../../inputs/button/button.component';
+import { Button } from '../../inputs/button/button.component';
 import { TextField } from '../../inputs/textField/textField.component';
-import { Close } from '@material-ui/icons';
 
 export default {
   title: 'Components/Structures/Sidesheet',

@@ -1,9 +1,8 @@
 import React, { FC } from 'react'
-import {
-  Avatar as MuiAvatar,
-  makeStyles,
-  createStyles,
-} from '@material-ui/core'
+import { Avatar as MuiAvatar } from '@mui/material';
+
+import makeStyles from '@mui/styles/makeStyles';
+import createStyles from '@mui/styles/createStyles';
 
 export type AvatarVariant = 'rounded' | 'square' | 'circular' | undefined
 
