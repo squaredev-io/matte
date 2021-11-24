@@ -9,7 +9,6 @@ const Package: React.FC = () => (
 export default Package;
 
 export * from './components/dataviz/bar/bar.component';
-export * from './components/dataviz/circularProgressBar/circularProgressBar.component';
 export * from './components/dataviz/line/line.component';
 export * from './components/dataviz/linearBar/linearBar.component';
 export * from './components/dataviz/pie/pie.component';
