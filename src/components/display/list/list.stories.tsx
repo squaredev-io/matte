@@ -4,7 +4,6 @@ import { List } from './list.component';
 import { Inbox, Drafts, Delete } from '@mui/icons-material';
 import { Avatar } from '../avatar/avatar.component';
 import { AlertTriangle, Check } from 'react-feather';
-import { CircularProgressBar } from '../../dataviz/circularProgressBar/circularProgressBar.component';
 import { Card, CardBody } from '../../structures/card/card.component';
 
 export default {
@@ -56,12 +55,7 @@ export const Lists = () => {
           <Inbox />
         </Avatar>
       ),
-    },
-    {
-      circularProgressBar: <CircularProgressBar percentage={80} />,
-      primary: 'Income Stability',
-      secondary: 'Better than 80% of applicants',
-    },
+    }
   ];
   return (
     <div className={classes.list}>
@@ -214,35 +208,6 @@ export const RightText = () => {
   return (
     <div className={classes.list}>
       <List divider items={items} />
-    </div>
-  );
-};
-
-/**
- * A scorecard is a list of scores. To create a score list item, pass a `CircularProgressBar` component.
- */
-export const Scorecard = () => {
-  const classes = useStyles();
-  const menuItems = [
-    {
-      circularProgressBar: <CircularProgressBar percentage={80} />,
-      primary: 'Income Stability',
-      secondary: 'Better than 80% of applicants',
-    },
-    {
-      circularProgressBar: <CircularProgressBar percentage={60} />,
-      primary: 'Expenses Stability',
-      secondary: 'Better than 60% of applicants',
-    },
-    {
-      circularProgressBar: <CircularProgressBar percentage={40} />,
-      primary: 'Affordability',
-      secondary: 'Better than 40% of applicants',
-    },
-  ];
-  return (
-    <div className={classes.list}>
-      <List divider items={menuItems} />
     </div>
   );
 };
