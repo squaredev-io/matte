@@ -6,6 +6,7 @@ import createStyles from '@mui/styles/createStyles';
 import { chain } from 'mathjs';
 import { ArrowUp, ArrowDown } from 'react-feather';
 import { Serie } from '@nivo/line';
+import theme from '../../utilities/theme';
 
 export interface MetricProps {
   /**
@@ -42,61 +43,64 @@ const getVariation = (data: Serie[]): number => {
     .done();
 };
 
-const useStyles = makeStyles<Theme, VariantProps>(({ palette, shadows }) =>
-  createStyles({
-    body: {
-      display: 'flex',
-      justifyContent: 'space-between',
-    },
-    metrics: {
-      display: 'flex',
-      flexDirection: 'column',
-    },
-    metric: {
-      fontSize: '1.9rem',
-      fontWeight: 500,
-    },
-    chart: {
-      width: '60%',
-      maxWidth: 300,
-      height: 60,
-    },
-    variation: ({ data }) => {
-      const variation = getVariation(data);
-      return {
+const useStyles = makeStyles<Theme, VariantProps>(
+  ({ palette, shadows }) => {
+    return createStyles({
+      body: {
+        display: 'flex',
+        justifyContent: 'space-between',
+      },
+      metrics: {
+        display: 'flex',
+        flexDirection: 'column',
+      },
+      metric: {
+        fontSize: '1.9rem',
+        fontWeight: 500,
+      },
+      chart: {
+        width: '60%',
+        maxWidth: 300,
+        height: 60,
+      },
+      variation: ({ data }) => {
+        const variation = getVariation(data);
+        return {
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          borderRadius: 16,
+          padding: '2px 8px',
+          color: variation > 0 ? palette.error.dark : palette.success.dark,
+          backgroundColor:
+            variation > 0 ? palette.error.light : palette.success.light,
+          fontSize: '.875rem',
+          '& svg': {
+            height: 16,
+          },
+          marginTop: 8,
+          width: 'max-content',
+        };
+      },
+      tooltip: {
+        padding: '2px 8px',
+        background: 'white',
+        boxShadow: shadows[1],
+        fontWeight: 600,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        borderRadius: 16,
-        padding: '2px 8px',
-        color: variation > 0 ? palette.error.dark : palette.success.dark,
-        backgroundColor:
-          variation > 0 ? palette.error.light : palette.success.light,
-        fontSize: '.875rem',
-        '& svg': {
-          height: 16,
+        '& span': {
+          display: 'block',
+          height: 8,
+          width: 8,
+          borderRadius: '50%',
+          marginRight: 8,
         },
-        marginTop: 8,
-        width: 'max-content',
-      };
-    },
-    tooltip: {
-      padding: '2px 8px',
-      background: 'white',
-      boxShadow: shadows[1],
-      fontWeight: 600,
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      '& span': {
-        display: 'block',
-        height: 8,
-        width: 8,
-        borderRadius: '50%',
-        marginRight: 8,
       },
-    },
-  })
+    });
+  },
+  { defaultTheme: theme }
 );
 
 const Variation: FC<VariantProps> = ({ data }) => {

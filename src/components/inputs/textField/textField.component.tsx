@@ -10,6 +10,7 @@ import {
 
 import createStyles from '@mui/styles/createStyles';
 import makeStyles from '@mui/styles/makeStyles';
+import theme from '../../utilities/theme';
 
 export interface TextFieldProps {
   /**
@@ -78,45 +79,48 @@ export interface TextFieldProps {
  * Inject styles for TextField
  * @param theme The theme in use
  */
-const useStyles = makeStyles<Theme>(({ palette }) => {
-  return createStyles({
-    root: {
-      fontSize: '.875rem',
-      '& .MuiOutlinedInput-notchedOutline': {
-        borderColor: palette.grey[200],
-        borderRadius: '2px',
+const useStyles = makeStyles<Theme>(
+  ({ palette }) => {
+    return createStyles({
+      root: {
+        fontSize: '.875rem',
+        '& .MuiOutlinedInput-notchedOutline': {
+          borderColor: palette.grey[200],
+          borderRadius: '2px',
+        },
+        '&:hover .MuiOutlinedInput-notchedOutline': {
+          borderColor: palette.grey[200],
+        },
+        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+          borderColor: palette.primary.light,
+          borderWidth: '1px',
+        },
+        '&.Mui-error .MuiOutlinedInput-notchedOutline': {
+          borderColor: palette.error.main,
+        },
+        '& .MuiInputBase-input.MuiOutlinedInput-input': {
+          padding: '8px 16px',
+          height: '19px',
+        },
       },
-      '&:hover .MuiOutlinedInput-notchedOutline': {
-        borderColor: palette.grey[200],
-      },
-      '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-        borderColor: palette.primary.light,
-        borderWidth: '1px',
-      },
-      '&.Mui-error .MuiOutlinedInput-notchedOutline': {
-        borderColor: palette.error.main,
-      },
-      '& .MuiInputBase-input.MuiOutlinedInput-input': {
-        padding: '8px 16px',
-        height: '19px',
-      },
-    },
-    label: {
-      color: palette.common.black,
-      fontSize: '.875rem',
-      lineHeight: '1.4rem',
-      marginBottom: '8px',
-      transform: 'initial',
-      position: 'relative',
-      '&.Mui-focused': {
+      label: {
         color: palette.common.black,
+        fontSize: '.875rem',
+        lineHeight: '1.4rem',
+        marginBottom: '8px',
+        transform: 'initial',
+        position: 'relative',
+        '&.Mui-focused': {
+          color: palette.common.black,
+        },
       },
-    },
-    formControl: {
-      marginBottom: 16,
-    },
-  });
-});
+      formControl: {
+        marginBottom: 16,
+      },
+    });
+  },
+  { defaultTheme: theme }
+);
 
 /**
  * Text fields are used within forms to submit or edit information.

@@ -1,8 +1,16 @@
 import React, { FC } from 'react';
-import { Theme, Select as MuiSelect, MenuItem, InputLabel, InputBase, FormControl } from '@mui/material';
+import {
+  Theme,
+  Select as MuiSelect,
+  MenuItem,
+  InputLabel,
+  InputBase,
+  FormControl,
+} from '@mui/material';
 import { createStyles, makeStyles } from '@mui/styles';
 import { KeyboardArrowDown } from '@mui/icons-material';
 import FormHelperText from '@mui/material/FormHelperText';
+import theme from '../../utilities/theme';
 
 export interface Items {
   value: string | number;
@@ -61,47 +69,50 @@ export interface SelectProps {
  * Inject styles for Select
  * @param theme The theme in use
  */
-const useStyles = makeStyles<Theme>(({ palette }) => {
-  return createStyles({
-    menuItem: {
-      fontSize: '.875rem',
-    },
-    label: {
-      color: palette.common.black,
-      fontSize: '.875rem',
-      lineHeight: '1.4rem',
-      marginBottom: '8px',
-      transform: 'initial',
-      position: 'relative',
-      '&.Mui-focused': {
+const useStyles = makeStyles<Theme>(
+  ({ palette }) => {
+    return createStyles({
+      menuItem: {
+        fontSize: '.875rem',
+      },
+      label: {
         color: palette.common.black,
+        fontSize: '.875rem',
+        lineHeight: '1.4rem',
+        marginBottom: '8px',
+        transform: 'initial',
+        position: 'relative',
+        '&.Mui-focused': {
+          color: palette.common.black,
+        },
       },
-    },
-    formControl: {
-      width: '100%',
-    },
-    placeholder: {
-      color: palette.grey[200],
-    },
-    input: {
-      borderRadius: 2,
-      position: 'relative',
-      border: '1px solid #eeeeee',
-      borderColor: palette.grey[200],
-      fontSize: '.875rem',
-      padding: '8px 16px',
-      height: '17px',
-      '&:focus': {
+      formControl: {
+        width: '100%',
+      },
+      placeholder: {
+        color: palette.grey[200],
+      },
+      input: {
         borderRadius: 2,
-        borderColor: '#80bdff',
-        backgroundColor: 'transparent',
+        position: 'relative',
+        border: '1px solid #eeeeee',
+        borderColor: palette.grey[200],
+        fontSize: '.875rem',
+        padding: '8px 16px',
+        height: '17px',
+        '&:focus': {
+          borderRadius: 2,
+          borderColor: '#80bdff',
+          backgroundColor: 'transparent',
+        },
+        '.Mui-error &': {
+          borderColor: '#FF3366',
+        },
       },
-      '.Mui-error &': {
-        borderColor: '#FF3366',
-      },
-    },
-  });
-});
+    });
+  },
+  { defaultTheme: theme }
+);
 
 export const Select: FC<SelectProps> = ({
   id,
