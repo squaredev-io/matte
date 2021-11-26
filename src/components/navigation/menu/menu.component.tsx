@@ -1,56 +1,65 @@
-import React, { FC, MouseEvent } from 'react'
-import Popper from '@mui/material/Popper'
+import React, { FC, MouseEvent } from 'react';
+import Popper from '@mui/material/Popper';
 import {
   usePopupState,
   bindToggle,
   bindPopper,
-} from 'material-ui-popup-state/hooks'
-import Paper from '@mui/material/Paper'
-import MenuItem from '@mui/material/MenuItem'
-import MenuList from '@mui/material/MenuList'
-import { Fade, ClickAwayListener, Theme, ListItemIcon, Typography } from '@mui/material';
-
+} from 'material-ui-popup-state/hooks';
+import Paper from '@mui/material/Paper';
+import MenuItem from '@mui/material/MenuItem';
+import MenuList from '@mui/material/MenuList';
+import {
+  Fade,
+  ClickAwayListener,
+  Theme,
+  ListItemIcon,
+  Typography,
+} from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 import createStyles from '@mui/styles/createStyles';
+import theme from '../../utilities/theme';
 
 /**
  * Inject styles for Menu
  * @param theme The theme in use
  */
-const useStyles = makeStyles(({ palette }: Theme) =>
-  createStyles({
-    anchor: {
-      display: 'inline-block',
-    },
-    itemText: {
-      fontSize: '.875rem',
-      minWidth: 140,
-      '&:hover, &:hover svg': {
-        color: palette.primary.main,
+const useStyles = makeStyles(
+  ({ palette }: Theme) => {
+    return createStyles({
+      anchor: {
+        display: 'inline-block',
       },
-    },
-    listItemIcon: {
-      '& svg': {
-        fontSize: '1.25rem',
+      itemText: {
+        fontSize: '.875rem',
+        minWidth: 140,
+        '&:hover, &:hover svg': {
+          color: palette.primary.main,
+        },
       },
-      minWidth: 32,
-    },
-  })
-)
+      listItemIcon: {
+        '& svg': {
+          fontSize: '1.25rem',
+        },
+        minWidth: 32,
+      },
+    });
+  },
+  { defaultTheme: theme }
+);
 
 export interface MenuProps {
   /**
    * Component to which the menu will be anchored
    */
-  anchor?: React.ReactNode
+  anchor?: React.ReactNode;
   /**
    * An array of params that will be passed to the `handleClick` method of each menu item.
    */
-  handleClickParams?: (string | number)[]
+  handleClickParams?: (string | number)[];
   /**
    * The id of the menu.
    */
-  id: string
+  id: string;
   /**
    * The list of choices to present. It must be an array of objects with the following properties:
    *
@@ -61,7 +70,7 @@ export interface MenuProps {
    * * `icon`: If set, an icon is showed before text.
    * * `text`: Item's text.
    */
-  items: MenuItem[]
+  items: MenuItem[];
   /**
    * How the menu will be displayed with regards to the anchor. Check
    * [here](https://material-ui.com/components/popper/#positioned-popper) for positioning.
@@ -78,7 +87,7 @@ export interface MenuProps {
     | 'right'
     | 'top-end'
     | 'top-start'
-    | 'top'
+    | 'top';
 }
 
 export interface MenuItem {
@@ -91,15 +100,15 @@ export interface MenuItem {
   handleClick?: (
     event: MouseEvent<HTMLButtonElement | HTMLAnchorElement>,
     x?: string
-  ) => void
+  ) => void;
   /**
    * If set, an icon is showed before text.
    */
-  icon?: React.ReactElement
+  icon?: React.ReactElement;
   /**
    * Item's text.
    */
-  text: string
+  text: string;
 }
 
 /**
@@ -118,22 +127,22 @@ export const Menu: FC<MenuProps> = ({
   items,
   placement = 'bottom',
 }) => {
-  const classes = useStyles()
+  const classes = useStyles();
 
   const popupState = usePopupState({
     variant: 'popper',
     popupId: `${id}-popper`,
-  })
+  });
 
   const handleClick = (e: any, item: any) => {
     const params =
       handleClickParams && handleClickParams.length
         ? [e, ...handleClickParams]
-        : [e]
+        : [e];
     if (item.handleClick) {
-      item.handleClick(...params)
+      item.handleClick(...params);
     }
-  }
+  };
 
   return (
     <>
@@ -169,5 +178,5 @@ export const Menu: FC<MenuProps> = ({
         )}
       </Popper>
     </>
-  )
-}
+  );
+};

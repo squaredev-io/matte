@@ -8,6 +8,7 @@ import { IconButton } from '../../inputs/button/button.component';
 import { MoreVertical, Copy } from 'react-feather';
 import { Menu, MenuItem } from '../../navigation/menu/menu.component';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import theme from '../../utilities/theme';
 
 /**
  * Interface for a table's column
@@ -87,62 +88,65 @@ export interface TableProps<DataType> {
  * Inject styles for Table
  * @param theme The theme in use
  */
-const useStyles = makeStyles<Theme>(({ palette }) =>
-  createStyles({
-    row: ({ striped }: any) => ({
-      '&:nth-of-type(odd)': {
-        backgroundColor: striped ? palette.grey[50] : 'transparent',
+const useStyles = makeStyles<Theme>(
+  ({ palette }) => {
+    return createStyles({
+      row: ({ striped }: any) => ({
+        '&:nth-of-type(odd)': {
+          backgroundColor: striped ? palette.grey[50] : 'transparent',
+        },
+      }),
+      headerCell: {
+        color: palette.grey[600],
+        fontSize: '.75rem',
+        textTransform: 'uppercase',
+        padding: '14px 4px 14px 24px',
       },
-    }),
-    headerCell: {
-      color: palette.grey[600],
-      fontSize: '.75rem',
-      textTransform: 'uppercase',
-      padding: '14px 4px 14px 24px',
-    },
-    cell: {
-      padding: '14px 4px 14px 24px',
-      fontSize: '.875rem',
-      color: palette.grey[600],
-      borderBottom: `1px solid ${palette.grey[200]}`,
-    },
-    link: {
-      color: palette.primary.main,
-      textDecoration: 'none',
-      backgroundColor: 'transparent',
-      '&:hover': {
-        color: palette.primary.dark,
+      cell: {
+        padding: '14px 4px 14px 24px',
+        fontSize: '.875rem',
+        color: palette.grey[600],
+        borderBottom: `1px solid ${palette.grey[200]}`,
       },
-    },
-    linkDisabled: {
-      color: palette.grey[600],
-      textDecoration: 'none',
-      backgroundColor: 'transparent',
-      pointerEvents: 'none',
-    },
-    actions: {
-      padding: 8,
-      color: palette.grey[600],
-      borderBottom: `1px solid ${palette.grey[200]}`,
-    },
-    copy: {
-      '& button': {
-        opacity: 0,
-        marginLeft: 6,
+      link: {
         color: palette.primary.main,
-      },
-      '& svg': {
-        width: 18,
-        height: 18,
-      },
-      '&:hover': {
-        cursor: 'pointer',
-        '& button': {
-          opacity: 1,
+        textDecoration: 'none',
+        backgroundColor: 'transparent',
+        '&:hover': {
+          color: palette.primary.dark,
         },
       },
-    },
-  })
+      linkDisabled: {
+        color: palette.grey[600],
+        textDecoration: 'none',
+        backgroundColor: 'transparent',
+        pointerEvents: 'none',
+      },
+      actions: {
+        padding: 8,
+        color: palette.grey[600],
+        borderBottom: `1px solid ${palette.grey[200]}`,
+      },
+      copy: {
+        '& button': {
+          opacity: 0,
+          marginLeft: 6,
+          color: palette.primary.main,
+        },
+        '& svg': {
+          width: 18,
+          height: 18,
+        },
+        '&:hover': {
+          cursor: 'pointer',
+          '& button': {
+            opacity: 1,
+          },
+        },
+      },
+    });
+  },
+  { defaultTheme: theme }
 );
 
 const getCellContent = (row: any, col: any, classes: any) => {

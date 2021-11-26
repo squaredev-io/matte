@@ -25,6 +25,7 @@
     "@mui/material": "^5.2.0",
     "@mui/styles": "^5.2.0",
     "@nivo/bar": "^0.74.0",
+    "@nivo/core": "0.74.0",
     "@nivo/line": "0.74.0",
     "@nivo/pie": "^0.74.0",
     "@types/mathjs": "^6.0.8",
@@ -41,7 +42,8 @@
   "peerDependencies": {
     "@storybook/addon-info": "^5.3.21",
     "react": ">= 17.0.2",
-    "react-dom": ">= 17.0.2"
+    "react-dom": ">= 17.0.2",
+    "@mui/material": "^5.2.0"
   },
   "devDependencies": {
     "@storybook/addon-docs": "^6.1.17",

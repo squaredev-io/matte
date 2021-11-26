@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import { Breadcrumbs as MuiBreadcrumbs, Theme } from '@mui/material';
-
 import makeStyles from '@mui/styles/makeStyles';
 import createStyles from '@mui/styles/createStyles';
+import theme from '../../utilities/theme';
 
 export interface BreadcrumbsProps {
   /**
@@ -16,20 +16,23 @@ export interface BreadcrumbsProps {
  * Inject styles for Breadcrumps
  * @param theme The theme in use
  */
-const useStyles = makeStyles<Theme>(({ palette }) =>
-  createStyles({
-    root: {
-      fontSize: '.875rem',
-      '& a': {
-        color: palette.primary.main,
-        textDecoration: 'none',
-        backgroundColor: 'transparent',
-        '&:hover': {
-          color: palette.primary.dark,
+const useStyles = makeStyles<Theme>(
+  ({ palette }) => {
+    return createStyles({
+      root: {
+        fontSize: '.875rem',
+        '& a': {
+          color: palette.primary.main,
+          textDecoration: 'none',
+          backgroundColor: 'transparent',
+          '&:hover': {
+            color: palette.primary.dark,
+          },
         },
       },
-    },
-  }),
+    });
+  },
+  { defaultTheme: theme }
 );
 
 /**
