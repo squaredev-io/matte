@@ -9,9 +9,8 @@ import {
   CardMedia,
   CardActionArea,
 } from '@mui/material';
-
-import makeStyles from '@mui/styles/makeStyles';
-import createStyles from '@mui/styles/createStyles';
+import { createStyles, makeStyles } from '@mui/styles';
+import theme from '../../utilities/theme';
 
 export interface CardProps {
   /**
@@ -70,31 +69,34 @@ export const CardBody: FC<{ className?: string }> = ({
  * Inject styles for Card
  * @param theme The theme in use
  */
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      '& .MuiCardActions-root': {
-        padding: '8px 16px',
+const useStyles = makeStyles(
+  (theme: Theme) => {
+    return createStyles({
+      root: {
+        '& .MuiCardActions-root': {
+          padding: '8px 16px',
+        },
       },
-    },
-    header: {
-      padding: 24,
-    },
-    content: ({ disableGutters }: any) => ({
-      padding: disableGutters ? '24px 0' : 24,
-    }),
-    title: ({ disableGutters }: any) => ({
-      paddingLeft: disableGutters ? 24 : 0,
-      marginBottom: 20,
-      fontWeight: 600,
-    }),
-    subtitle: ({ disableGutters }: any) => ({
-      paddingLeft: disableGutters ? 24 : 0,
-      color: theme.palette.grey[600],
-      marginBottom: 16,
-      fontSize: '.875rem',
-    }),
-  })
+      header: {
+        padding: 24,
+      },
+      content: ({ disableGutters }: any) => ({
+        padding: disableGutters ? '24px 0' : 24,
+      }),
+      title: ({ disableGutters }: any) => ({
+        paddingLeft: disableGutters ? 24 : 0,
+        marginBottom: 20,
+        fontWeight: 600,
+      }),
+      subtitle: ({ disableGutters }: any) => ({
+        paddingLeft: disableGutters ? 24 : 0,
+        color: theme.palette.grey[600],
+        marginBottom: 16,
+        fontSize: '.875rem',
+      }),
+    });
+  },
+  { defaultTheme: theme }
 );
 
 /**
