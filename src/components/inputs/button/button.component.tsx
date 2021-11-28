@@ -6,7 +6,6 @@ import {
 } from '@mui/material';
 import { createStyles } from '@mui/styles';
 import { makeStyles } from '@mui/styles';
-import { Link } from 'react-router-dom';
 import theme from '../../utilities/theme';
 
 export type ButtonColor =
@@ -37,11 +36,6 @@ export interface ButtonProps {
    */
   disabled?: boolean;
   /**
-   * The URL to link to when the button is clicked.
-   * If defined, an `a` element will be used as the root node.
-   */
-  href?: string;
-  /**
    * An icon that will be shown before text. Must be an icon component.
    */
   icon?: React.ReactNode;
@@ -50,11 +44,15 @@ export interface ButtonProps {
    */
   onClick?: MouseEventHandler;
   /**
+   * The Link component of your router library of choice
+   */
+  routerLink?: any; //TODO: Fix type
+  /**
    * The size of the button.
    */
   size?: ButtonSize;
   /**
-   * A React Router link. If `to` is set, `href` is ignored.
+   * A router link. If `routerLink` is not passed, it is ignored.
    */
   to?: string;
   /**
@@ -178,8 +176,8 @@ export const Button: FC<ButtonProps> = ({
   color = 'primary',
   children,
   disabled = false,
-  href,
   icon,
+  routerLink,
   onClick: handleClick,
   size = 'medium',
   to,
@@ -188,11 +186,11 @@ export const Button: FC<ButtonProps> = ({
 }) => {
   const classes = useButtonStyles({ color, variant });
 
-  return to ? (
+  return routerLink ? (
     <MuiButton
       className={`${classes.root} ${className}`}
       color="primary"
-      component={Link}
+      component={routerLink}
       disabled={disabled}
       onClick={handleClick}
       size={size}
@@ -208,7 +206,6 @@ export const Button: FC<ButtonProps> = ({
       className={`${classes.root} ${className}`}
       color="primary"
       disabled={disabled}
-      href={href}
       onClick={handleClick}
       size={size}
       startIcon={icon}

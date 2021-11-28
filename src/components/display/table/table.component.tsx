@@ -1,9 +1,8 @@
 import React from 'react';
-import { Table as MuiTable, Theme } from '@mui/material';
+import { Link, Table as MuiTable, Theme } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 import createStyles from '@mui/styles/createStyles';
 import { TableBody, TableCell, TableHead, TableRow } from '@mui/material';
-import { Link } from 'react-router-dom';
 import { IconButton } from '../../inputs/button/button.component';
 import { MoreVertical, Copy } from 'react-feather';
 import { Menu, MenuItem } from '../../navigation/menu/menu.component';
@@ -23,9 +22,9 @@ export interface Column<DataType> {
    */
   field: keyof DataType;
   /**
-   * If set, text within cells in this column, becomes a link.
+   * The Link component of your router library of choice. If set, text within cells in this column, becomes a link.
    */
-  link?: boolean;
+  routerLink?: any;
   /**
    * If set, when text in this cell is clicked, it will be copied to clipboard
    */
@@ -150,16 +149,18 @@ const useStyles = makeStyles<Theme>(
 );
 
 const getCellContent = (row: any, col: any, classes: any) => {
-  if (col.link) {
+  if (col.routerLink) {
     return (
       <Link
         className={row.to ? classes.link : classes.linkDisabled}
+        component={col.routerLink}
         to={row.to as string}
       >
         {row[col.field]}
       </Link>
     );
   }
+
   if (col.enableCopyToClipboard) {
     return (
       <CopyToClipboard text={row[col.field]} onCopy={row.handleCopy}>

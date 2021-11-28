@@ -29,15 +29,13 @@
     "@nivo/line": "0.74.0",
     "@nivo/pie": "^0.74.0",
     "@types/mathjs": "^6.0.8",
-    "@types/react-router-dom": "^5.1.6",
     "copy-webpack-plugin": "^6.4.0",
     "material-ui-popup-state": "^1.5.4",
     "mathjs": "^8.1.0",
     "react-circular-progressbar": "2.0.4",
     "react-copy-to-clipboard": "5.0.3",
     "react-docgen-typescript-loader": "^3.7.2",
-    "react-feather": "^2.0.9",
-    "react-router-dom": "^5.2.0"
+    "react-feather": "^2.0.9"
   },
   "peerDependencies": {
     "@storybook/addon-info": "^5.3.21",
@@ -68,7 +66,9 @@
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.10.3",
     "webpack-node-externals": "^1.7.2",
-    "webpack-shell-plugin": "^0.5.0"
+    "webpack-shell-plugin": "^0.5.0",
+    "@types/react-router-dom": "^5.1.6",
+    "react-router-dom": "^5.2.0"
   },
   "files": [
     "dist"

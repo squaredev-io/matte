@@ -66,12 +66,6 @@ export const containedButtons = () => {
       <Button variant="contained" disabled>
         Disabled
       </Button>
-      <Button variant="contained" color="primary" href="#">
-        Link
-      </Button>
-      <Button variant="contained" color="primary" to={null}>
-        React Router Link
-      </Button>
     </div>
   );
 };
@@ -87,12 +81,6 @@ export const textButtons = () => {
       <Button>Primary</Button>
       <Button color="secondary">Secondary</Button>
       <Button disabled>Disabled</Button>
-      <Button color="primary" href="#">
-        Link
-      </Button>
-      <Button color="primary" to={null}>
-        React Router Link
-      </Button>
     </div>
   );
 };
@@ -111,12 +99,6 @@ export const outlinedButtons = () => {
       </Button>
       <Button variant="outlined" disabled>
         Disabled
-      </Button>
-      <Button variant="outlined" color="primary" href="#">
-        Link
-      </Button>
-      <Button variant="outlined" color="primary" to={null}>
-        React Router Link
       </Button>
     </div>
   );
@@ -234,4 +216,11 @@ export const IconButtons = () => {
       <IconButton icon={<MoreVertOutlined />} />
     </div>
   );
+};
+
+/**
+ * To see how you can use buttons with routing libraries like `react-router` or Next.js's `Link` check this document
+ */
+export const RoutingLibraries = () => {
+  return;
 };

@@ -1,5 +1,4 @@
 import React, { Fragment, MouseEvent } from 'react';
-import { Link, LinkProps } from 'react-router-dom';
 import createStyles from '@mui/styles/createStyles';
 import makeStyles from '@mui/styles/makeStyles';
 import {
@@ -25,6 +24,7 @@ export interface ListItemProps {
   primaryEnd?: string | number;
   secondaryEnd?: string | number;
   header?: boolean;
+  routerLink?: any; //TODO: Fix type
 }
 
 export interface ListProps {
@@ -59,7 +59,7 @@ export interface ListProps {
    * secondaryEnd | string | Secondary text to show at the right side of the item. | -
    * handleClick | function | A function that will be executed on item's `onClick` method, e.g. `(e) => console.log(e)`. By default, `e`, the React's synthetic event, is passed to that function. When additional parameters are passed by another API implementation, e.g. `Table`, it is explicitly documented. | -
    * header | boolean | When true the list item becomes a header | false
-   *
+   * routerLink | any | The Link component of your router library of choice | -
    */
   items: ListItemProps[];
 }
@@ -198,10 +198,12 @@ const ListItemLink = ({
   primaryEnd,
   secondaryEnd,
   disableGutters,
+  routerLink,
 }: ListItemBaseProps) => {
+  const Link = routerLink;
   const renderLink = React.useMemo(
     () =>
-      React.forwardRef<any, Omit<LinkProps, 'to'>>((itemProps, ref) => (
+      React.forwardRef<any, Omit<any, 'to'>>((itemProps, ref) => (
         <Link to={to as string} ref={ref} {...itemProps} />
       )),
     [to]
@@ -255,7 +257,7 @@ export const List: React.FC<ListProps> = ({
   return (
     <MuiList className={`${classes.list} ${className}`}>
       {items.map((item, i) => {
-        if (item.to) {
+        if (item.routerLink) {
           return (
             <Fragment key={i}>
               {i > 0 && divider && <Divider component="li" light />}
@@ -276,6 +278,7 @@ export const List: React.FC<ListProps> = ({
                   secondaryEnd={item.secondaryEnd}
                   handleClick={(e: any) => handleClick(e, item, i)}
                   disableGutters={disableGutters}
+                  routerLink={item.routerLink}
                 />
               </li>
             </Fragment>

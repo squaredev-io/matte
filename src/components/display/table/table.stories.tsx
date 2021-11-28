@@ -12,6 +12,9 @@ export default {
   },
 };
 
+// Simple constant to fake a router Link component
+const Link = true;
+
 const useStyles = makeStyles({
   table: {
     '& .MuiCard-root': {
@@ -33,7 +36,7 @@ export const Tables = () => {
   const classes = useStyles();
   const columns: Column<MockData>[] = [
     { title: '#', field: 'index' },
-    { title: 'Name', field: 'name', link: true },
+    { title: 'Name', field: 'name', routerLink: Link },
     { title: 'Surname', field: 'surname' },
     { title: 'Birth year', field: 'birthYear' },
   ];
@@ -124,7 +127,7 @@ export const RowActions = () => {
   const classes = useStyles();
   const columns: Column<MockData>[] = [
     { title: '#', field: 'index' },
-    { title: 'Name', field: 'name', link: true },
+    { title: 'Name', field: 'name', routerLink: Link },
     { title: 'Surname', field: 'surname' },
     { title: 'Birth year', field: 'birthYear' },
   ];
@@ -216,7 +219,7 @@ export const TableInACard = () => {
   const classes = useStyles();
   const columns: Column<MockData>[] = [
     { title: '#', field: 'index' },
-    { title: 'Name', field: 'name', link: true },
+    { title: 'Name', field: 'name', routerLink: Link },
     { title: 'Surname', field: 'surname' },
     { title: 'Birth year', field: 'birthYear' },
   ];

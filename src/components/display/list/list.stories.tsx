@@ -15,6 +15,9 @@ export default {
   },
 };
 
+// Simple constant to fake a router Link component
+const Link = true;
+
 const useStyles = makeStyles({
   list: {
     background: '#f5f5f5',
@@ -38,24 +41,27 @@ export const Lists = () => {
       secondary: 'You have a lot of junk',
       primaryEnd: '2.225',
       to: '#',
+      routerLink: Link,
     },
     { primary: 'Trash', to: '#', icon: <Delete /> },
     {
       primary: 'Drafts',
       secondary: 'You are editing 3 drafts',
       to: '#',
+      routerLink: Link,
       icon: <Drafts />,
     },
     {
       primary: 'Inbox',
       secondary: 'You have 3 new emails',
       to: '#',
+      routerLink: Link,
       avatar: (
         <Avatar>
           <Inbox />
         </Avatar>
       ),
-    }
+    },
   ];
   return (
     <div className={classes.list}>
@@ -92,13 +98,15 @@ export const ListWithIcons = () => {
       icon: <Inbox />,
       primary: 'Inbox',
       to: '#',
+      routerLink: Link,
     },
     {
       icon: <Drafts />,
       primary: 'Drafts',
       to: '#',
+      routerLink: Link,
     },
-    { primary: 'Trash', to: '#', icon: <Delete /> },
+    { primary: 'Trash', to: '#', routerLink: Link, icon: <Delete /> },
   ];
   return (
     <div className={classes.list}>
@@ -149,6 +157,7 @@ export const SecondaryText = () => {
       secondary:
         'Hey guys, can you please sign these documents and send them back to me?',
       to: '#',
+      routerLink: Link,
       handleClick: (e) => e,
     },
     {
@@ -157,6 +166,7 @@ export const SecondaryText = () => {
       secondary:
         'Hi there, just to let you know our new CI/CD process is up and running! Njoy.',
       to: '#',
+      routerLink: Link,
       handleClick: (e) => e,
     },
     {
@@ -164,6 +174,7 @@ export const SecondaryText = () => {
       primary: 'A sacrifice must be done',
       secondary: 'It is important to understand that a sacrifice must be made.',
       to: '#',
+      routerLink: Link,
       handleClick: (e) => e,
     },
   ];
