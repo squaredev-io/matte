@@ -1,8 +1,8 @@
-const webpack = require('webpack')
-const path = require('path')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const CopyPlugin = require('copy-webpack-plugin')
-const dotenv = require('dotenv')
+const webpack = require('webpack');
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
+const dotenv = require('dotenv');
 
 /**
  * Webpack factory function for react apps. Produces webpack config to be used by local webpack configs.
@@ -16,16 +16,16 @@ const webpackReactBaseConfigFactory = ({
 }) => {
   const dotenvOptions = {
     path: `${dir}/.env.${process.env.NODE_ENV}`,
-  }
-  const env = dotenv.config(dotenvOptions).parsed
+  };
+  const env = dotenv.config(dotenvOptions).parsed;
 
   // Pass env variables to process
   const envKeys =
     env &&
     Object.keys(env).reduce((prev, next) => {
-      prev[`process.env.${next}`] = JSON.stringify(env[next])
-      return prev
-    }, {})
+      prev[`process.env.${next}`] = JSON.stringify(env[next]);
+      return prev;
+    }, {});
 
   return {
     // File to start building from
@@ -78,10 +78,10 @@ const webpackReactBaseConfigFactory = ({
 
             // Webpack loader to generate docgen information from TypeScript React components
             // Npm package: https://github.com/strothj/react-docgen-typescript-loade
-            {
-              loader: require.resolve('react-docgen-typescript-loader'),
-              options: { tsconfigPath },
-            },
+            // {
+            // loader: require.resolve('react-docgen-typescript-loader'),
+            // options: { tsconfigPath },
+            // },
           ],
         },
 
@@ -125,9 +125,9 @@ const webpackReactBaseConfigFactory = ({
       }),
       new webpack.DefinePlugin(envKeys),
     ],
-  }
-}
+  };
+};
 
 module.exports = {
   webpackReactBaseConfigFactory,
-}
+};
