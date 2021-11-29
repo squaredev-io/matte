@@ -1,4 +1,5 @@
-import React, { FC } from 'react'
+import { FC } from 'react';
+import * as React from 'react';
 import MuiGrid from '@mui/material/Grid'
 
 export interface GridProps {

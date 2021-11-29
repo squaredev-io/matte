@@ -1,4 +1,3 @@
-import React from 'react';
 import makeStyles from '@mui/styles/makeStyles';
 import { Table, Column, TableData } from './table.component';
 import { CardBody, Card } from '../../structures/card/card.component';

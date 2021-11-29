@@ -1,4 +1,5 @@
-import React, { FC } from 'react'
+import { FC } from 'react';
+import * as React from 'react';
 import Drawer from '@mui/material/Drawer'
 import { Box, Typography } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { EmptyState } from './emptyState.component';
 import makeStyles from '@mui/styles/makeStyles';
 import createStyles from '@mui/styles/createStyles';

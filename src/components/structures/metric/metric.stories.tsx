@@ -1,4 +1,3 @@
-import React from 'react';
 import { Metric } from './metric.component';
 import makeStyles from '@mui/styles/makeStyles';
 import createStyles from '@mui/styles/createStyles';

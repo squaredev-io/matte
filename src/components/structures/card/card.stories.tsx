@@ -1,4 +1,3 @@
-import React from 'react';
 import makeStyles from '@mui/styles/makeStyles';
 import { Card, CardActions, CardBody } from './card.component';
 import { Button } from '../../inputs/button/button.component';

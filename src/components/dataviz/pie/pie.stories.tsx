@@ -1,4 +1,3 @@
-import React from 'react';
 import makeStyles from '@mui/styles/makeStyles';
 import { Pie } from './pie.component';
 import { Card, CardBody } from '../../structures/card/card.component';
@@ -49,6 +48,7 @@ export const PieCharts = () => {
     },
   ];
 
+  // @ts-ignore
   const radialLabelFn = (d) => `${d.id}: ${d.value}%`;
 
   return (
@@ -96,6 +96,7 @@ export const Simple = () => {
     },
   ];
 
+  // @ts-ignore
   const radialLabelFn = (d) => `${d.id}: ${d.value}%`;
 
   return (
@@ -138,6 +139,7 @@ export const Donut = () => {
     },
   ];
 
+  // @ts-ignore
   const radialLabelFn = (d) => `${d.id}: ${d.value}%`;
 
   return (

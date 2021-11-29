@@ -1,4 +1,3 @@
-import React from 'react';
 import makeStyles from '@mui/styles/makeStyles';
 import { List } from './list.component';
 import { Inbox, Drafts, Delete } from '@mui/icons-material';
@@ -125,16 +124,19 @@ export const ListWithAvatars = () => {
     {
       avatar: <Avatar>JS</Avatar>,
       primary: 'Documents to sign',
+      // @ts-ignore
       handleClick: (e) => e,
     },
     {
       avatar: <Avatar>MV</Avatar>,
       primary: 'Our new pipeline is ready',
+      // @ts-ignore
       handleClick: (e) => e,
     },
     {
       avatar: <Avatar>SE</Avatar>,
       primary: 'A sacrifice must be done',
+      // @ts-ignore
       handleClick: (e) => e,
     },
   ];
@@ -158,6 +160,7 @@ export const SecondaryText = () => {
         'Hey guys, can you please sign these documents and send them back to me?',
       to: '#',
       routerLink: Link,
+      // @ts-ignore
       handleClick: (e) => e,
     },
     {
@@ -167,6 +170,7 @@ export const SecondaryText = () => {
         'Hi there, just to let you know our new CI/CD process is up and running! Njoy.',
       to: '#',
       routerLink: Link,
+      // @ts-ignore
       handleClick: (e) => e,
     },
     {
@@ -175,6 +179,7 @@ export const SecondaryText = () => {
       secondary: 'It is important to understand that a sacrifice must be made.',
       to: '#',
       routerLink: Link,
+      // @ts-ignore
       handleClick: (e) => e,
     },
   ];

@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { LinearProgress, LinearProgressProps } from '@mui/material';
 
 //TODO: Move this to a better place

@@ -1,4 +1,5 @@
-import React, { FC, MouseEvent } from 'react';
+import { FC, MouseEvent } from 'react';
+import * as React from 'react';
 import Popper from '@mui/material/Popper';
 import {
   usePopupState,

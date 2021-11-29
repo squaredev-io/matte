@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { Line } from '../../dataviz/line/line.component';
 import { Theme } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';

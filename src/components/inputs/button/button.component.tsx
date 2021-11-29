@@ -1,4 +1,5 @@
-import React, { FC, MouseEventHandler } from 'react';
+import { FC, MouseEventHandler } from 'react';
+import * as React from 'react';
 import {
   Button as MuiButton,
   IconButton as MuiIconButton,

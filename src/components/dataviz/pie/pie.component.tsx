@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { useTheme } from '@mui/material';
 import { ResponsivePie, PieSvgProps } from '@nivo/pie';
 import { MatteTheme } from '../../utilities/createMatteTheme.component';

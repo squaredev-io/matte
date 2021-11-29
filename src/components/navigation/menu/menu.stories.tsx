@@ -1,4 +1,3 @@
-import React from 'react';
 import makeStyles from '@mui/styles/makeStyles';
 import { Menu } from './menu.component';
 import { IconButton, Button } from '../../inputs/button/button.component';
@@ -28,11 +27,13 @@ export const Menus = () => {
     {
       text: 'Profile',
       icon: <Person />,
+      // @ts-ignore
       handleClick: (e) => e,
     },
     {
       text: 'Logout',
       icon: <ExitToApp />,
+      // @ts-ignore
       handleClick: (e) => e,
     },
   ];

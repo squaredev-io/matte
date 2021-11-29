@@ -1,4 +1,3 @@
-import React from 'react';
 import { Layout } from './layout.component';
 import { Typography } from '@mui/material';
 import { Home, Columns, Shield, Settings, Book } from 'react-feather';

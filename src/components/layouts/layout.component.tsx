@@ -1,4 +1,5 @@
-import React, { FC, useEffect } from 'react';
+import { FC, useEffect } from 'react';
+import * as React from 'react';
 import clsx from 'clsx';
 import { Theme } from '@mui/material/styles';
 import createStyles from '@mui/styles/createStyles';

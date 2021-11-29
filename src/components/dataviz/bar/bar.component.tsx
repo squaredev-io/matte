@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { useTheme } from '@mui/material';
 import { ResponsiveBar, BarSvgProps } from '@nivo/bar';
 import { MatteTheme } from '../../utilities/createMatteTheme.component';

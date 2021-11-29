@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import { ThemeProvider } from '@mui/material/styles';
 import { createMatteTheme } from '../src/components/utilities/createMatteTheme.component';

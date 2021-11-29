@@ -1,4 +1,3 @@
-import React from 'react';
 import { Stepper } from './stepper.component';
 import { TextField } from '../../inputs/textField/textField.component';
 
@@ -18,6 +17,7 @@ export const Steppers = () => {
       content: `For each ad campaign that you create, you can control how much
       you're willing to spend on clicks and conversions, which networks
       and geographical locations you want your ads to show on, and more.`,
+      // @ts-ignore
       handleClick: (e) => e,
       nextIsDisabled: false,
     },
@@ -25,6 +25,7 @@ export const Steppers = () => {
       label: 'Create an ad group',
       content:
         'An ad group contains one or more ads which target a shared set of keywords.',
+      // @ts-ignore
       handleClick: (e) => e,
       nextIsDisabled: false,
     },
@@ -34,6 +35,7 @@ export const Steppers = () => {
       and learn how to enhance your ads using features like ad extensions.
       If you run into any problems with your ads, find out how to tell if
       they're running and how to resolve approval issues.`,
+      // @ts-ignore
       handleClick: (e) => e,
       nextIsDisabled: false,
     },
@@ -55,6 +57,7 @@ export const SimpleStepper = () => {
           <TextField id="email" name="email" placeholder="Enter your email" />
         </div>
       ),
+      // @ts-ignore
       handleClick: (e) => e,
       nextIsDisabled: false,
     },
@@ -62,6 +65,7 @@ export const SimpleStepper = () => {
       label: 'Create an ad group',
       content:
         'An ad group contains one or more ads which target a shared set of keywords.',
+      // @ts-ignore
       handleClick: (e) => e,
       nextIsDisabled: false,
     },
@@ -71,6 +75,7 @@ export const SimpleStepper = () => {
       and learn how to enhance your ads using features like ad extensions.
       If you run into any problems with your ads, find out how to tell if
       they're running and how to resolve approval issues.`,
+      // @ts-ignore
       handleClick: (e) => e,
       nextIsDisabled: false,
     },
