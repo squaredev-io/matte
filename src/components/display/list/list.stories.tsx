@@ -1,8 +1,10 @@
-import makeStyles from '@mui/styles/makeStyles';
-import { List } from './list.component';
-import { Inbox, Drafts, Delete } from '@mui/icons-material';
-import { Avatar } from '../avatar/avatar.component';
+import Inbox from '@mui/icons-material/Inbox';
+import Drafts from '@mui/icons-material/Drafts';
+import Delete from '@mui/icons-material/Delete';
+import Link from '@mui/material/Link';
 import { AlertTriangle, Check } from 'react-feather';
+import { Avatar } from '../avatar/avatar.component';
+import { List } from './list.component';
 import { Card, CardBody } from '../../structures/card/card.component';
 
 export default {
@@ -14,25 +16,7 @@ export default {
   },
 };
 
-// Simple constant to fake a router Link component
-const Link = true;
-
-const useStyles = makeStyles({
-  list: {
-    background: '#f5f5f5',
-    padding: 20,
-    '& ul': {
-      background: 'white',
-      maxWidth: 450,
-    },
-    '& .MuiCard-root': {
-      maxWidth: 450,
-    },
-  },
-});
-
 export const Lists = () => {
-  const classes = useStyles();
   const menuItems = [
     { primary: 'Work' },
     {
@@ -63,7 +47,7 @@ export const Lists = () => {
     },
   ];
   return (
-    <div className={classes.list}>
+    <div className="story__list">
       <List divider items={menuItems} />
     </div>
   );
@@ -73,14 +57,13 @@ export const Lists = () => {
  * A simple list. If `divider` is passed, items are separated by a border.
  */
 export const SimpleList = () => {
-  const classes = useStyles();
   const menuItems = [
     { primary: 'Inbox' },
     { primary: 'Drafts' },
     { primary: 'Trash' },
   ];
   return (
-    <div className={classes.list}>
+    <div className="story__list">
       <List divider items={menuItems} />
     </div>
   );
@@ -91,7 +74,6 @@ export const SimpleList = () => {
  * a button.
  */
 export const ListWithIcons = () => {
-  const classes = useStyles();
   const menuItems = [
     {
       icon: <Inbox />,
@@ -108,7 +90,7 @@ export const ListWithIcons = () => {
     { primary: 'Trash', to: '#', routerLink: Link, icon: <Delete /> },
   ];
   return (
-    <div className={classes.list}>
+    <div className="story__list">
       <List divider items={menuItems} />
     </div>
   );
@@ -119,7 +101,6 @@ export const ListWithIcons = () => {
  * functionallity.
  */
 export const ListWithAvatars = () => {
-  const classes = useStyles();
   const menuItems = [
     {
       avatar: <Avatar>JS</Avatar>,
@@ -141,7 +122,7 @@ export const ListWithAvatars = () => {
     },
   ];
   return (
-    <div className={classes.list}>
+    <div className="story__list">
       <List divider items={menuItems} />
     </div>
   );
@@ -151,7 +132,6 @@ export const ListWithAvatars = () => {
  * Secondary multiline text can be shown, although should be kept to 3 lines maximum.
  */
 export const SecondaryText = () => {
-  const classes = useStyles();
   const menuItems = [
     {
       avatar: <Avatar>JS</Avatar>,
@@ -184,7 +164,7 @@ export const SecondaryText = () => {
     },
   ];
   return (
-    <div className={classes.list}>
+    <div className="story__list">
       <List divider items={menuItems} />
     </div>
   );
@@ -194,7 +174,6 @@ export const SecondaryText = () => {
  * Text and secondary text can also be shown in the right side of a list item.
  */
 export const RightText = () => {
-  const classes = useStyles();
   const items = [
     {
       icon: <Check color="green" />,
@@ -222,7 +201,7 @@ export const RightText = () => {
     },
   ];
   return (
-    <div className={classes.list}>
+    <div className="story__list">
       <List divider items={items} />
     </div>
   );
@@ -232,7 +211,6 @@ export const RightText = () => {
  * You can wrap a list with a `Card` for better looks.
  */
 export const ListInACard = () => {
-  const classes = useStyles();
   const items = [
     {
       icon: <Check color="green" />,
@@ -261,7 +239,7 @@ export const ListInACard = () => {
   ];
 
   return (
-    <div className={classes.list}>
+    <div className="story__list">
       <Card
         title="Indicators"
         subtitle="Special items that require your attention."

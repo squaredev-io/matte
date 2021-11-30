@@ -1,15 +1,12 @@
 import { Fragment, MouseEvent } from 'react';
 import * as React from 'react';
-import createStyles from '@mui/styles/createStyles';
-import makeStyles from '@mui/styles/makeStyles';
-import {
-  List as MuiList,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
-  ListItemAvatar,
-  Divider,
-} from '@mui/material';
+import MuiList from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import ListItemAvatar from '@mui/material/ListItemAvatar';
+import Divider from '@mui/material/Divider';
+import './list.component.scss';
 import clsx from 'clsx';
 
 // TODO: how to solve the component problem?
@@ -65,58 +62,6 @@ export interface ListProps {
   items: ListItemProps[];
 }
 
-const useStyles = makeStyles(() =>
-  createStyles({
-    list: {
-      padding: 0,
-    },
-    listItem: ({ disableGutters }: any) => ({
-      padding: disableGutters ? '12px 8px' : '12px 24px',
-    }),
-    listItemText: {
-      margin: 0,
-      lineHeight: 1,
-      '& .MuiListItemText-primary': {
-        fontSize: '.875rem',
-      },
-      '& .MuiListItemText-secondary': {
-        fontSize: '.8125rem',
-      },
-    },
-    listItemIcon: {
-      minWidth: 36,
-      '& svg': {
-        width: 18,
-        height: 18,
-      },
-    },
-    listItemTextEnd: {
-      textAlign: 'right',
-      margin: 0,
-      lineHeight: 1,
-      '& .MuiListItemText-primary': {
-        fontSize: '.875rem',
-      },
-      '& .MuiListItemText-secondary': {
-        fontSize: '.8125rem',
-      },
-    },
-    circularProgressBar: {
-      width: 60,
-      minWidth: 60,
-      marginRight: '10%',
-    },
-    header: {
-      padding: '24px 24px 8px 8px !important',
-      '& .MuiListItemText-primary': {
-        textTransform: 'uppercase',
-        fontSize: 12,
-        fontWeight: 600,
-      },
-    },
-  })
-);
-
 export type ListItemBaseProps = ListItemProps & {
   component?: any; // TODO: find proper typing
   /**
@@ -154,32 +99,31 @@ const ListItemBase = ({
   disableGutters,
   header = false,
 }: ListItemBaseProps) => {
-  const classes = useStyles({ disableGutters });
   return (
     <ListItem
       button={!!to as true}
-      className={`${classes.listItem} ${className}`}
+      className={clsx(className, 'list__item', {
+        'list__item--no-gutters': disableGutters,
+      })}
       component={component}
       onClick={handleClick}
     >
       {avatar ? <ListItemAvatar>{avatar}</ListItemAvatar> : null}
       {circularProgressBar && !avatar ? (
-        <span className={classes.circularProgressBar}>
-          {circularProgressBar}
-        </span>
+        <span>{circularProgressBar}</span>
       ) : null}
       {icon && !avatar && !circularProgressBar ? (
-        <ListItemIcon className={classes.listItemIcon}>{icon}</ListItemIcon>
+        <ListItemIcon className="list__item__icon">{icon}</ListItemIcon>
       ) : null}
       <ListItemText
-        className={classes.listItemText}
+        className="list__item__text"
         primary={primary}
         secondary={secondary}
         inset={header}
       />
       {primaryEnd && (
         <ListItemText
-          className={classes.listItemTextEnd}
+          className="list__item__text list__item__text--end"
           primary={primaryEnd}
           secondary={secondaryEnd}
         />
@@ -239,7 +183,6 @@ export const List: React.FC<ListProps> = ({
   divider = false,
   disableGutters = false,
 }) => {
-  const classes = useStyles({ disableGutters });
   const [activeLi, setActiveLi] = React.useState(-1);
 
   const handleClick = (e: any, item: any, i: number) => {
@@ -256,7 +199,7 @@ export const List: React.FC<ListProps> = ({
   };
 
   return (
-    <MuiList className={`${classes.list} ${className}`}>
+    <MuiList className={`list ${className}`}>
       {items.map((item, i) => {
         if (item.routerLink) {
           return (
@@ -265,7 +208,7 @@ export const List: React.FC<ListProps> = ({
               <li
                 className={clsx({
                   active: activeLi === i,
-                  [classes.header]: item.header,
+                  header: item.header,
                 })}
               >
                 <ListItemLink
@@ -300,7 +243,7 @@ export const List: React.FC<ListProps> = ({
               handleClick={(e: any) => handleClick(e, item, i)}
               className={clsx({
                 active: activeLi === i,
-                [classes.header]: item.header,
+                header: item.header,
               })}
               disableGutters={disableGutters}
             />

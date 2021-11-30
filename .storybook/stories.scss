@@ -54,6 +54,9 @@
       background: white;
       max-width: 350px;
     }
+    & .Muicard-root {
+      max-width: 450px;
+    }
   }
   &__divider {
     width: 30%;
