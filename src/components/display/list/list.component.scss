@@ -1,0 +1,38 @@
+list {
+  padding: 0px;
+  background: red;
+  &__item {
+    padding: 12px 24px;
+    &--no-gutters {
+      padding: 12px 8px;
+    }
+    &__text {
+      margin: 0;
+      line-height: 1;
+      & .MuiListItemText-primary {
+        font-size: 0.875rem;
+      }
+      & .muilistitemtext-secondary {
+        font-size: 0.8125rem;
+      }
+      &--end {
+        text-align: right;
+      }
+    }
+    &__icon {
+      min-width: 36px;
+      & svg {
+        width: 18;
+        height: 18;
+      }
+    }
+  }
+  header {
+    padding: 24px 24px 8px 8px !important;
+    & .MuiListItemText-primary {
+      text-transform: uppercase;
+      font-size: 12;
+      font-weight: 600;
+    }
+  }
+}

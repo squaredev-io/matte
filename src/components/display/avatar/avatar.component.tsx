@@ -1,38 +1,34 @@
 import { FC } from 'react';
 import * as React from 'react';
-import { Avatar as MuiAvatar } from '@mui/material';
+import MuiAvatar from '@mui/material/Avatar';
+import { styled } from '@mui/material/styles';
 
-import makeStyles from '@mui/styles/makeStyles';
-import createStyles from '@mui/styles/createStyles';
-
-export type AvatarVariant = 'rounded' | 'square' | 'circular' | undefined
+export type AvatarVariant = 'rounded' | 'square' | 'circular' | undefined;
 
 export interface AvatarProps {
   /**
    * The `alt` attribute for the `img` element.
    */
-  alt?: string
+  alt?: string;
   /**
    * Text to be shown inside the Avatar if src is not set. It can be an element, or just a string.
    */
-  children?: React.ReactNode
+  children?: React.ReactNode;
   /**
    * The 'src' attribute for the 'img' element.
    */
-  src?: string
+  src?: string;
   /**
    * The variant to use.
    */
-  variant?: AvatarVariant
+  variant?: AvatarVariant;
 }
 
-const useStyles = makeStyles(() =>
-  createStyles({
-    root: {
-      fontSize: '1rem',
-    },
-  })
-)
+const AvatarStyled = styled(MuiAvatar)({
+  root: {
+    fontSize: '1rem',
+  },
+});
 
 /**
  * An avatar is an image or a graphic associated with a user or a brand.
@@ -43,11 +39,9 @@ export const Avatar: FC<AvatarProps> = ({
   src,
   variant = 'circular',
 }) => {
-  const classes = useStyles()
-
   return (
-    <MuiAvatar alt={alt} className={classes.root} src={src} variant={variant}>
+    <AvatarStyled alt={alt} src={src} variant={variant}>
       {children}
-    </MuiAvatar>
-  )
-}
+    </AvatarStyled>
+  );
+};
