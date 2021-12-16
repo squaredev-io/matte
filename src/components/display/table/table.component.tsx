@@ -1,7 +1,12 @@
-import { Link, Table as MuiTable, Theme } from '@mui/material';
+import MuiTable from '@mui/material/Table';
+import { Theme } from '@mui/material/styles';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Checkbox from '@mui/material/Checkbox';
 import makeStyles from '@mui/styles/makeStyles';
 import createStyles from '@mui/styles/createStyles';
-import { TableBody, TableCell, TableHead, TableRow } from '@mui/material';
 import { IconButton } from '../../inputs/button/button.component';
 import { MoreVertical, Copy } from 'react-feather';
 import { Menu, MenuItem } from '../../navigation/menu/menu.component';
@@ -28,6 +33,7 @@ export interface Column<DataType> {
    * If set, when text in this cell is clicked, it will be copied to clipboard
    */
   enableCopyToClipboard?: boolean;
+  checkbox?: boolean;
 }
 
 /**
@@ -80,6 +86,8 @@ export interface TableProps<DataType> {
    * If `true`, odd rows will have a background color. Avoid using this with hover.
    */
   striped?: boolean;
+  handleSelectAll?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  selected: number[];
 }
 
 /**
@@ -112,6 +120,7 @@ const useStyles = makeStyles<Theme>(
         backgroundColor: 'transparent',
         '&:hover': {
           color: palette.primary.dark,
+          cursor: 'pointer',
         },
       },
       linkDisabled: {
@@ -147,8 +156,25 @@ const useStyles = makeStyles<Theme>(
   { defaultTheme: theme }
 );
 
-const getCellContent = (row: any, col: any, classes: any) => {
+const getCellContent = (
+  row: any,
+  col: any,
+  classes: any,
+  selected: number[]
+) => {
+  if (col.checkbox) {
+    const isSelected = (index: number) => selected.indexOf(index) !== -1;
+    const isRowSelected = isSelected(row.index);
+    return (
+      <Checkbox
+        checked={isRowSelected}
+        onChange={(e) => row.handleCheckChange(e, row.index)}
+      />
+    );
+  }
+
   if (col.routerLink) {
+    const Link = col.routerLink;
     return (
       <Link
         className={row.to ? classes.link : classes.linkDisabled}
@@ -183,6 +209,8 @@ export const Table = <DataType extends any>({
   data,
   hover = true,
   striped = false,
+  handleSelectAll,
+  selected,
 }: TableProps<DataType>) => {
   const classes = useStyles({ striped });
 
@@ -196,7 +224,15 @@ export const Table = <DataType extends any>({
           <TableRow>
             {columns.map((col, cellIndex) => (
               <TableCell className={classes.headerCell} key={cellIndex}>
-                {col.title}
+                {col.checkbox ? (
+                  <Checkbox
+                    checked={data.length > 0 && selected.length === data.length}
+                    onChange={handleSelectAll}
+                    inputProps={{ 'aria-label': 'select all desserts' }}
+                  />
+                ) : (
+                  col.title
+                )}
               </TableCell>
             ))}
             {actions && <TableCell>&nbsp;</TableCell>}
@@ -207,7 +243,7 @@ export const Table = <DataType extends any>({
             <TableRow className={classes.row} hover={hover} key={rowIndex}>
               {columns.map((col, i) => (
                 <TableCell className={classes.cell} key={i}>
-                  {getCellContent(row, col, classes)}
+                  {getCellContent(row, col, classes, selected)}
                 </TableCell>
               ))}
               {actions && (

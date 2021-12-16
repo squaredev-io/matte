@@ -1,7 +1,11 @@
+// @ts-nocheck
+import React, { useState } from 'react';
+import Link from '@mui/material/Link';
+import Edit from '@mui/icons-material/Edit';
+import Delete from '@mui/icons-material/Delete';
 import makeStyles from '@mui/styles/makeStyles';
 import { Table, Column, TableData } from './table.component';
 import { CardBody, Card } from '../../structures/card/card.component';
-import { Edit, Delete } from '@mui/icons-material';
 
 export default {
   title: 'Components/Display/Table',
@@ -10,9 +14,6 @@ export default {
     componentSubtitle: 'Tables display sets of data across rows and columns.',
   },
 };
-
-// Simple constant to fake a router Link component
-const Link = true;
 
 const useStyles = makeStyles({
   table: {
@@ -34,6 +35,7 @@ interface MockData {
 export const Tables = () => {
   const classes = useStyles();
   const columns: Column<MockData>[] = [
+    { checkbox: true },
     { title: '#', field: 'index' },
     { title: 'Name', field: 'name', routerLink: Link },
     { title: 'Surname', field: 'surname' },
@@ -47,14 +49,68 @@ export const Tables = () => {
       surname: 'Targaryen',
       birthYear: 1977,
       to: '#',
+      handleCheckChange: (e, rowId) => handleCheckChange(e, rowId),
     },
-    { index: 2, name: 'Jon', surname: 'Snow', birthYear: 1980, to: '#' },
-    { index: 3, name: 'Arya', surname: 'Stark', birthYear: 1987, to: '#' },
+    {
+      index: 2,
+      name: 'Jon',
+      surname: 'Snow',
+      birthYear: 1980,
+      to: '#',
+      handleCheckChange: (e, rowId) => handleCheckChange(e, rowId),
+    },
+    {
+      index: 3,
+      name: 'Arya',
+      surname: 'Stark',
+      birthYear: 1987,
+      to: '#',
+      handleCheckChange: (e, rowId) => handleCheckChange(e, rowId),
+    },
   ];
+
+  const [selected, setSelected] = useState<string[]>([]);
+
+  const handleSelectAll = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.checked) {
+      const newSelecteds = data.map((n) => n.index);
+      setSelected(newSelecteds);
+      return;
+    }
+    setSelected([]);
+  };
+
+  const handleCheckChange = (
+    event: React.MouseEvent<unknown>,
+    index: number
+  ) => {
+    const selectedIndex = selected.indexOf(index);
+    let newSelected: string[] = [];
+
+    if (selectedIndex === -1) {
+      newSelected = newSelected.concat(selected, index);
+    } else if (selectedIndex === 0) {
+      newSelected = newSelected.concat(selected.slice(1));
+    } else if (selectedIndex === selected.length - 1) {
+      newSelected = newSelected.concat(selected.slice(0, -1));
+    } else if (selectedIndex > 0) {
+      newSelected = newSelected.concat(
+        selected.slice(0, selectedIndex),
+        selected.slice(selectedIndex + 1)
+      );
+    }
+
+    setSelected(newSelected);
+  };
 
   return (
     <div className={classes.table}>
-      <Table<MockData> columns={columns} data={data} />
+      <Table<MockData>
+        columns={columns}
+        data={data}
+        handleSelectAll={handleSelectAll}
+        selected={selected}
+      />
     </div>
   );
 };
