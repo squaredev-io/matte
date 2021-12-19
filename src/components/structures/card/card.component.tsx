@@ -1,17 +1,14 @@
-import { FC } from 'react';
-import * as React from 'react';
-import {
-  Theme,
-  Card as MuiCard,
-  CardHeader,
-  CardContent,
-  Typography,
-  CardActions as MuiCardActions,
-  CardMedia,
-  CardActionArea,
-} from '@mui/material';
-import { createStyles, makeStyles } from '@mui/styles';
-import theme from '../../utilities/theme';
+import React, { FC } from 'react';
+import MuiCard from '@mui/material/Card';
+import CardHeader from '@mui/material/CardHeader';
+import CardContent from '@mui/material/CardContent';
+import MuiCardActions from '@mui/material/CardActions';
+import CardMedia from '@mui/material/CardMedia';
+import CardActionArea from '@mui/material/CardActionArea';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import clsx from 'clsx';
+import styles from './card.module.scss';
 
 export interface CardProps {
   /**
@@ -67,40 +64,6 @@ export const CardBody: FC<{ className?: string }> = ({
 );
 
 /**
- * Inject styles for Card
- * @param theme The theme in use
- */
-const useStyles = makeStyles(
-  (theme: Theme) => {
-    return createStyles({
-      root: {
-        '& .MuiCardActions-root': {
-          padding: '8px 16px',
-        },
-      },
-      header: {
-        padding: 24,
-      },
-      content: ({ disableGutters }: any) => ({
-        padding: disableGutters ? '24px 0' : 24,
-      }),
-      title: ({ disableGutters }: any) => ({
-        paddingLeft: disableGutters ? 24 : 0,
-        marginBottom: 20,
-        fontWeight: 600,
-      }),
-      subtitle: ({ disableGutters }: any) => ({
-        paddingLeft: disableGutters ? 24 : 0,
-        color: theme.palette.grey[600],
-        marginBottom: 16,
-        fontSize: '.875rem',
-      }),
-    });
-  },
-  { defaultTheme: theme }
-);
-
-/**
  * Cards are surfaces that display content and actions on a single topic. They should be easy to scan for relevant and
  * actionable information. Elements, like text and images, should be placed on them in a way that clearly indicates
  * hierarchy.
@@ -119,7 +82,7 @@ export const Card: FC<CardProps> = ({
   title,
   disableGutters = false,
 }) => {
-  const classes = useStyles({ disableGutters });
+  // const classes = useStyles({ disableGutters });
 
   /**
    * Avatar component
@@ -127,7 +90,7 @@ export const Card: FC<CardProps> = ({
   const header = avatar && (
     <CardHeader
       avatar={avatar}
-      className={classes.header}
+      className={styles.header}
       title={title}
       subheader={subtitle}
     />
@@ -157,11 +120,32 @@ export const Card: FC<CardProps> = ({
   const content = (
     <>
       {media}
-      <CardContent className={classes.content}>
+      <CardContent
+        className={disableGutters ? styles.contentNoGutters : styles.content}
+      >
         {!avatar && (
           <>
-            {title && <div className={classes.title}>{title}</div>}
-            {subtitle && <div className={classes.subtitle}>{subtitle}</div>}
+            {title && (
+              <div
+                className={clsx(styles.title, {
+                  [styles.titleNoGutters]: disableGutters,
+                })}
+              >
+                {title}
+              </div>
+            )}
+            {subtitle && (
+              <Box
+                className={clsx(styles.subtitle, {
+                  [styles.subtitleNoGutters]: disableGutters,
+                })}
+                sx={{
+                  color: (theme) => theme.palette.grey[600],
+                }}
+              >
+                {subtitle}
+              </Box>
+            )}
           </>
         )}
         {body}
@@ -170,7 +154,7 @@ export const Card: FC<CardProps> = ({
   );
 
   return (
-    <MuiCard className={classes.root}>
+    <MuiCard className={styles.card}>
       {header}
       {href ? <CardActionArea href={href}>{content}</CardActionArea> : content}
       {actions}

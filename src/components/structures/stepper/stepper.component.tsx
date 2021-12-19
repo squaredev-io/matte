@@ -1,30 +1,10 @@
-import { FC } from 'react';
-import * as React from 'react';
-import { Theme } from '@mui/material/styles';
-import makeStyles from '@mui/styles/makeStyles';
-import createStyles from '@mui/styles/createStyles';
-import {
-  Stepper as MuiStepper,
-  Step,
-  StepLabel,
-  StepContent,
-} from '@mui/material';
+import React, { FC } from 'react';
+import MuiStepper from '@mui/material/Stepper';
+import Step from '@mui/material/Step';
+import StepLabel from '@mui/material/StepLabel';
+import StepContent from '@mui/material/StepContent';
 import { Button } from '../../inputs/button/button.component';
-
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      width: '100%',
-    },
-    button: {
-      marginTop: theme.spacing(1),
-      marginRight: theme.spacing(1),
-    },
-    actionsContainer: {
-      marginBottom: theme.spacing(2),
-    },
-  })
-);
+import styles from './stepper.module.scss';
 
 export interface stepProps {
   label?: string;
@@ -53,7 +33,6 @@ export interface StepperProps {
  * multiple logical and numbered steps.
  */
 export const Stepper: FC<StepperProps> = ({ steps }) => {
-  const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
 
   const handleNext = () => {
@@ -65,18 +44,18 @@ export const Stepper: FC<StepperProps> = ({ steps }) => {
   };
 
   return (
-    <div className={classes.root}>
+    <div className={styles.stepper}>
       <MuiStepper activeStep={activeStep} orientation="vertical">
         {steps.map((step, index) => (
           <Step key={index}>
             <StepLabel>{step.label}</StepLabel>
             <StepContent>
               <div>{step.content}</div>
-              <div className={classes.actionsContainer}>
+              <div className={styles.actionsContainer}>
                 <Button
                   disabled={activeStep === 0}
                   onClick={handleBack}
-                  className={classes.button}
+                  className={styles.button}
                 >
                   Back
                 </Button>
@@ -84,7 +63,7 @@ export const Stepper: FC<StepperProps> = ({ steps }) => {
                   variant="contained"
                   color="primary"
                   onClick={handleNext}
-                  className={classes.button}
+                  className={styles.button}
                   disabled={step.nextIsDisabled}
                 >
                   {index === steps.length - 1 ? 'Finish' : 'Next'}

@@ -1,10 +1,9 @@
-import Inbox from '@mui/icons-material/Inbox';
-import Drafts from '@mui/icons-material/Drafts';
-import Delete from '@mui/icons-material/Delete';
+import React from 'react';
 import Link from '@mui/material/Link';
-import { AlertTriangle, Check } from 'react-feather';
-import { Avatar } from '../avatar/avatar.component';
+import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { AlertTriangle, Check, Trash2, Mail, Inbox } from 'react-feather';
 import { List } from './list.component';
+import { Avatar } from '../avatar/avatar.component';
 import { Card, CardBody } from '../../structures/card/card.component';
 
 export default {
@@ -14,9 +13,9 @@ export default {
     componentSubtitle:
       'Lists are continuous, vertical indexes of text or images.',
   },
-};
+} as ComponentMeta<typeof List>;
 
-export const Lists = () => {
+export const Lists: ComponentStory<typeof List> = () => {
   const menuItems = [
     { primary: 'Work' },
     {
@@ -26,13 +25,13 @@ export const Lists = () => {
       to: '#',
       routerLink: Link,
     },
-    { primary: 'Trash', to: '#', icon: <Delete /> },
+    { primary: 'Trash', to: '#', icon: <Trash2 /> },
     {
       primary: 'Drafts',
       secondary: 'You are editing 3 drafts',
       to: '#',
       routerLink: Link,
-      icon: <Drafts />,
+      icon: <Inbox />,
     },
     {
       primary: 'Inbox',
@@ -46,6 +45,7 @@ export const Lists = () => {
       ),
     },
   ];
+
   return (
     <div className="story__list">
       <List divider items={menuItems} />
@@ -56,7 +56,7 @@ export const Lists = () => {
 /**
  * A simple list. If `divider` is passed, items are separated by a border.
  */
-export const SimpleList = () => {
+export const SimpleList: ComponentStory<typeof List> = () => {
   const menuItems = [
     { primary: 'Inbox' },
     { primary: 'Drafts' },
@@ -69,25 +69,25 @@ export const SimpleList = () => {
   );
 };
 
-/**
- * A list with an icon for each item. If `to` is passed, the item becomes
- * a button.
- */
-export const ListWithIcons = () => {
+// /**
+//  * A list with an icon for each item. If `to` is passed, the item becomes
+//  * a button.
+//  */
+export const ListWithIcons: ComponentStory<typeof List> = () => {
   const menuItems = [
     {
-      icon: <Inbox />,
+      icon: <Mail />,
       primary: 'Inbox',
       to: '#',
       routerLink: Link,
     },
     {
-      icon: <Drafts />,
+      icon: <Inbox />,
       primary: 'Drafts',
       to: '#',
       routerLink: Link,
     },
-    { primary: 'Trash', to: '#', routerLink: Link, icon: <Delete /> },
+    { primary: 'Trash', to: '#', routerLink: Link, icon: <Trash2 /> },
   ];
   return (
     <div className="story__list">
@@ -128,13 +128,13 @@ export const ListWithAvatars = () => {
   );
 };
 
-/**
- * Secondary multiline text can be shown, although should be kept to 3 lines maximum.
- */
-export const SecondaryText = () => {
+// // /**
+// //  * Secondary multiline text can be shown, although should be kept to 3 lines maximum.
+// //  */
+export const SecondaryText: ComponentStory<typeof List> = () => {
   const menuItems = [
     {
-      avatar: <Avatar>JS</Avatar>,
+      // avatar: <Avatar>JS</Avatar>,
       primary: 'Documents to sign',
       secondary:
         'Hey guys, can you please sign these documents and send them back to me?',
@@ -144,7 +144,7 @@ export const SecondaryText = () => {
       handleClick: (e) => e,
     },
     {
-      avatar: <Avatar>MV</Avatar>,
+      // avatar: <Avatar>MV</Avatar>,
       primary: 'Our new pipeline is ready',
       secondary:
         'Hi there, just to let you know our new CI/CD process is up and running! Njoy.',
@@ -154,7 +154,7 @@ export const SecondaryText = () => {
       handleClick: (e) => e,
     },
     {
-      avatar: <Avatar>SE</Avatar>,
+      // avatar: <Avatar>SE</Avatar>,
       primary: 'A sacrifice must be done',
       secondary: 'It is important to understand that a sacrifice must be made.',
       to: '#',
@@ -170,9 +170,9 @@ export const SecondaryText = () => {
   );
 };
 
-/**
- * Text and secondary text can also be shown in the right side of a list item.
- */
+// /**
+//  * Text and secondary text can also be shown in the right side of a list item.
+//  */
 export const RightText = () => {
   const items = [
     {

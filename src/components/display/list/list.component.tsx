@@ -1,13 +1,12 @@
-import { Fragment, MouseEvent } from 'react';
-import * as React from 'react';
+import React, { Fragment, MouseEvent } from 'react';
 import MuiList from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import Divider from '@mui/material/Divider';
-import './list.component.scss';
 import clsx from 'clsx';
+import styles from './list.module.scss';
 
 // TODO: how to solve the component problem?
 
@@ -102,8 +101,8 @@ const ListItemBase = ({
   return (
     <ListItem
       button={!!to as true}
-      className={clsx(className, 'list__item', {
-        'list__item--no-gutters': disableGutters,
+      className={clsx(className, styles.item, {
+        [styles.itemNoGutters]: disableGutters,
       })}
       component={component}
       onClick={handleClick}
@@ -113,17 +112,17 @@ const ListItemBase = ({
         <span>{circularProgressBar}</span>
       ) : null}
       {icon && !avatar && !circularProgressBar ? (
-        <ListItemIcon className="list__item__icon">{icon}</ListItemIcon>
+        <ListItemIcon className={styles.icon}>{icon}</ListItemIcon>
       ) : null}
       <ListItemText
-        className="list__item__text"
+        className={styles.text}
         primary={primary}
         secondary={secondary}
         inset={header}
       />
       {primaryEnd && (
         <ListItemText
-          className="list__item__text list__item__text--end"
+          className={`${styles.text} ${styles.textEnd}`}
           primary={primaryEnd}
           secondary={secondaryEnd}
         />
@@ -199,7 +198,7 @@ export const List: React.FC<ListProps> = ({
   };
 
   return (
-    <MuiList className={`list ${className}`}>
+    <MuiList className={`${styles.list} ${className}`}>
       {items.map((item, i) => {
         if (item.routerLink) {
           return (
@@ -208,7 +207,7 @@ export const List: React.FC<ListProps> = ({
               <li
                 className={clsx({
                   active: activeLi === i,
-                  header: item.header,
+                  [styles.header]: item.header,
                 })}
               >
                 <ListItemLink
@@ -243,7 +242,7 @@ export const List: React.FC<ListProps> = ({
               handleClick={(e: any) => handleClick(e, item, i)}
               className={clsx({
                 active: activeLi === i,
-                header: item.header,
+                [styles.header]: item.header,
               })}
               disableGutters={disableGutters}
             />

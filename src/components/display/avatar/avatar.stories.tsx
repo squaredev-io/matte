@@ -1,4 +1,5 @@
-import makeStyles from '@mui/styles/makeStyles';
+import React from 'react';
+import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Avatar } from './avatar.component';
 
 export default {
@@ -8,22 +9,11 @@ export default {
     componentSubtitle:
       'Avatars assists users in understanding content, without being the focal point in a UI. They represent a user or a brand (with a logo or branded graphic).',
   },
-};
+} as ComponentMeta<typeof Avatar>;
 
-const useStyles = makeStyles({
-  avatar: {
-    display: 'flex',
-    '& .MuiAvatar-root': {
-      margin: '4px',
-    },
-  },
-});
-
-export const Avatars = () => {
-  const classes = useStyles();
-
+export const Avatars: ComponentStory<typeof Avatar> = () => {
   return (
-    <div className={classes.avatar}>
+    <div className="story__avatar">
       <Avatar
         alt="Squaredev"
         src="https://trello-logos.s3.amazonaws.com/da3ecf32ff64dfa1fc504013d5534a1a/170.png"

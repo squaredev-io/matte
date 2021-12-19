@@ -1,6 +1,6 @@
+import React from 'react';
+import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Metric } from './metric.component';
-import makeStyles from '@mui/styles/makeStyles';
-import createStyles from '@mui/styles/createStyles';
 import { Card, CardBody } from '../card/card.component';
 
 export default {
@@ -9,15 +9,9 @@ export default {
   parameters: {
     componentSubtitle: 'Metrics are used to demonstrate the progress of a KPI.',
   },
-};
+} as ComponentMeta<typeof Metric>;
 
-const useStyles = makeStyles(() =>
-  createStyles({
-    wrapper: { width: '50%', height: '100%' },
-  }),
-);
-
-export const Metrics = () => {
+export const Metrics: ComponentStory<typeof Metric> = () => {
   const data = [
     {
       id: 'Customers',
@@ -55,9 +49,8 @@ export const Metrics = () => {
       ],
     },
   ];
-  const classes = useStyles();
   return (
-    <div className={classes.wrapper}>
+    <div className="story__metric">
       <Card title="Customers">
         <CardBody>
           <Metric data={data} metric={3492} />

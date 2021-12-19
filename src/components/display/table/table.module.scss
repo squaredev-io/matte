@@ -1,0 +1,49 @@
+.headerCell {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  padding: 14px 4px 14px 24px;
+}
+
+.cell {
+  padding: 14px 4px 14px 24px;
+  font-size: 0.875rem;
+}
+
+.link {
+  text-decoration: none;
+  background-color: transparent;
+  &:hover {
+    cursor: pointer;
+  }
+  &Disabled {
+    text-decoration: none;
+    background-color: transparent;
+    pointer-events: none;
+  }
+}
+
+.actions {
+  padding: 8px;
+}
+
+.copy {
+  & button {
+    opacity: 0;
+    margin-left: 6px;
+    color: inherit;
+  }
+  & svg {
+    width: 18px;
+    height: 18px;
+  }
+  &:hover {
+    cursor: pointer;
+    & button {
+      opacity: 1;
+    }
+  }
+}
+
+.checkbox {
+  padding: 0;
+}

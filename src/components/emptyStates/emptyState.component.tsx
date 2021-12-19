@@ -1,10 +1,9 @@
-import { FC, MouseEventHandler } from 'react';
-import { Container } from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
-import createStyles from '@mui/styles/createStyles';
-import { Grid } from '../layout/grid/grid.component';
-import { Button } from '../inputs/button/button.component';
+import React, { FC, MouseEventHandler } from 'react';
+import Container from '@mui/material/Container';
+import Grid from '@mui/material/Grid';
 import { Plus } from 'react-feather';
+import { Button } from '../inputs/button/button.component';
+import styles from './emptyState.module.scss';
 
 export interface EmptyStateProps {
   /**
@@ -40,35 +39,6 @@ export interface EmptyStateProps {
   to?: string;
 }
 
-const useStyles = makeStyles(() =>
-  createStyles({
-    container: {
-      height: '100%',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-    },
-    title: {
-      textAlign: 'center',
-    },
-    description: {
-      textAlign: 'center',
-    },
-    button: {
-      textAlign: 'center',
-    },
-    illustration: {
-      textAlign: 'center',
-      width: '100%',
-      '& img': {
-        width: '100%',
-        height: 'auto',
-        maxWidth: 450,
-      },
-    },
-  })
-);
-
 /**
  * Use empty states when there is no data to display to the user.
  */
@@ -76,23 +46,22 @@ export const EmptyState: FC<EmptyStateProps> = ({
   btnTxt,
   className,
   description,
-  illustration = 'undraw_not_found_60pq.svg',
+  illustration = 'images/undraw_not_found_60pq.svg',
   onClick: handleClick,
   tagline,
   to,
 }) => {
-  const classes = useStyles();
   return (
-    <Container className={`${classes.container} ${className}`} fixed>
-      <Grid className={classes.container} container spacing={3}>
+    <Container className={`${styles.container} ${className}`} fixed>
+      <Grid className={styles.container} container spacing={3}>
         <Grid item xs={6}>
-          <div className={classes.illustration}>
+          <div className={styles.illustration}>
             <img src={illustration} />
           </div>
-          <h2 className={classes.title}>{tagline}</h2>
-          <p className={classes.description}>{description}</p>
+          <h2 className={styles.title}>{tagline}</h2>
+          <p className={styles.description}>{description}</p>
           {btnTxt && (
-            <div className={classes.button}>
+            <div className={styles.button}>
               <Button
                 icon={<Plus />}
                 onClick={handleClick}

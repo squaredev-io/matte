@@ -1,4 +1,5 @@
-import makeStyles from '@mui/styles/makeStyles';
+import React from 'react';
+import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Bar } from './bar.component';
 import { Card, CardBody } from '../../structures/card/card.component';
 
@@ -9,17 +10,9 @@ export default {
     componentSubtitle:
       'Bar charts can be used to show proportion, which expresses a partial value in comparison to a total value. It is easier to compare value differences based on bar length.',
   },
-};
+} as ComponentMeta<typeof Bar>;
 
-const useStyles = makeStyles({
-  chart: {
-    width: '100%',
-    height: '450px',
-  },
-});
-
-export const BarCharts = () => {
-  const classes = useStyles();
+export const BarCharts: ComponentStory<typeof Bar> = () => {
   const data = [
     { month: 'Jul', income: 2000, expenses: 735.06 },
     { month: 'Aug', income: 2003.22, expenses: 874.63 },
@@ -40,7 +33,7 @@ export const BarCharts = () => {
       title="Income vs Expenses"
       subtitle="Income and expenses for the last 12 months (in €)"
     >
-      <CardBody className={classes.chart}>
+      <CardBody className="story__chart">
         <Bar
           data={data}
           keys={['income', 'expenses']}
@@ -55,8 +48,7 @@ export const BarCharts = () => {
 /**
  * A simple bar chart
  */
-export const Simple = () => {
-  const classes = useStyles();
+export const Simple: ComponentStory<typeof Bar> = () => {
   const simpleData = [
     { month: 'Jul', income: 2000 },
     { month: 'Aug', income: 2003.22 },
@@ -73,7 +65,7 @@ export const Simple = () => {
   ];
 
   return (
-    <div className={classes.chart}>
+    <div className="story__chart">
       <Bar data={simpleData} keys={['income']} indexBy="month" />
     </div>
   );
@@ -82,8 +74,7 @@ export const Simple = () => {
 /**
  * Grouped bar chart
  */
-export const Grouped = () => {
-  const classes = useStyles();
+export const Grouped: ComponentStory<typeof Bar> = () => {
   const groupedData = [
     { month: 'Jul', income: 2000, expenses: 735.06 },
     { month: 'Aug', income: 2003.22, expenses: 874.63 },
@@ -100,7 +91,7 @@ export const Grouped = () => {
   ];
 
   return (
-    <div className={classes.chart}>
+    <div className="story__chart">
       <Bar
         data={groupedData}
         keys={['income', 'expenses']}
@@ -114,8 +105,7 @@ export const Grouped = () => {
 /**
  * Stacked bar chart
  */
-export const Stacked = () => {
-  const classes = useStyles();
+export const Stacked: ComponentStory<typeof Bar> = () => {
   const stackedData = [
     { month: 'Jul', income: 2000, expenses: 735.06 },
     { month: 'Aug', income: 2003.22, expenses: 874.63 },
@@ -132,7 +122,7 @@ export const Stacked = () => {
   ];
 
   return (
-    <div className={classes.chart}>
+    <div className="story__chart">
       <Bar
         data={stackedData}
         keys={['income', 'expenses']}
@@ -147,8 +137,7 @@ export const Stacked = () => {
  * Horizontal bar chart. Use when text labels must become easier to read. Notice you need to
  * explicitly pass the `margin` property.
  */
-export const Horizontal = () => {
-  const classes = useStyles();
+export const Horizontal: ComponentStory<typeof Bar> = () => {
   const horizontalData = [
     { product: 'Product Alpha', income: 1500 },
     { product: 'Product Beta', income: 800 },
@@ -157,7 +146,7 @@ export const Horizontal = () => {
   ];
 
   return (
-    <div className={classes.chart}>
+    <div className="story__chart">
       <Bar
         data={horizontalData}
         keys={['income']}

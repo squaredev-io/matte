@@ -1,4 +1,5 @@
-import makeStyles from '@mui/styles/makeStyles';
+import React from 'react';
+import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Line } from './line.component';
 import { Card, CardBody } from '../../structures/card/card.component';
 
@@ -9,21 +10,9 @@ export default {
     componentSubtitle:
       'Chart lines can express qualities about data, such as hierarchy, highlights, and comparisons. Line styles can be styled in different ways, such as using dashes or varied opacities.',
   },
-};
+} as ComponentMeta<typeof Line>;
 
-const useStyles = makeStyles({
-  chart: {
-    width: '100%',
-    height: '450px',
-  },
-  sparkline: {
-    width: '120px',
-    height: '60px',
-  },
-});
-
-export const LineCharts = () => {
-  const classes = useStyles();
+export const LineCharts: ComponentStory<typeof Line> = () => {
   const data = [
     {
       id: 'Bitcoin Cash',
@@ -102,7 +91,7 @@ export const LineCharts = () => {
       title="Ethereum vs Bitcoin Cash"
       subtitle="Price comparison for ETH and BCH for June 2020 (prices in $)"
     >
-      <CardBody className={classes.chart}>
+      <CardBody className="story__chart">
         <Line
           data={data}
           enableSlices="x"
@@ -149,8 +138,7 @@ export const LineCharts = () => {
 /**
  * A simple line chart.
  */
-export const Simple = () => {
-  const classes = useStyles();
+export const Simple: ComponentStory<typeof Line> = () => {
   const data = [
     {
       id: 'a simple line',
@@ -170,7 +158,7 @@ export const Simple = () => {
   ];
 
   return (
-    <div className={classes.chart}>
+    <div className="story__chart">
       <Line data={data} />
     </div>
   );
@@ -180,8 +168,7 @@ export const Simple = () => {
  * A time series chart. Although D3 will automatically identify date values, some setup is usually
  * necessary for time series charts to look nice.
  */
-export const TimeScale = () => {
-  const classes = useStyles();
+export const TimeScale: ComponentStory<typeof Line> = () => {
   const data = [
     {
       id: 'Ethereum',
@@ -221,7 +208,7 @@ export const TimeScale = () => {
   ];
 
   return (
-    <div className={classes.chart}>
+    <div className="story__chart">
       <Line
         data={data}
         margin={{ top: 30, right: 20, bottom: 70, left: 50 }}
@@ -249,8 +236,7 @@ export const TimeScale = () => {
 /**
  * Sparklines are barebone miniature charts that are used to quickly show changes over time.
  */
-export const Sparkline = () => {
-  const classes = useStyles();
+export const Sparkline: ComponentStory<typeof Line> = () => {
   const data = [
     {
       id: 'Ethereum',
@@ -290,7 +276,7 @@ export const Sparkline = () => {
   ];
 
   return (
-    <div className={classes.sparkline}>
+    <div className="story__chart--sparkline">
       <Line
         data={data}
         margin={{ top: 0, right: 5, bottom: 0, left: 5 }}

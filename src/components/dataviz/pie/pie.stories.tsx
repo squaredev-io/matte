@@ -1,4 +1,5 @@
-import makeStyles from '@mui/styles/makeStyles';
+import React from 'react';
+import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Pie } from './pie.component';
 import { Card, CardBody } from '../../structures/card/card.component';
 
@@ -9,17 +10,9 @@ export default {
     componentSubtitle:
       'Pie charts express portions of a whole, using arcs or angles within a circle.',
   },
-};
+} as ComponentMeta<typeof Pie>;
 
-const useStyles = makeStyles({
-  chart: {
-    width: '100%',
-    height: '450px',
-  },
-});
-
-export const PieCharts = () => {
-  const classes = useStyles();
+export const PieCharts: ComponentStory<typeof Pie> = () => {
   const data = [
     {
       id: 'scala',
@@ -56,7 +49,7 @@ export const PieCharts = () => {
       title="Repositories by language"
       subtitle="Rust seems to be the most used programming language for 2020"
     >
-      <CardBody className={classes.chart}>
+      <CardBody className="story__chart">
         <Pie data={data} radialLabel={radialLabelFn} />
       </CardBody>
     </Card>
@@ -66,8 +59,7 @@ export const PieCharts = () => {
 /**
  * A simple pie chart. To create a simple pie chart set `innerRadius` to zero.
  */
-export const Simple = () => {
-  const classes = useStyles();
+export const Simple: ComponentStory<typeof Pie> = () => {
   const data = [
     {
       id: 'scala',
@@ -100,7 +92,7 @@ export const Simple = () => {
   const radialLabelFn = (d) => `${d.id}: ${d.value}%`;
 
   return (
-    <div className={classes.chart}>
+    <div className="story__chart">
       <Pie data={data} innerRadius={0} radialLabel={radialLabelFn} />
     </div>
   );
@@ -109,8 +101,7 @@ export const Simple = () => {
 /**
  * A donut chart. Donut charts are generally preferreed over simple pie charts.
  */
-export const Donut = () => {
-  const classes = useStyles();
+export const Donut: ComponentStory<typeof Pie> = () => {
   const data = [
     {
       id: 'scala',
@@ -143,8 +134,8 @@ export const Donut = () => {
   const radialLabelFn = (d) => `${d.id}: ${d.value}%`;
 
   return (
-    <div className={classes.chart}>
-      <Pie data={data} radialLabel={radialLabelFn} />;
+    <div className="story__chart">
+      <Pie data={data} radialLabel={radialLabelFn} />
     </div>
   );
 };

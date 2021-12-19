@@ -1,5 +1,4 @@
-import { FC, MouseEvent } from 'react';
-import * as React from 'react';
+import React, { FC, MouseEvent } from 'react';
 import Popper from '@mui/material/Popper';
 import {
   usePopupState,
@@ -9,44 +8,11 @@ import {
 import Paper from '@mui/material/Paper';
 import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
-import {
-  Fade,
-  ClickAwayListener,
-  Theme,
-  ListItemIcon,
-  Typography,
-} from '@mui/material';
-import makeStyles from '@mui/styles/makeStyles';
-import createStyles from '@mui/styles/createStyles';
-import theme from '../../utilities/theme';
-
-/**
- * Inject styles for Menu
- * @param theme The theme in use
- */
-const useStyles = makeStyles(
-  ({ palette }: Theme) => {
-    return createStyles({
-      anchor: {
-        display: 'inline-block',
-      },
-      itemText: {
-        fontSize: '.875rem',
-        minWidth: 140,
-        '&:hover, &:hover svg': {
-          color: palette.primary.main,
-        },
-      },
-      listItemIcon: {
-        '& svg': {
-          fontSize: '1.25rem',
-        },
-        minWidth: 32,
-      },
-    });
-  },
-  { defaultTheme: theme }
-);
+import Fade from '@mui/material/Fade';
+import ClickAwayListener from '@mui/material/ClickAwayListener';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import Typography from '@mui/material/Typography';
+import styles from './menu.module.scss';
 
 export interface MenuProps {
   /**
@@ -128,8 +94,6 @@ export const Menu: FC<MenuProps> = ({
   items,
   placement = 'bottom',
 }) => {
-  const classes = useStyles();
-
   const popupState = usePopupState({
     variant: 'popper',
     popupId: `${id}-popper`,
@@ -147,7 +111,7 @@ export const Menu: FC<MenuProps> = ({
 
   return (
     <>
-      <span className={classes.anchor} {...bindToggle(popupState)}>
+      <span className={styles.anchor} {...bindToggle(popupState)}>
         {anchor}
       </span>
       <Popper {...bindPopper(popupState)} transition placement={placement}>
@@ -158,14 +122,19 @@ export const Menu: FC<MenuProps> = ({
                 <MenuList id={id}>
                   {items.map((item, i) => (
                     <MenuItem
-                      className={classes.itemText}
+                      className={styles.itemText}
                       key={i}
                       // TODO: Can this be optimized?
                       // tslint:disable-next-line: jsx-no-lambda
                       onClick={(e: any) => handleClick(e, item)}
+                      sx={{
+                        '&:hover, &:hover svg': {
+                          color: 'primary.main',
+                        },
+                      }}
                     >
                       {item.icon && (
-                        <ListItemIcon className={classes.listItemIcon}>
+                        <ListItemIcon className={styles.listItemIcon}>
                           {item.icon}
                         </ListItemIcon>
                       )}

@@ -1,0 +1,45 @@
+.list {
+  padding: 0;
+}
+
+.item {
+  padding: 12px 24px;
+  &NoGutters {
+    padding: 12px 8px;
+  }
+}
+
+.text {
+  margin: 0;
+  line-height: 1;
+  :global {
+    .MuiListItemText-primary {
+      font-size: 0.875rem;
+    }
+    .MuiListItemText-secondary {
+      font-size: 0.8125rem;
+    }
+  }
+  &End {
+    text-align: right;
+  }
+}
+
+.icon {
+  min-width: 36px;
+  & svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+.header {
+  padding: 24px 24px 8px 24px !important;
+  :global {
+    .MuiListItemText-primary {
+      text-transform: uppercase;
+      // font-size: 13px;
+      font-weight: 600;
+    }
+  }
+}

@@ -1,0 +1,26 @@
+.button {
+  font-weight: 400;
+  line-height: 1.5;
+  text-transform: none;
+  & svg {
+    height: 20px;
+    width: 20px;
+  }
+}
+
+.icon-button {
+  font-size: 0.875rem;
+  line-height: 1;
+  padding: 0;
+  border-radius: 0;
+  position: relative;
+  min-width: 30px;
+  &:hover {
+    // color: palette.primary.main,
+    background-color: transparent;
+  }
+  & svg {
+    width: 20px;
+    height: 20px;
+  }
+}
