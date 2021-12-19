@@ -52,9 +52,9 @@
     padding: 20px;
     & ul {
       background: white;
-      max-width: 350px;
+      max-width: 450px;
     }
-    & .Muicard-root {
+    & .MuiCard-root {
       max-width: 450px;
     }
   }
@@ -75,5 +75,12 @@
       width: 120px;
       height: 60px;
     }
+  }
+  &__empty-state {
+    height: 100%;
+  }
+  &__metric {
+    width: 50%;
+    height: 100%;
   }
 }

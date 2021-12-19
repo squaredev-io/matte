@@ -1,7 +1,8 @@
-import makeStyles from '@mui/styles/makeStyles';
+import React from 'react';
+import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Menu } from './menu.component';
 import { IconButton, Button } from '../../inputs/button/button.component';
-import { MoreVert, Person, ExitToApp } from '@mui/icons-material';
+import { User, MoreVertical, LogOut } from 'react-feather';
 
 export default {
   title: 'Components/Navigation/Menu',
@@ -9,32 +10,19 @@ export default {
   parameters: {
     componentSubtitle: 'Menus display a list of choices on temporary surfaces.',
   },
-};
+} as ComponentMeta<typeof Menu>;
 
-const useStyles = makeStyles({
-  menu: {
-    display: 'flex',
-    alignItems: 'center',
-    ' & > div': {
-      margin: '0 8px',
-    },
-  },
-});
-
-export const Menus = () => {
-  const classes = useStyles();
+export const Menus: ComponentStory<typeof Menu> = () => {
   const items = [
     {
       text: 'Profile',
-      icon: <Person />,
-      // @ts-ignore
-      handleClick: (e) => e,
+      icon: <User />,
+      handleClick: console.log,
     },
     {
       text: 'Logout',
-      icon: <ExitToApp />,
-      // @ts-ignore
-      handleClick: (e) => e,
+      icon: <LogOut />,
+      handleClick: console.log,
     },
   ];
 
@@ -43,10 +31,10 @@ export const Menus = () => {
       Open menu
     </Button>
   );
-  const anchor2 = <IconButton icon={<MoreVert />} />;
+  const anchor2 = <IconButton icon={<MoreVertical />} />;
 
   return (
-    <div className={classes.menu}>
+    <div className="story__menu">
       <Menu id="menu-with-button" items={items} anchor={anchor1} />
       <Menu
         id="menu-with-icon"

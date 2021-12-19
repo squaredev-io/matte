@@ -1,13 +1,20 @@
-import { addDecorator } from '@storybook/react';
-import { addParameters } from '@storybook/react';
-import Theme from './theme-provider';
-import { BrowserRouter } from 'react-router-dom';
+import React from 'react';
+import { ThemeProvider } from '@mui/material/styles';
+import { StylesProvider } from '@mui/styles';
+import StyledEngineProvider from '@mui/material/StyledEngineProvider';
+import { createMatteTheme } from '../src/components/utilities/createMatteTheme.component';
 import '!style-loader!css-loader!sass-loader!./stories.scss';
 
-addDecorator((story) => <Theme>{story()}</Theme>);
-addDecorator((story) => <BrowserRouter>{story()}</BrowserRouter>);
+const theme = createMatteTheme();
 
-addParameters({
+export const parameters = {
+  actions: { argTypesRegex: '^on[A-Z].*' },
+  controls: {
+    matchers: {
+      color: /(background|color)$/i,
+      date: /Date$/,
+    },
+  },
   options: {
     /**
      * display the top-level grouping as a "root" in the sidebar
@@ -19,4 +26,14 @@ addParameters({
     },
   },
   viewMode: 'docs',
-});
+};
+
+export const decorators = [
+  (Story) => (
+    <StyledEngineProvider injectFirst>
+      <ThemeProvider theme={theme}>
+        <Story />
+      </ThemeProvider>
+    </StyledEngineProvider>
+  ),
+];

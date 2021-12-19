@@ -1,0 +1,46 @@
+.body {
+  display: flex;
+  justify-content: space-between;
+}
+.metrics {
+  display: flex;
+  flex-direction: column;
+}
+.metric {
+  font-size: 1.9rem;
+  font-weight: 500;
+}
+.chart {
+  width: 60%;
+  max-width: 300;
+  height: 60px;
+}
+.variation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 16px;
+  padding: 2px 8px;
+  font-size: 0.875rem;
+  margin-top: 8px;
+  width: max-content;
+  svg {
+    height: 16px;
+  }
+}
+.tooltip {
+  padding: 2px 8px;
+  background: white;
+  // boxShadow: shadows[1],
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  span: {
+    display: block;
+    height: 8px;
+    width: 8px;
+    border-radius: 50%;
+    margin-right: 8px;
+  }
+}

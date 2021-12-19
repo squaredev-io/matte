@@ -1,17 +1,13 @@
-import { FC } from 'react';
-import * as React from 'react';
-import {
-  Theme,
-  Select as MuiSelect,
-  MenuItem,
-  InputLabel,
-  InputBase,
-  FormControl,
-} from '@mui/material';
-import { createStyles, makeStyles } from '@mui/styles';
-import { KeyboardArrowDown } from '@mui/icons-material';
+import React, { FC, MouseEventHandler } from 'react';
+import MuiSelect from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import InputLabel from '@mui/material/InputLabel';
+import InputBase from '@mui/material/InputBase';
+import FormControl from '@mui/material/FormControl';
 import FormHelperText from '@mui/material/FormHelperText';
-import theme from '../../utilities/theme';
+import { ChevronDown } from 'react-feather';
+import { MatteTheme } from '../../utilities/createMatteTheme.component';
+import styles from './select.module.scss';
 
 export interface Items {
   value: string | number;
@@ -66,55 +62,6 @@ export interface SelectProps {
   onChange?: any;
 }
 
-/**
- * Inject styles for Select
- * @param theme The theme in use
- */
-const useStyles = makeStyles<Theme>(
-  ({ palette }) => {
-    return createStyles({
-      menuItem: {
-        fontSize: '.875rem',
-      },
-      label: {
-        color: palette.common.black,
-        fontSize: '.875rem',
-        lineHeight: '1.4rem',
-        marginBottom: '8px',
-        transform: 'initial',
-        position: 'relative',
-        '&.Mui-focused': {
-          color: palette.common.black,
-        },
-      },
-      formControl: {
-        width: '100%',
-      },
-      placeholder: {
-        color: palette.grey[200],
-      },
-      input: {
-        borderRadius: 2,
-        position: 'relative',
-        border: '1px solid #eeeeee',
-        borderColor: palette.grey[200],
-        fontSize: '.875rem',
-        padding: '8px 16px',
-        height: '17px',
-        '&:focus': {
-          borderRadius: 2,
-          borderColor: '#80bdff',
-          backgroundColor: 'transparent',
-        },
-        '.Mui-error &': {
-          borderColor: '#FF3366',
-        },
-      },
-    });
-  },
-  { defaultTheme: theme }
-);
-
 export const Select: FC<SelectProps> = ({
   id,
   placeholder,
@@ -127,21 +74,25 @@ export const Select: FC<SelectProps> = ({
   items = [],
   onChange,
 }) => {
-  const classes = useStyles();
-
   return (
     <FormControl
       variant="outlined"
-      className={classes.formControl}
+      className={styles.formControl}
       error={error}
     >
       {label && (
         <InputLabel
           variant="standard"
-          className={classes.label}
+          className={styles.label}
           htmlFor={id}
           disableAnimation
           required={required}
+          sx={{
+            color: 'common.black',
+            '&.Mui-focused': {
+              color: 'common.black',
+            },
+          }}
         >
           {label}
         </InputLabel>
@@ -153,22 +104,25 @@ export const Select: FC<SelectProps> = ({
           <InputBase
             id={`${id}-input`}
             fullWidth
-            classes={{ input: classes.input }}
+            classes={{ input: styles.input }}
+            sx={{
+              border: ({ palette }) => `1px solid ${palette.grey[200]}`,
+            }}
           />
         }
-        IconComponent={KeyboardArrowDown}
+        IconComponent={ChevronDown}
         displayEmpty={!!placeholder}
         value={value}
         disabled={disabled}
         onChange={onChange}
       >
         {placeholder && (
-          <MenuItem className={classes.menuItem} value="">
+          <MenuItem className={styles.menuItem} value="">
             {placeholder}
           </MenuItem>
         )}
         {items.map((item, i) => (
-          <MenuItem value={item.value} className={classes.menuItem} key={i}>
+          <MenuItem value={item.value} className={styles.menuItem} key={i}>
             {item.text}
           </MenuItem>
         ))}

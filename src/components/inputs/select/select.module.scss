@@ -1,0 +1,35 @@
+.menuItem {
+  font-size: 0.875rem;
+}
+
+.label {
+  font-size: 0.875rem;
+  line-height: 1.4rem;
+  margin-bottom: 8px;
+  transform: initial;
+  position: relative;
+}
+.formControl {
+  width: 100%;
+}
+// TODO: Haven't been able to apply this
+//   placeholder: {
+//     color: palette.grey[200],
+//   },
+.input {
+  border-radius: 2px;
+  position: relative;
+  font-size: 0.875rem;
+  padding: 8px 16px;
+  height: 17px;
+  // TODO: Haven't been able to apply this
+  &:focus {
+    border-radius: 2px;
+    //   borderColor: '#80bdff', // primary
+    background-color: transparent;
+  }
+  // TODO: Haven't been able to apply this
+  // '.Mui-error &': {
+  //   borderColor: '#FF3366', //error
+  // },
+}

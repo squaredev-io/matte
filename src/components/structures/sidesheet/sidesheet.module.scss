@@ -1,0 +1,20 @@
+.paperAnchorRight {
+  width: 25vw;
+  min-width: 320px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  form {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+}
+.header {
+  font-weight: 500;
+}
+.actions {
+  & :not(:first-child) {
+    margin-left: 8px;
+  }
+}

@@ -1,7 +1,6 @@
-import { FC } from 'react';
-import * as React from 'react';
+import React, { FC } from 'react';
 import MuiAvatar from '@mui/material/Avatar';
-import { styled } from '@mui/material/styles';
+import styles from './avatar.module.scss';
 
 export type AvatarVariant = 'rounded' | 'square' | 'circular' | undefined;
 
@@ -24,12 +23,6 @@ export interface AvatarProps {
   variant?: AvatarVariant;
 }
 
-const AvatarStyled = styled(MuiAvatar)({
-  root: {
-    fontSize: '1rem',
-  },
-});
-
 /**
  * An avatar is an image or a graphic associated with a user or a brand.
  */
@@ -40,8 +33,8 @@ export const Avatar: FC<AvatarProps> = ({
   variant = 'circular',
 }) => {
   return (
-    <AvatarStyled alt={alt} src={src} variant={variant}>
+    <MuiAvatar alt={alt} src={src} variant={variant} className={styles.avatar}>
       {children}
-    </AvatarStyled>
+    </MuiAvatar>
   );
 };

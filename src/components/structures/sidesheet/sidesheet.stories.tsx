@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import makeStyles from '@mui/styles/makeStyles';
+import React, { useState } from 'react';
+import { ComponentStory, ComponentMeta } from '@storybook/react';
 import {
   Sidesheet,
   SidesheetActions,
@@ -15,14 +15,9 @@ export default {
     componentSubtitle:
       'Buttons like to be pressed. So use them to allow users to take actions with a single tap.',
   },
-};
+} as ComponentMeta<typeof Sidesheet>;
 
-const useStyles = makeStyles({
-  sidesheet: {},
-});
-
-export const Sidesheets = () => {
-  const classes = useStyles();
+export const Sidesheets: ComponentStory<typeof Sidesheet> = () => {
   const [state, setState] = useState(false);
 
   const toggleSidesheet = () => {
@@ -30,7 +25,7 @@ export const Sidesheets = () => {
   };
 
   return (
-    <div className={classes.sidesheet}>
+    <>
       <Button onClick={toggleSidesheet}>Open sidesheet</Button>
       <Sidesheet
         open={state}
@@ -43,12 +38,11 @@ export const Sidesheets = () => {
           <Button variant="contained">Save changes</Button>
         </SidesheetActions>
       </Sidesheet>
-    </div>
+    </>
   );
 };
 
 export const FormAsContent = () => {
-  const classes = useStyles();
   const [state, setState] = useState(false);
 
   const toggleSidesheet = () => {
@@ -56,7 +50,7 @@ export const FormAsContent = () => {
   };
 
   return (
-    <div className={classes.sidesheet}>
+    <>
       <Button onClick={toggleSidesheet}>Open form</Button>
       <Sidesheet
         open={state}
@@ -74,6 +68,6 @@ export const FormAsContent = () => {
           </SidesheetActions>
         </form>
       </Sidesheet>
-    </div>
+    </>
   );
 };

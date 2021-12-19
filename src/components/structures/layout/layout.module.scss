@@ -1,0 +1,129 @@
+// TODO: Transitions are not handled properly, fix it
+.layout {
+  display: flex;
+  height: calc(100% - 59px);
+}
+.appBar {
+  // zIndex: theme.zIndex.drawer + 1,
+  // transition: theme.transitions.create(['width', 'margin'], {
+  //   easing: theme.transitions.easing.sharp,
+  //   duration: theme.transitions.duration.leavingScreen,
+  // }),
+  :global {
+    .MuiToolbar-regular {
+      min-height: 59px;
+      height: 59px;
+      background: white;
+      box-shadow: 3px 0 10px 0 rgba(183, 192, 206, 0.2);
+    }
+  }
+}
+.appBarShift {
+  margin-left: 240px;
+  width: calc(100% - 240px);
+  // transition: theme.transitions.create(['width', 'margin'], {
+  //   easing: theme.transitions.easing.sharp,
+  //   duration: theme.transitions.duration.enteringScreen,
+  // }),
+}
+.menuButton {
+  margin-right: 36px;
+}
+.hide {
+  display: none;
+}
+.drawer {
+  flex-shrink: 0;
+  // transition: theme.transitions.create(['transform'], {
+  //   easing: theme.transitions.easing.sharp,
+  //   duration: theme.transitions.duration.enteringScreen,
+  // }),
+}
+.drawerOpen {
+  transform: translateX(0);
+  width: 240px;
+  // zIndex: theme.zIndex.drawer + 1,
+  // transition: theme.transitions.create(['transform'], {
+  //   easing: theme.transitions.easing.sharp,
+  //   duration: theme.transitions.duration.enteringScreen,
+  // }),
+}
+.drawerClose {
+  transform: translateX(-240px);
+  // transition: theme.transitions.create(['transform'], {
+  //   easing: theme.transitions.easing.sharp,
+  //   duration: theme.transitions.duration.leavingScreen,
+  // }),
+}
+.paperOpen {
+  width: 240px;
+}
+.paperClose {
+  width: 0px;
+}
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8px 0 24px;
+  min-height: 59px;
+  height: 59px;
+}
+.logo {
+  width: 120px;
+  img {
+    height: auto;
+    width: 100%;
+  }
+}
+.content {
+  flex-grow: 1;
+  margin-top: 60px;
+  padding: 25px;
+  height: 100%;
+}
+.search {
+  flex-grow: 1;
+}
+.nav {
+  display: flex;
+  button {
+    margin: 8px;
+  }
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+  :global {
+    .MuiAvatar-root {
+      margin: 8px;
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+    }
+  }
+}
+.menu {
+  position: relative;
+  padding-top: 20px;
+  // TODO: Do we need this? This should be taken cared of by List
+  // li {
+  //   //   color: theme.palette.grey[600],
+  //   margin: 8px;
+  //   a {
+  //     border-radius: 8px;
+  //     padding: 12px 16px;
+  //   }
+  //   :global {
+  //     .MuiListItemIcon-root {
+  //       min-width: 40px;
+  //     }
+  //   }
+  // }
+  // '& li.active, li.active a:hover': {
+  //   color: theme.palette.primary.main,
+  //   '& svg': {
+  //     stroke: theme.palette.primary.main,
+  //   },
+  // },
+}

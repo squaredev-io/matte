@@ -1,0 +1,32 @@
+.card {
+  :global {
+    .MuiCardActions-root {
+      padding: 8px 16px;
+    }
+  }
+}
+.header {
+  padding: 24px;
+}
+.title {
+  margin-bottom: 20px;
+  font-weight: 600;
+  padding-left: 0;
+  &NoGutters {
+    padding-left: 24px;
+  }
+}
+.subtitle {
+  margin-bottom: 16px;
+  font-size: 0.875rem;
+  padding-left: 0;
+  &NoGutters {
+    padding-left: 24px;
+  }
+}
+.content {
+  padding: 24px;
+  &NoGutters {
+    padding: 24px 0;
+  }
+}

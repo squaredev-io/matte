@@ -1,17 +1,10 @@
-import { FC } from 'react';
-import * as React from 'react';
-import {
-  InputLabel as MuiInputLabel,
-  OutlinedInput as MuiOutlinedInput,
-  Theme,
-  FormControl,
-  FormHelperText,
-  InputAdornment,
-} from '@mui/material';
-
-import createStyles from '@mui/styles/createStyles';
-import makeStyles from '@mui/styles/makeStyles';
-import theme from '../../utilities/theme';
+import React, { FC } from 'react';
+import MuiInputLabel from '@mui/material/InputLabel';
+import MuiOutlinedInput from '@mui/material/OutlinedInput';
+import FormControl from '@mui/material/FormControl';
+import FormHelperText from '@mui/material/FormHelperText';
+import InputAdornment from '@mui/material/InputAdornment';
+import styles from './textField.module.scss';
 
 export interface TextFieldProps {
   /**
@@ -77,53 +70,6 @@ export interface TextFieldProps {
 }
 
 /**
- * Inject styles for TextField
- * @param theme The theme in use
- */
-const useStyles = makeStyles<Theme>(
-  ({ palette }) => {
-    return createStyles({
-      root: {
-        fontSize: '.875rem',
-        '& .MuiOutlinedInput-notchedOutline': {
-          borderColor: palette.grey[200],
-          borderRadius: '2px',
-        },
-        '&:hover .MuiOutlinedInput-notchedOutline': {
-          borderColor: palette.grey[200],
-        },
-        '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-          borderColor: palette.primary.light,
-          borderWidth: '1px',
-        },
-        '&.Mui-error .MuiOutlinedInput-notchedOutline': {
-          borderColor: palette.error.main,
-        },
-        '& .MuiInputBase-input.MuiOutlinedInput-input': {
-          padding: '8px 16px',
-          height: '19px',
-        },
-      },
-      label: {
-        color: palette.common.black,
-        fontSize: '.875rem',
-        lineHeight: '1.4rem',
-        marginBottom: '8px',
-        transform: 'initial',
-        position: 'relative',
-        '&.Mui-focused': {
-          color: palette.common.black,
-        },
-      },
-      formControl: {
-        marginBottom: 16,
-      },
-    });
-  },
-  { defaultTheme: theme }
-);
-
-/**
  * Text fields are used within forms to submit or edit information.
  */
 export const TextField: FC<TextFieldProps> = ({
@@ -143,18 +89,22 @@ export const TextField: FC<TextFieldProps> = ({
   type,
   pattern,
 }) => {
-  const classes = useStyles();
-
   return (
-    <FormControl className={classes.formControl} fullWidth variant="outlined">
+    <FormControl className={styles.formControl} fullWidth variant="outlined">
       {label && (
         <MuiInputLabel
           variant="standard"
-          className={classes.label}
+          className={styles.label}
           htmlFor={id}
           disableAnimation
           shrink
           required={required}
+          sx={{
+            color: 'common.black',
+            '&.Mui-focused': {
+              color: 'common.black',
+            },
+          }}
         >
           {label}
         </MuiInputLabel>
@@ -162,7 +112,7 @@ export const TextField: FC<TextFieldProps> = ({
       <MuiOutlinedInput
         id={id}
         placeholder={placeholder}
-        className={classes.root}
+        className={styles.textField}
         value={value}
         defaultValue={defaultValue}
         disabled={disabled}
@@ -179,6 +129,20 @@ export const TextField: FC<TextFieldProps> = ({
         startAdornment={
           icon ? <InputAdornment position="start">{icon}</InputAdornment> : null
         }
+        sx={{
+          '& .MuiOutlinedInput-notchedOutline': {
+            borderColor: ({ palette }) => palette.grey[200],
+          },
+          '&:hover .MuiOutlinedInput-notchedOutline': {
+            borderColor: ({ palette }) => palette.grey[200],
+          },
+          '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+            borderColor: 'primary.main',
+          },
+          '&.Mui-error .MuiOutlinedInput-notchedOutline': {
+            borderColor: 'error.main',
+          },
+        }}
       />
       {helperText && (
         <FormHelperText error={error} id={`${id}-helper-text`}>

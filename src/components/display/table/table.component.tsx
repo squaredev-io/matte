@@ -1,17 +1,18 @@
+import React from 'react';
 import MuiTable from '@mui/material/Table';
-import { Theme } from '@mui/material/styles';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Checkbox from '@mui/material/Checkbox';
-import makeStyles from '@mui/styles/makeStyles';
-import createStyles from '@mui/styles/createStyles';
-import { IconButton } from '../../inputs/button/button.component';
+import Box from '@mui/material/Box';
+// import Theme from '@mui/material/styles/createTheme';
 import { MoreVertical, Copy } from 'react-feather';
-import { Menu, MenuItem } from '../../navigation/menu/menu.component';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import theme from '../../utilities/theme';
+import { IconButton } from '../../inputs/button/button.component';
+import { Menu, MenuItem } from '../../navigation/menu/menu.component';
+import { MatteTheme } from '../../utilities/createMatteTheme.component';
+import styles from './table.module.scss';
 
 /**
  * Interface for a table's column
@@ -20,11 +21,11 @@ export interface Column<DataType> {
   /**
    * The text that appears at the header cell of the column
    */
-  title: string;
+  title?: string;
   /**
    * The name of the field for this column
    */
-  field: keyof DataType;
+  field?: keyof DataType;
   /**
    * The Link component of your router library of choice. If set, text within cells in this column, becomes a link.
    */
@@ -33,6 +34,9 @@ export interface Column<DataType> {
    * If set, when text in this cell is clicked, it will be copied to clipboard
    */
   enableCopyToClipboard?: boolean;
+  /**
+   * If true, a checkbox is shown
+   */
   checkbox?: boolean;
 }
 
@@ -86,82 +90,17 @@ export interface TableProps<DataType> {
    * If `true`, odd rows will have a background color. Avoid using this with hover.
    */
   striped?: boolean;
-  handleSelectAll?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  selected: number[];
+  /**
+   * A function to be invoked when the checkbox is checked in the header
+   */
+  handleSelectAll?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  /**
+   * An array to hold the index of the rows the checkbox is checked for
+   */
+  selected?: number[];
 }
 
-/**
- * Inject styles for Table
- * @param theme The theme in use
- */
-const useStyles = makeStyles<Theme>(
-  ({ palette }) => {
-    return createStyles({
-      row: ({ striped }: any) => ({
-        '&:nth-of-type(odd)': {
-          backgroundColor: striped ? palette.grey[50] : 'transparent',
-        },
-      }),
-      headerCell: {
-        color: palette.grey[600],
-        fontSize: '.75rem',
-        textTransform: 'uppercase',
-        padding: '14px 4px 14px 24px',
-      },
-      cell: {
-        padding: '14px 4px 14px 24px',
-        fontSize: '.875rem',
-        color: palette.grey[600],
-        borderBottom: `1px solid ${palette.grey[200]}`,
-      },
-      link: {
-        color: palette.primary.main,
-        textDecoration: 'none',
-        backgroundColor: 'transparent',
-        '&:hover': {
-          color: palette.primary.dark,
-          cursor: 'pointer',
-        },
-      },
-      linkDisabled: {
-        color: palette.grey[600],
-        textDecoration: 'none',
-        backgroundColor: 'transparent',
-        pointerEvents: 'none',
-      },
-      actions: {
-        padding: 8,
-        color: palette.grey[600],
-        borderBottom: `1px solid ${palette.grey[200]}`,
-      },
-      copy: {
-        '& button': {
-          opacity: 0,
-          marginLeft: 6,
-          color: palette.primary.main,
-        },
-        '& svg': {
-          width: 18,
-          height: 18,
-        },
-        '&:hover': {
-          cursor: 'pointer',
-          '& button': {
-            opacity: 1,
-          },
-        },
-      },
-    });
-  },
-  { defaultTheme: theme }
-);
-
-const getCellContent = (
-  row: any,
-  col: any,
-  classes: any,
-  selected: number[]
-) => {
+const getCellContent = (row: any, col: any, selected: number[]) => {
   if (col.checkbox) {
     const isSelected = (index: number) => selected.indexOf(index) !== -1;
     const isRowSelected = isSelected(row.index);
@@ -169,6 +108,7 @@ const getCellContent = (
       <Checkbox
         checked={isRowSelected}
         onChange={(e) => row.handleCheckChange(e, row.index)}
+        className={styles.checkbox}
       />
     );
   }
@@ -177,7 +117,14 @@ const getCellContent = (
     const Link = col.routerLink;
     return (
       <Link
-        className={row.to ? classes.link : classes.linkDisabled}
+        className={row.to ? styles.link : styles.linkDisabled}
+        sx={{
+          color: ({ palette }: MatteTheme) =>
+            row.to ? 'primary.main' : palette.grey[600],
+          '&:hover': {
+            color: 'primary.dark',
+          },
+        }}
         component={col.routerLink}
         to={row.to as string}
       >
@@ -189,9 +136,16 @@ const getCellContent = (
   if (col.enableCopyToClipboard) {
     return (
       <CopyToClipboard text={row[col.field]} onCopy={row.handleCopy}>
-        <span className={classes.copy}>
+        <span className={styles.copy}>
           {row[col.field]}
-          <IconButton className={classes.copy} icon={<Copy />} />
+          <Box
+            component="span"
+            sx={{
+              color: 'primary.main',
+            }}
+          >
+            <IconButton className={styles.copy} icon={<Copy />} />
+          </Box>
         </span>
       </CopyToClipboard>
     );
@@ -210,25 +164,29 @@ export const Table = <DataType extends any>({
   hover = true,
   striped = false,
   handleSelectAll,
-  selected,
+  selected = [],
 }: TableProps<DataType>) => {
-  const classes = useStyles({ striped });
-
   // Create anchor for actions menu that will appear in each row
   const anchor = <IconButton icon={<MoreVertical />} />;
 
   return (
     <>
-      <MuiTable className={classes.table}>
+      <MuiTable>
         <TableHead>
           <TableRow>
             {columns.map((col, cellIndex) => (
-              <TableCell className={classes.headerCell} key={cellIndex}>
+              <TableCell
+                className={styles.headerCell}
+                sx={{
+                  color: ({ palette }) => palette.grey[600],
+                }}
+                key={cellIndex}
+              >
                 {col.checkbox ? (
                   <Checkbox
                     checked={data.length > 0 && selected.length === data.length}
                     onChange={handleSelectAll}
-                    inputProps={{ 'aria-label': 'select all desserts' }}
+                    className={styles.checkbox}
                   />
                 ) : (
                   col.title
@@ -240,14 +198,39 @@ export const Table = <DataType extends any>({
         </TableHead>
         <TableBody>
           {data.map((row, rowIndex) => (
-            <TableRow className={classes.row} hover={hover} key={rowIndex}>
+            <TableRow
+              sx={{
+                '&:nth-of-type(odd)': {
+                  bgcolor: ({ palette }) =>
+                    striped ? palette.grey[50] : 'transparent',
+                },
+              }}
+              hover={hover}
+              key={rowIndex}
+            >
               {columns.map((col, i) => (
-                <TableCell className={classes.cell} key={i}>
-                  {getCellContent(row, col, classes, selected)}
+                <TableCell
+                  className={styles.cell}
+                  sx={{
+                    color: ({ palette }) => palette.grey[600],
+                    borderBottom: ({ palette }) =>
+                      `1px solid ${palette.grey[200]}`,
+                  }}
+                  key={i}
+                >
+                  {getCellContent(row, col, selected)}
                 </TableCell>
               ))}
               {actions && (
-                <TableCell align="right" className={classes.actions}>
+                <TableCell
+                  align="right"
+                  className={styles.actions}
+                  sx={{
+                    color: ({ palette }) => palette.grey[600],
+                    borderBottom: ({ palette }) =>
+                      `1px solid ${palette.grey[200]}`,
+                  }}
+                >
                   <Menu
                     anchor={anchor}
                     id={`menu-more-${rowIndex}`}

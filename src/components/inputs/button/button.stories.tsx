@@ -1,11 +1,10 @@
-import makeStyles from '@mui/styles/makeStyles';
-import {
-  Delete,
-  Send,
-  MoreVertOutlined,
-  CloudUpload,
-} from '@mui/icons-material';
+import React from 'react';
+import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { UploadCloud, Trash2, MoreVertical, Send } from 'react-feather';
+import Link from '@mui/material/Link';
 import { Button, IconButton } from './button.component';
+
+// TODO: Add examples for button with Link
 
 export default {
   title: 'Components/Inputs/Button',
@@ -14,26 +13,11 @@ export default {
     componentSubtitle:
       'Buttons like to be pressed. So use them to allow users to take actions with a single tap.',
   },
-};
+} as ComponentMeta<typeof Button>;
 
-const useStyles = makeStyles({
-  button: {
-    '& button': {
-      margin: '2px',
-    },
-  },
-  icon: {
-    '& button': {
-      margin: '5px',
-    },
-  },
-});
-
-export const Buttons = () => {
-  const classes = useStyles();
-
+export const Buttons: ComponentStory<typeof Button> = () => {
   return (
-    <div className={classes.button}>
+    <div className="story__button">
       <Button variant="contained">Contained button</Button>
       <Button>Text button</Button>
       <Button variant="outlined">Outlined button</Button>
@@ -43,7 +27,7 @@ export const Buttons = () => {
       <Button variant="contained" size="large" color="primary">
         A large button
       </Button>
-      <Button variant="outlined" color="success" icon={<Delete />}>
+      <Button variant="outlined" color="success" icon={<Trash2 />}>
         Button with icon
       </Button>
     </div>
@@ -53,11 +37,9 @@ export const Buttons = () => {
 /**
  * Contained buttons are filled buttons used for primary actions.
  */
-export const containedButtons = () => {
-  const classes = useStyles();
-
+export const containedButtons: ComponentStory<typeof Button> = () => {
   return (
-    <div className={classes.button}>
+    <div className="story__button">
       <Button variant="contained">Primary</Button>
       <Button variant="contained" color="secondary">
         Secondary
@@ -72,11 +54,9 @@ export const containedButtons = () => {
 /**
  * Text buttons have no background and are used for secondary actions.
  */
-export const textButtons = () => {
-  const classes = useStyles();
-
+export const textButtons: ComponentStory<typeof Button> = () => {
   return (
-    <div className={classes.button}>
+    <div className="story__button">
       <Button>Primary</Button>
       <Button color="secondary">Secondary</Button>
       <Button disabled>Disabled</Button>
@@ -87,11 +67,9 @@ export const textButtons = () => {
 /**
  * Outlined buttons are distinguished by a border and used for medium emphasis actions.
  */
-export const outlinedButtons = () => {
-  const classes = useStyles();
-
+export const outlinedButtons: ComponentStory<typeof Button> = () => {
   return (
-    <div className={classes.button}>
+    <div className="story__button">
       <Button variant="outlined">Primary</Button>
       <Button variant="outlined" color="secondary">
         Secondary
@@ -106,12 +84,10 @@ export const outlinedButtons = () => {
 /**
  * Use buttons in different colours to stand out or to emphasize success or error.
  */
-export const colors = () => {
-  const classes = useStyles();
-
+export const colors: ComponentStory<typeof Button> = () => {
   return (
     <div>
-      <div className={classes.button}>
+      <div className="story__button">
         <Button color="error">Error</Button>
         <Button color="success">Success</Button>
         <Button color="info">Info</Button>
@@ -145,11 +121,9 @@ export const colors = () => {
 /**
  * Smaller or larger sizes can also be used.
  */
-export const sizes = () => {
-  const classes = useStyles();
-
+export const sizes: ComponentStory<typeof Button> = () => {
   return (
-    <div className={classes.button}>
+    <div className="story__button">
       <div>
         <Button size="small">Small</Button>
         <Button size="medium">Medium</Button>
@@ -182,44 +156,48 @@ export const sizes = () => {
 };
 
 /**
+ * TODO: Write this doc
+ */
+export const RoutingLibraries: ComponentStory<typeof Button> = () => {
+  return (
+    <div className="story__button">
+      {/* Where Link is the Link component of your routing library. */}
+      {/* For Next.js look here: https://mui.com/guides/routing/#next-js */}
+      <Button variant="contained" color="primary" routerLink={Link} to="/">
+        Using Link
+      </Button>
+    </div>
+  );
+};
+
+/**
  * Buttons with icons are easier to understand than plain text.
  */
-export const ButtonsWithIcons = () => {
-  const classes = useStyles();
-
+export const ButtonsWithIcons: ComponentStory<typeof Button> = () => {
   return (
-    <div className={classes.button}>
-      <Button variant="contained" icon={<CloudUpload />}>
+    <div className="story__button">
+      <Button variant="contained" icon={<UploadCloud />}>
         Upload
       </Button>
       <Button color="info" icon={<Send />}>
         Send
       </Button>
-      <Button variant="outlined" color="error" icon={<Delete />}>
+      <Button variant="outlined" color="error" icon={<Trash2 />}>
         Delete
       </Button>
     </div>
   );
 };
 
-/**
- * Icon only buttons are usually found in toolbars.
- */
-export const IconButtons = () => {
-  const classes = useStyles();
-
+// /**
+//  * Icon only buttons are usually found in toolbars.
+//  */
+export const IconButtons: ComponentStory<typeof Button> = () => {
   return (
-    <div className={classes.icon}>
-      <IconButton icon={<CloudUpload />} />
-      <IconButton icon={<Delete />} />
-      <IconButton icon={<MoreVertOutlined />} />
+    <div className="story__button__icon">
+      <IconButton icon={<UploadCloud />} />
+      <IconButton icon={<Trash2 />} />
+      <IconButton icon={<MoreVertical />} />
     </div>
   );
-};
-
-/**
- * To see how you can use buttons with routing libraries like `react-router` or Next.js's `Link` check this document
- */
-export const RoutingLibraries = () => {
-  return;
 };

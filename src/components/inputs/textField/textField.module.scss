@@ -1,0 +1,43 @@
+.textField {
+  font-size: 0.875rem;
+  :global {
+    .MuiOutlinedInput-notchedOutline {
+      border-radius: 2px;
+    }
+    .MuiInputBase-input.MuiOutlinedInput-input {
+      padding: 8px 16px;
+      height: 19px;
+    }
+  }
+}
+
+// TODO: find a prettier way for this to work
+// The only way for this to work under .textField:
+//
+// &.Mui-focused .MuiOutlinedInput-notchedOutline {
+// border-width: 1px;
+//   }
+//
+// is this:
+:global {
+  :local(.textField) {
+    &.Mui-focused .MuiOutlinedInput-notchedOutline {
+      border-width: 1px;
+    }
+  }
+}
+// see: https://github.com/css-modules/css-modules/issues/295
+
+.label {
+  font-size: 0.875rem;
+  line-height: 1.4rem;
+  margin-bottom: 8px;
+  transform: initial;
+  position: relative;
+  // '&.Mui-focused': {
+  //   color: palette.common.black,
+  // },
+}
+.formControl {
+  margin-bottom: 16px;
+}

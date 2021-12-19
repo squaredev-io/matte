@@ -1,9 +1,7 @@
-// @ts-nocheck
 import React, { useState } from 'react';
+import { ComponentStory, ComponentMeta } from '@storybook/react';
 import Link from '@mui/material/Link';
-import Edit from '@mui/icons-material/Edit';
-import Delete from '@mui/icons-material/Delete';
-import makeStyles from '@mui/styles/makeStyles';
+import { Edit, Trash2 } from 'react-feather';
 import { Table, Column, TableData } from './table.component';
 import { CardBody, Card } from '../../structures/card/card.component';
 
@@ -13,15 +11,7 @@ export default {
   parameters: {
     componentSubtitle: 'Tables display sets of data across rows and columns.',
   },
-};
-
-const useStyles = makeStyles({
-  table: {
-    '& .MuiCard-root': {
-      margin: '8px',
-    },
-  },
-});
+} as ComponentMeta<typeof Table>;
 
 interface MockData {
   index: number;
@@ -30,12 +20,11 @@ interface MockData {
   birthYear: number;
   to?: string;
   handleCopy?: React.MouseEventHandler;
+  handleCheckChange?: (e: React.MouseEvent<unknown>, rowId: number) => void;
 }
 
-export const Tables = () => {
-  const classes = useStyles();
+export const Tables: ComponentStory<typeof Table> = () => {
   const columns: Column<MockData>[] = [
-    { checkbox: true },
     { title: '#', field: 'index' },
     { title: 'Name', field: 'name', routerLink: Link },
     { title: 'Surname', field: 'surname' },
@@ -49,7 +38,6 @@ export const Tables = () => {
       surname: 'Targaryen',
       birthYear: 1977,
       to: '#',
-      handleCheckChange: (e, rowId) => handleCheckChange(e, rowId),
     },
     {
       index: 2,
@@ -57,7 +45,6 @@ export const Tables = () => {
       surname: 'Snow',
       birthYear: 1980,
       to: '#',
-      handleCheckChange: (e, rowId) => handleCheckChange(e, rowId),
     },
     {
       index: 3,
@@ -65,52 +52,12 @@ export const Tables = () => {
       surname: 'Stark',
       birthYear: 1987,
       to: '#',
-      handleCheckChange: (e, rowId) => handleCheckChange(e, rowId),
     },
   ];
 
-  const [selected, setSelected] = useState<string[]>([]);
-
-  const handleSelectAll = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.checked) {
-      const newSelecteds = data.map((n) => n.index);
-      setSelected(newSelecteds);
-      return;
-    }
-    setSelected([]);
-  };
-
-  const handleCheckChange = (
-    event: React.MouseEvent<unknown>,
-    index: number
-  ) => {
-    const selectedIndex = selected.indexOf(index);
-    let newSelected: string[] = [];
-
-    if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, index);
-    } else if (selectedIndex === 0) {
-      newSelected = newSelected.concat(selected.slice(1));
-    } else if (selectedIndex === selected.length - 1) {
-      newSelected = newSelected.concat(selected.slice(0, -1));
-    } else if (selectedIndex > 0) {
-      newSelected = newSelected.concat(
-        selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1)
-      );
-    }
-
-    setSelected(newSelected);
-  };
-
   return (
-    <div className={classes.table}>
-      <Table<MockData>
-        columns={columns}
-        data={data}
-        handleSelectAll={handleSelectAll}
-        selected={selected}
-      />
+    <div className="story__table">
+      <Table<MockData> columns={columns} data={data} />
     </div>
   );
 };
@@ -118,8 +65,7 @@ export const Tables = () => {
 /**
  * When `striped` is set to true, odd rows will be shown with a background color
  */
-export const Striped = () => {
-  const classes = useStyles();
+export const Striped: ComponentStory<typeof Table> = () => {
   const columns: Column<MockData>[] = [
     { title: '#', field: 'index' },
     { title: 'Name', field: 'name' },
@@ -139,7 +85,7 @@ export const Striped = () => {
   ];
 
   return (
-    <div className={classes.table}>
+    <div className="story__table">
       <Table<MockData> columns={columns} data={data} striped hover={false} />
     </div>
   );
@@ -148,8 +94,7 @@ export const Striped = () => {
 /**
  * By default hovering over a row, will change its background. You can disable this by setting `hover` to `false`.
  */
-export const Hoverable = () => {
-  const classes = useStyles();
+export const Hoverable: ComponentStory<typeof Table> = () => {
   const columns: Column<MockData>[] = [
     { title: '#', field: 'index' },
     { title: 'Name', field: 'name' },
@@ -169,7 +114,7 @@ export const Hoverable = () => {
   ];
 
   return (
-    <div className={classes.table}>
+    <div className="story__table">
       <Table<MockData> columns={columns} data={data} />
     </div>
   );
@@ -178,8 +123,7 @@ export const Hoverable = () => {
 /**
  * Use `actions` property to pass a list of actions for each row.
  */
-export const RowActions = () => {
-  const classes = useStyles();
+export const RowActions: ComponentStory<typeof Table> = () => {
   const columns: Column<MockData>[] = [
     { title: '#', field: 'index' },
     { title: 'Name', field: 'name', routerLink: Link },
@@ -201,19 +145,19 @@ export const RowActions = () => {
 
   const actions = [
     {
-      handleClick: (e, rowId) => rowId,
+      handleClick: console.log,
       icon: <Edit />,
       text: 'Edit',
     },
     {
-      handleClick: (e, rowId) => rowId,
-      icon: <Delete />,
+      handleClick: console.log,
+      icon: <Trash2 />,
       text: 'Delete',
     },
   ];
 
   return (
-    <div className={classes.table}>
+    <div className="story__table">
       <Table<MockData> columns={columns} data={data} actions={actions} />
     </div>
   );
@@ -224,8 +168,7 @@ export const RowActions = () => {
  * when hovered, will show a copy icon. When clicked, the content of
  * the cell will be copied to clipboard.
  */
-export const copyToClipboard = () => {
-  const classes = useStyles();
+export const copyToClipboard: ComponentStory<typeof Table> = () => {
   const columns: Column<MockData>[] = [
     { title: '#', field: 'index' },
     { title: 'Name', field: 'name', enableCopyToClipboard: true },
@@ -240,7 +183,7 @@ export const copyToClipboard = () => {
       surname: 'Targaryen',
       birthYear: 1977,
       to: '#',
-      handleCopy: (e) => console.log(e),
+      handleCopy: console.log,
     },
     {
       index: 2,
@@ -248,7 +191,7 @@ export const copyToClipboard = () => {
       surname: 'Snow',
       birthYear: 1980,
       to: '#',
-      handleCopy: (e) => console.log(e),
+      handleCopy: console.log,
     },
     {
       index: 3,
@@ -256,12 +199,12 @@ export const copyToClipboard = () => {
       surname: 'Stark',
       birthYear: 1987,
       to: '#',
-      handleCopy: (e) => console.log(e),
+      handleCopy: console.log,
     },
   ];
 
   return (
-    <div className={classes.table}>
+    <div className="story__table">
       <Table<MockData> columns={columns} data={data} />
     </div>
   );
@@ -270,8 +213,7 @@ export const copyToClipboard = () => {
 /**
  * You can wrap tables with a `Card` for better looks. Hint: Use `disableGutters` prop when wrapping a table with a card.
  */
-export const TableInACard = () => {
-  const classes = useStyles();
+export const TableInACard: ComponentStory<typeof Table> = () => {
   const columns: Column<MockData>[] = [
     { title: '#', field: 'index' },
     { title: 'Name', field: 'name', routerLink: Link },
@@ -292,7 +234,7 @@ export const TableInACard = () => {
   ];
 
   return (
-    <div className={classes.table}>
+    <div className="story__table">
       <Card
         title="Basic table"
         subtitle="Those who fought against the Walkers."
@@ -302,6 +244,84 @@ export const TableInACard = () => {
           <Table<MockData> columns={columns} data={data} />
         </CardBody>
       </Card>
+    </div>
+  );
+};
+
+export const SelectingRows: ComponentStory<typeof Table> = () => {
+  const [selected, setSelected] = useState<number[]>([]);
+
+  const handleSelectAll = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.checked) {
+      const newSelecteds = data.map((n) => n.index);
+      setSelected(newSelecteds);
+      return;
+    }
+    setSelected([]);
+  };
+
+  const handleCheckClick = (e: React.MouseEvent<unknown>, rowId: number) => {
+    const selectedIndex = selected.indexOf(rowId);
+    let newSelected: number[] = [];
+
+    if (selectedIndex === -1) {
+      newSelected = newSelected.concat(selected, rowId);
+    } else if (selectedIndex === 0) {
+      newSelected = newSelected.concat(selected.slice(1));
+    } else if (selectedIndex === selected.length - 1) {
+      newSelected = newSelected.concat(selected.slice(0, -1));
+    } else if (selectedIndex > 0) {
+      newSelected = newSelected.concat(
+        selected.slice(0, selectedIndex),
+        selected.slice(selectedIndex + 1)
+      );
+    }
+
+    setSelected(newSelected);
+  };
+
+  const columns: Column<MockData>[] = [
+    { checkbox: true },
+    { title: '#', field: 'index' },
+    { title: 'Name', field: 'name', routerLink: Link },
+    { title: 'Surname', field: 'surname' },
+    { title: 'Birth year', field: 'birthYear' },
+  ];
+
+  const data: MockData[] = [
+    {
+      index: 1,
+      name: 'Daenerys',
+      surname: 'Targaryen',
+      birthYear: 1977,
+      to: '#',
+      handleCheckChange: handleCheckClick,
+    },
+    {
+      index: 2,
+      name: 'Jon',
+      surname: 'Snow',
+      birthYear: 1980,
+      to: '#',
+      handleCheckChange: handleCheckClick,
+    },
+    {
+      index: 3,
+      name: 'Arya',
+      surname: 'Stark',
+      birthYear: 1987,
+      to: '#',
+      handleCheckChange: handleCheckClick,
+    },
+  ];
+  return (
+    <div className="story__table">
+      <Table<MockData>
+        columns={columns}
+        data={data}
+        handleSelectAll={handleSelectAll}
+        selected={selected}
+      />
     </div>
   );
 };

@@ -1,4 +1,5 @@
-import makeStyles from '@mui/styles/makeStyles';
+import React from 'react';
+import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Select } from './select.component';
 
 export default {
@@ -7,19 +8,9 @@ export default {
   parameters: {
     componentSubtitle: 'Select me',
   },
-};
+} as ComponentMeta<typeof Select>;
 
-const useStyles = makeStyles({
-  formField: {
-    ' & .MuiFormControl-root': {
-      width: '50%',
-      margin: '16px',
-    },
-  },
-});
-
-export const Selects = () => {
-  const classes = useStyles();
+export const Selects: ComponentStory<typeof Select> = () => {
   const selectItems = [
     { value: 1, text: '1' },
     { value: '2', text: '2' },
@@ -27,7 +18,7 @@ export const Selects = () => {
   ];
 
   return (
-    <div className={classes.formField}>
+    <div className="story__form-field">
       <Select id="simple-select" items={selectItems} />
       <Select
         id="select-with-placeholder"
