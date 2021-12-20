@@ -1,7 +1,7 @@
-import sass from 'rollup-plugin-sass'
-import typescript from 'rollup-plugin-typescript2'
+import postcss from 'rollup-plugin-postcss';
+import typescript from 'rollup-plugin-typescript2';
 
-import pkg from './package.json'
+import pkg from './package.json';
 
 export default {
   input: 'src/index.tsx',
@@ -11,9 +11,20 @@ export default {
       format: 'cjs',
       exports: 'named',
       sourcemap: true,
-      strict: false
-    }
+      strict: false,
+    },
   ],
-  plugins: [sass({ insert: true }), typescript()],
-  external: ['react', 'react-dom']
-}
+  plugins: [
+    typescript({
+      tsconfigOverride: {
+        exclude: ['**/*.stories.tsx'],
+      },
+    }),
+    postcss({
+      extract: false,
+      modules: true,
+      use: ['sass'],
+    }),
+  ],
+  external: ['react', 'react-dom'],
+};
