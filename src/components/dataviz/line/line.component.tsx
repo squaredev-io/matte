@@ -12,11 +12,13 @@ import { MatteTheme } from '../../utilities/createMatteTheme.component';
  * - Vary a line’s texture to represent different data types
  */
 export const Line: FC<LineSvgProps> = (props) => {
-  const { nivo }: MatteTheme = useTheme();
+  const theme: MatteTheme | null = useTheme();
+  const nivo = theme?.nivo;
+
   return (
     <ResponsiveLine
-      colors={nivo?.colorShemes?.mono}
-      theme={nivo}
+      colors={typeof nivo !== 'undefined' ? nivo?.colorShemes?.mono : undefined}
+      theme={typeof nivo !== 'undefined' ? nivo : undefined}
       margin={{ top: 30, right: 20, bottom: 50, left: 50 }}
       axisLeft={{
         tickValues: 5,

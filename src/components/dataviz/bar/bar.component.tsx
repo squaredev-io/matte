@@ -13,14 +13,16 @@ import { MatteTheme } from '../../utilities/createMatteTheme.component';
  */
 // @ts-ignore
 export const Bar: FC<BarSvgProps> = (props) => {
-  const { nivo }: MatteTheme = useTheme();
+  const theme: MatteTheme | null = useTheme();
+  const nivo = theme?.nivo;
+
   return (
     <ResponsiveBar
-      colors={nivo?.colorShemes?.mono}
+      colors={typeof nivo !== 'undefined' ? nivo?.colorShemes?.mono : null}
       borderRadius={2}
       innerPadding={3}
       padding={0.5}
-      theme={nivo}
+      theme={typeof nivo !== 'undefined' ? nivo : null}
       margin={{ top: 30, right: 20, bottom: 75, left: 50 }}
       enableLabel={false}
       legends={[
