@@ -14,7 +14,6 @@ import { MatteTheme } from '../../utilities/createMatteTheme.component';
 // @ts-ignore
 export const Bar: FC<BarSvgProps> = (props) => {
   const theme: MatteTheme | null = useTheme();
-
   const nivo = theme?.nivo;
 
   return (

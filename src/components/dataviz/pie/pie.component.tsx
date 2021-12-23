@@ -9,11 +9,13 @@ import { MatteTheme } from '../../utilities/createMatteTheme.component';
  */
 // @ts-ignore
 export const Pie: FC<PieSvgProps> = (props) => {
-  const { nivo }: MatteTheme = useTheme();
+  const theme: MatteTheme | null = useTheme();
+  const nivo = theme?.nivo;
+
   return (
     <ResponsivePie
-      colors={nivo?.colorShemes?.mono}
-      theme={nivo}
+      colors={typeof nivo !== 'undefined' ? nivo?.colorShemes?.mono : null}
+      theme={typeof nivo !== 'undefined' ? nivo : null}
       padAngle={1}
       innerRadius={0.5}
       cornerRadius={2}
