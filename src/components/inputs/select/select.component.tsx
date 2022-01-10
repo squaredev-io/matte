@@ -66,7 +66,7 @@ export const Select: FC<SelectProps> = ({
   id,
   placeholder,
   disabled = false,
-  value,
+  value = '',
   error = false,
   helperText,
   label,
@@ -112,7 +112,7 @@ export const Select: FC<SelectProps> = ({
         }
         IconComponent={ChevronDown}
         displayEmpty={!!placeholder}
-        value={value}
+        defaultValue={value}
         disabled={disabled}
         onChange={onChange}
       >
