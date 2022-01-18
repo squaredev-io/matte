@@ -25,4 +25,5 @@ export * from './components/structures/metric/metric.component';
 export * from './components/structures/sidesheet/sidesheet.component';
 export * from './components/structures/stepper/stepper.component';
 export * from './components/structures/layout/layout.component';
+export * from './components/structures/dialog/dialog.component';
 export * from './components/utilities/createMatteTheme.component';
