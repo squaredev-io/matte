@@ -42,5 +42,4 @@ export default {
       use: ['sass'],
     }),
   ],
-  external: ['react-feather', 'react-copy-to-clipboard', 'mathjs', 'clsx'],
 };

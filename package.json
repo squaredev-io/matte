@@ -16,7 +16,7 @@
   "sideEffects": false,
   "scripts": {
     "build": "rollup -c",
-    "build:esm": "rm -rf ./dist && rollup   --config 'rollup.config.ts'",
+    "build:esm": "rm -rf ./dist && rollup   --config rollup.config.ts",
     "start": "rollup -c -w",
     "storybook": "start-storybook -s ./ -p 9090",
     "predeploy-storybook": "build-storybook && npm run copy-storybook-assets",
@@ -24,20 +24,13 @@
     "copy-storybook-assets": "copyfiles images/* storybook-static"
   },
   "dependencies": {
-    "@emotion/react": "^11.6.0",
-    "@emotion/styled": "^11.6.0",
-    "@mui/material": "^5.2.0",
-    "@mui/styles": "^5.2.0",
-    "@nivo/bar": "^0.74.1",
-    "@nivo/core": "0.74.1",
-    "@nivo/line": "0.74.1",
-    "@nivo/pie": "^0.74.1",
-    "material-ui-popup-state": "^2.0.0",
     "mathjs": "^10.0.0",
     "react-copy-to-clipboard": "^5.0.3",
     "react-feather": "^2.0.9"
   },
   "peerDependencies": {
+    "@emotion/react": "^11.6.0",
+    "@emotion/styled": "^11.6.0",
     "@mui/material": "^5.2.0",
     "@mui/styles": "^5.2.0",
     "@nivo/bar": "^0.74.1",
