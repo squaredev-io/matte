@@ -13,6 +13,7 @@
     }
   },
   "types": "dist/types/index.d.ts",
+  "sideEffects": false,
   "scripts": {
     "build": "rollup -c",
     "build:esm": "rm -rf ./dist && rollup   --config 'rollup.config.ts'",
@@ -70,6 +71,7 @@
     "rollup": "^2.60.2",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-postcss": "^4.0.2",
+    "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-typescript2": "^0.31.1",
     "sass": "1.44.0",
     "sass-loader": "10.1.1",
