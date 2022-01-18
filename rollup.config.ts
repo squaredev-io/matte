@@ -1,6 +1,5 @@
 import postcss from 'rollup-plugin-postcss';
 import typescript from 'rollup-plugin-typescript2';
-import pkg from './package.json';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 
 export default {
