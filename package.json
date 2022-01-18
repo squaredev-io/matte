@@ -5,9 +5,14 @@
   "author": "Squaredev",
   "license": "Apache-2.0",
   "repository": "https://github.com/squaredev-io/matte",
-  "main": "dist/index.js",
-  "module": "dist/index.esm.js",
-  "types": "dist/index.d.ts",
+  "module": "dist/es6/index.js",
+  "exports": {
+    ".": {
+      "import": "./dist/es6/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  },
+  "types": "dist/types/index.d.ts",
   "scripts": {
     "build": "rollup -c",
     "build:esm": "rm -rf ./dist && rollup   --config 'rollup.config.ts'",
