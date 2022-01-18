@@ -1,10 +1,10 @@
 import postcss from 'rollup-plugin-postcss';
 import typescript from 'rollup-plugin-typescript2';
 import pkg from './package.json';
+import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 
 export default {
   input: 'src/index.tsx',
-
   output: [
     {
       // Bundle into ESM for modern consumers.
@@ -13,15 +13,23 @@ export default {
       format: 'esm',
       preserveModules: true,
       preserveModulesRoot: 'src',
+      sourcemap: true,
     },
     {
       // Bundle into CJS for other consumers.
       dir: 'dist/cjs',
       format: 'cjs',
+      preserveModules: true,
+      preserveModulesRoot: 'src',
+      sourcemap: true,
+      exports: 'auto',
     },
   ],
   plugins: [
+    peerDepsExternal(),
     typescript({
+      check: true,
+      useTsconfigDeclarationDir: true,
       tsconfigOverride: {
         exclude: ['**/*.stories.tsx'],
       },
@@ -32,5 +40,5 @@ export default {
       use: ['sass'],
     }),
   ],
-  external: ['react', 'react-dom'],
+  external: ['react-feather', 'react-copy-to-clipboard', 'mathjs', 'clsx'],
 };
