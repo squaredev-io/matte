@@ -10,6 +10,7 @@
   "types": "dist/index.d.ts",
   "scripts": {
     "build": "rollup -c",
+    "build:esm": "rm -rf ./dist && rollup   --config 'rollup.config.ts'",
     "start": "rollup -c -w",
     "storybook": "start-storybook -s ./ -p 9090",
     "predeploy-storybook": "build-storybook && npm run copy-storybook-assets",
