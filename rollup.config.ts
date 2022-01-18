@@ -1,6 +1,7 @@
 import postcss from 'rollup-plugin-postcss';
 import typescript from 'rollup-plugin-typescript2';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
+import { terser } from 'rollup-plugin-terser';
 
 export default {
   input: 'src/index.tsx',
@@ -13,6 +14,7 @@ export default {
       preserveModules: true,
       preserveModulesRoot: 'src',
       sourcemap: true,
+      plugins: [terser()],
     },
     {
       // Bundle into CJS for other consumers.
@@ -22,6 +24,7 @@ export default {
       preserveModulesRoot: 'src',
       sourcemap: true,
       exports: 'auto',
+      plugins: [terser()],
     },
   ],
   plugins: [
