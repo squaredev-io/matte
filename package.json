@@ -5,14 +5,14 @@
   "author": "Squaredev",
   "license": "Apache-2.0",
   "repository": "https://github.com/squaredev-io/matte",
-  "module": "dist/es6/index.js",
+  "module": "./es6/index.js",
   "exports": {
     ".": {
-      "import": "./dist/es6/index.js",
-      "require": "./dist/cjs/index.js"
+      "import": "./es6/index.js",
+      "require": "./cjs/index.js"
     }
   },
-  "types": "dist/types/index.d.ts",
+  "types": "./types/index.d.ts",
   "sideEffects": false,
   "scripts": {
     "build": "rollup -c",
@@ -21,7 +21,8 @@
     "storybook": "start-storybook -s ./ -p 9090",
     "predeploy-storybook": "build-storybook && npm run copy-storybook-assets",
     "deploy-storybook": "storybook-to-ghpages -e storybook-static",
-    "copy-storybook-assets": "copyfiles images/* storybook-static"
+    "copy-storybook-assets": "copyfiles images/* storybook-static",
+    "publish-beta": " npm run build:esm && cp package.json dist && cd dist && npm publish --tag beta"
   },
   "dependencies": {
     "mathjs": "^10.0.0",
