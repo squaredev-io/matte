@@ -4,7 +4,7 @@ import TabsUnstyled from '@mui/base/TabsUnstyled';
 import TabsListUnstyled from '@mui/base/TabsListUnstyled';
 import TabUnstyled from '@mui/base/TabUnstyled';
 import TabPanelUnstyled from '@mui/base/TabPanelUnstyled';
-import TouchRipple from '@mui/material/ButtonBase/TouchRipple';
+// import TouchRipple from '@mui/material/ButtonBase/TouchRipple';
 import clsx from 'clsx';
 
 export type TabsVariant = 'fullWidth' | 'standard';
@@ -51,15 +51,15 @@ export const Tabs: FC<TabsProps> = ({
   // Handle ripple effect
   // Create a refs for a loop with a weak map
   // https://stackoverflow.com/a/62298989/4964370
-  const rippleRefs = React.useRef(new WeakMap());
+  // const rippleRefs = React.useRef(new WeakMap());
 
-  const onRippleStart = (e: React.ChangeEvent<HTMLInputElement>, i: number) => {
-    rippleRefs.current.get(tabs[i]).start(e);
-  };
+  // const onRippleStart = (e: React.ChangeEvent<HTMLInputElement>, i: number) => {
+  //   rippleRefs.current.get(tabs[i]).start(e);
+  // };
 
-  const onRippleStop = (e: React.ChangeEvent<HTMLInputElement>, i: number) => {
-    rippleRefs.current.get(tabs[i]).stop(e);
-  };
+  // const onRippleStop = (e: React.ChangeEvent<HTMLInputElement>, i: number) => {
+  //   rippleRefs.current.get(tabs[i]).stop(e);
+  // };
 
   // Active state
   const [active, setActive] = useState(0);
@@ -80,8 +80,8 @@ export const Tabs: FC<TabsProps> = ({
             <TabUnstyled
               key={i}
               component="span"
-              onMouseDown={(e: any) => onRippleStart(e, i)}
-              onMouseUp={(e: any) => onRippleStop(e, i)}
+              // onMouseDown={(e: any) => onRippleStart(e, i)}
+              // onMouseUp={(e: any) => onRippleStop(e, i)}
               className={clsx(styles.tab, {
                 [styles.tabFullWidth]: variant === 'fullWidth',
                 [styles.activeTab]: active === i,
@@ -92,10 +92,10 @@ export const Tabs: FC<TabsProps> = ({
                 {tab.icon && <span className={styles.icon}>{tab.icon}</span>}
                 {tab.title}
               </div>
-              <TouchRipple
+              {/* <TouchRipple
                 ref={(el) => rippleRefs.current.set(tab, el)}
                 center={false}
-              />
+              /> */}
             </TabUnstyled>
           );
         })}
