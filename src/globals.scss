@@ -1,0 +1,22 @@
+// Hack to make all variables available to the IDE
+// https://github.com/mui-org/material-ui/issues/12827#issuecomment-1001700384
+
+.definitions {
+  --primary-light: unset;
+  --primary-main: unset;
+  --primary-dark: unset;
+  --secondary-light: unset;
+  --secondary-main: unset;
+  --secondary-dark: unset;
+  --secondary-contrastText: unset;
+  --grey-50: unset;
+  --grey-100: unset;
+  --grey-200: unset;
+  --grey-300: unset;
+  --grey-400: unset;
+  --grey-500: unset;
+  --grey-600: unset;
+  --grey-700: unset;
+  --grey-800: unset;
+  --grey-900: unset;
+}

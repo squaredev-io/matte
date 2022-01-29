@@ -1,6 +1,7 @@
 // Import custom font
 @import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;500;700&display=swap');
 @import '../src/main.scss';
+@import '../src/globals.scss';
 
 .story {
   &__button {
@@ -82,5 +83,8 @@
   &__metric {
     width: 50%;
     height: 100%;
+  }
+  &__tabs {
+    width: 100%;
   }
 }

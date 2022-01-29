@@ -1,0 +1,50 @@
+.tabs {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  border-bottom: 1px solid var(--grey-300);
+}
+
+.tabsFullWidth {
+  justify-content: space-around;
+}
+
+.tab {
+  position: relative;
+  display: inline-block;
+  padding: 8px 16px;
+  font-size: 0.875rem;
+  cursor: pointer;
+  text-align: center;
+  font-weight: 500;
+}
+
+.tabFullWidth {
+  flex-grow: 1;
+}
+
+.activeTab {
+  color: var(--primary-main);
+  border-bottom: 2px solid var(--primary-main);
+}
+
+.content {
+  font-size: 0.875rem;
+}
+
+.icon {
+  margin-right: 8px;
+  display: flex;
+  align-items: center;
+}
+
+.icon svg {
+  height: 18px;
+  width: 18px;
+}
+
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

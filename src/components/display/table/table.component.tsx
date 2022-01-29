@@ -6,7 +6,6 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Checkbox from '@mui/material/Checkbox';
 import Box from '@mui/material/Box';
-// import Theme from '@mui/material/styles/createTheme';
 import { MoreVertical, Copy } from 'react-feather';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { IconButton } from '../../inputs/button/button.component';
