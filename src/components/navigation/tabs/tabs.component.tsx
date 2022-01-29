@@ -53,11 +53,11 @@ export const Tabs: FC<TabsProps> = ({
   // https://stackoverflow.com/a/62298989/4964370
   const rippleRefs = React.useRef(new WeakMap());
 
-  const onRippleStart = (e, i) => {
+  const onRippleStart = (e: React.ChangeEvent<HTMLInputElement>, i: number) => {
     rippleRefs.current.get(tabs[i]).start(e);
   };
 
-  const onRippleStop = (e, i) => {
+  const onRippleStop = (e: React.ChangeEvent<HTMLInputElement>, i: number) => {
     rippleRefs.current.get(tabs[i]).stop(e);
   };
 
@@ -80,8 +80,8 @@ export const Tabs: FC<TabsProps> = ({
             <TabUnstyled
               key={i}
               component="span"
-              onMouseDown={(e) => onRippleStart(e, i)}
-              onMouseUp={(e) => onRippleStop(e, i)}
+              onMouseDown={(e: any) => onRippleStart(e, i)}
+              onMouseUp={(e: any) => onRippleStop(e, i)}
               className={clsx(styles.tab, {
                 [styles.tabFullWidth]: variant === 'fullWidth',
                 [styles.activeTab]: active === i,
