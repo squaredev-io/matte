@@ -27,3 +27,4 @@ export * from './components/structures/stepper/stepper.component';
 export * from './components/structures/layout/layout.component';
 export * from './components/structures/dialog/dialog.component';
 export * from './components/utilities/createMatteTheme.component';
+export * from './components/navigation/tabs/tabs.component';
