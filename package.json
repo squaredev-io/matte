@@ -31,7 +31,8 @@
     "@nivo/bar": "^0.74.1",
     "@nivo/core": "0.74.1",
     "@nivo/line": "0.74.1",
-    "@nivo/pie": "^0.74.1"
+    "@nivo/pie": "^0.74.1",
+    "@nivo/tooltip": "^0.74.1"
   },
   "peerDependencies": {
     "@emotion/react": "^11.6.0",
@@ -40,8 +41,7 @@
     "@mui/styles": "^5.2.0",
     "material-ui-popup-state": "^2.0.0",
     "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "@nivo/tooltip": "^0.74.1"
+    "react-dom": "^17.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",
