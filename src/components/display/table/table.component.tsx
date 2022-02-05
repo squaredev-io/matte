@@ -124,7 +124,6 @@ const getCellContent = (row: any, col: any, selected: number[]) => {
             color: 'primary.dark',
           },
         }}
-        component={col.routerLink}
         to={row.to as string}
       >
         {row[col.field]}
