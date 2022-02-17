@@ -23,6 +23,11 @@ export interface DialogProps {
    * Function that toggles dialog visibility
    */
   toggleDialog(event: React.MouseEvent<HTMLButtonElement>): void;
+  /**
+   * If `true`, hitting escape will not fire the `onClose` callback.
+   * @default false
+   */
+  disableEscapeKeyDown?: boolean;
 }
 
 /**
@@ -49,6 +54,7 @@ export const Dialog: FC<DialogProps> = ({
   open,
   title,
   toggleDialog,
+  disableEscapeKeyDown = false,
 }) => {
   /**
    * Sets to true when screen size is smaller than 600px
@@ -70,7 +76,12 @@ export const Dialog: FC<DialogProps> = ({
   );
 
   return (
-    <MuiDialog open={open} onClose={toggleDialog} fullScreen={fullScreen}>
+    <MuiDialog
+      open={open}
+      onClose={toggleDialog}
+      fullScreen={fullScreen}
+      disableEscapeKeyDown={disableEscapeKeyDown}
+    >
       <div className={styles.header}>
         <Typography className={styles.title} component="h6">
           {title}
