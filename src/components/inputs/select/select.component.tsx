@@ -60,12 +60,18 @@ export interface SelectProps {
   //   child: React.ReactNode
   // ) => void;
   onChange?: any;
+  renderValue?: any;
+  /**
+   * Whether multiple elements can be selected.
+   */
+  multiple?: boolean;
 }
 
 export const Select: FC<SelectProps> = ({
   id,
   placeholder,
   disabled = false,
+  multiple = false,
   value = '',
   error = false,
   helperText,
@@ -73,6 +79,7 @@ export const Select: FC<SelectProps> = ({
   required = false,
   items = [],
   onChange,
+  renderValue,
 }) => {
   return (
     <FormControl
@@ -115,6 +122,9 @@ export const Select: FC<SelectProps> = ({
         defaultValue={value}
         disabled={disabled}
         onChange={onChange}
+        multiple={multiple}
+        value={value}
+        renderValue={renderValue}
       >
         {placeholder && (
           <MenuItem className={styles.menuItem} value="">
