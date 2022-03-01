@@ -209,7 +209,7 @@ export const IconButtons: ComponentStory<typeof Button> = () => {
 };
 
 /**
- * Buttons with icons are easier to understand than plain text.
+ * File upload buttons used with or without icons.
  */
 export const UploadButton: ComponentStory<typeof Button> = () => {
   return (
