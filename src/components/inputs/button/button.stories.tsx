@@ -1,6 +1,12 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { UploadCloud, Trash2, MoreVertical, Send } from 'react-feather';
+import {
+  UploadCloud,
+  Trash2,
+  MoreVertical,
+  Send,
+  PlusCircle,
+} from 'react-feather';
 import Link from '@mui/material/Link';
 import { Button, IconButton } from './button.component';
 
@@ -198,6 +204,38 @@ export const IconButtons: ComponentStory<typeof Button> = () => {
       <IconButton icon={<UploadCloud />} />
       <IconButton icon={<Trash2 />} />
       <IconButton icon={<MoreVertical />} />
+    </div>
+  );
+};
+
+/**
+ * Buttons with icons are easier to understand than plain text.
+ */
+export const UploadButton: ComponentStory<typeof Button> = () => {
+  return (
+    <div className="story__button">
+      <input
+        accept="image/*"
+        id="icon-button-file"
+        multiple
+        type="file"
+        style={{ display: 'none' }}
+      />
+      <label htmlFor="icon-button-file">
+        <IconButton icon={<PlusCircle />} component="span" />
+      </label>
+      <input
+        accept="image/*"
+        id="button-file"
+        multiple
+        type="file"
+        style={{ display: 'none' }}
+      />
+      <label htmlFor="button-file">
+        <Button variant="contained" color="primary" component="span">
+          Upload
+        </Button>
+      </label>
     </div>
   );
 };

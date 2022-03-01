@@ -59,6 +59,10 @@ export interface ButtonProps {
    * The variant to use.
    */
   variant?: ButtonVariant;
+  /**
+   * The component used for the root node. Either a string to use a HTML element or a component.
+   */
+  component?: any;
 }
 
 export interface IconButtonProps {
@@ -74,6 +78,10 @@ export interface IconButtonProps {
    * On click handler.
    */
   onClick?: MouseEventHandler;
+  /**
+   * The component used for the root node. Either a string to use a HTML element or a component.
+   */
+  component?: any;
 }
 
 /**
@@ -127,6 +135,7 @@ export const Button: FC<ButtonProps> = ({
   to,
   type = 'button',
   variant = 'text',
+  component,
 }) => {
   return routerLink ? (
     <MuiButton
@@ -162,6 +171,7 @@ export const Button: FC<ButtonProps> = ({
       startIcon={icon}
       type={type}
       variant={variant}
+      component={component}
       sx={{
         color: getColor(color, variant),
         bgcolor: getBgColor(color, variant),
@@ -184,6 +194,7 @@ export const IconButton: FC<IconButtonProps> = ({
   icon,
   onClick: handleClick,
   className,
+  component,
 }) => {
   // const classes = useIconButtonStyles();
 
@@ -195,6 +206,7 @@ export const IconButton: FC<IconButtonProps> = ({
       sx={{
         '&:hover': { color: 'primary.main' },
       }}
+      component={component}
     >
       {icon}
     </MuiIconButton>
