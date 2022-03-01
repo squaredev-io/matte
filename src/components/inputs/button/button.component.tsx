@@ -66,7 +66,7 @@ export interface ButtonProps {
   /**
    * The accept attribute value is a string that defines the file types the file input should accept.
    */
-  accept?: string;
+  accept?: string[];
   /**
    * When multiple is true, the file input allows the user to select more than one file.
    */
@@ -93,7 +93,7 @@ export interface IconButtonProps {
   /**
    * The accept attribute value is a string that defines the file types the file input should accept.
    */
-  accept?: string;
+  accept?: string[];
   /**
    * When multiple is true, the file input allows the user to select more than one file.
    */
