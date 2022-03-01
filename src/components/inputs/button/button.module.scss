@@ -16,7 +16,7 @@
   position: relative;
   min-width: 30px;
   &:hover {
-    // color: palette.primary.main,
+    color: var(--primary-main);
     background-color: transparent;
   }
   & svg {

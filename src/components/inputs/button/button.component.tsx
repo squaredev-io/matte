@@ -63,6 +63,14 @@ export interface ButtonProps {
    * The component used for the root node. Either a string to use a HTML element or a component.
    */
   component?: any;
+  /**
+   * The accept attribute value is a string that defines the file types the file input should accept.
+   */
+  accept?: string;
+  /**
+   * When multiple is true, the file input allows the user to select more than one file.
+   */
+  multiple?: boolean;
 }
 
 export interface IconButtonProps {
@@ -82,6 +90,14 @@ export interface IconButtonProps {
    * The component used for the root node. Either a string to use a HTML element or a component.
    */
   component?: any;
+  /**
+   * The accept attribute value is a string that defines the file types the file input should accept.
+   */
+  accept?: string;
+  /**
+   * When multiple is true, the file input allows the user to select more than one file.
+   */
+  multiple?: boolean;
 }
 
 /**
@@ -136,6 +152,8 @@ export const Button: FC<ButtonProps> = ({
   type = 'button',
   variant = 'text',
   component,
+  accept,
+  multiple,
 }) => {
   return routerLink ? (
     <MuiButton
@@ -149,6 +167,8 @@ export const Button: FC<ButtonProps> = ({
       to={to}
       type={type}
       variant={variant}
+      accept={accept}
+      multiple={multiple}
       sx={{
         color: getColor(color, variant),
         bgcolor: getBgColor(color, variant),
@@ -172,6 +192,8 @@ export const Button: FC<ButtonProps> = ({
       type={type}
       variant={variant}
       component={component}
+      accept={accept}
+      multiple={multiple}
       sx={{
         color: getColor(color, variant),
         bgcolor: getBgColor(color, variant),
@@ -195,18 +217,17 @@ export const IconButton: FC<IconButtonProps> = ({
   onClick: handleClick,
   className,
   component,
+  accept,
+  multiple,
 }) => {
-  // const classes = useIconButtonStyles();
-
   return (
     <MuiIconButton
       className={`${styles['icon-button']} ${className}`}
       onClick={handleClick}
       disableRipple
-      sx={{
-        '&:hover': { color: 'primary.main' },
-      }}
       component={component}
+      accept={accept}
+      multiple={multiple}
     >
       {icon}
     </MuiIconButton>

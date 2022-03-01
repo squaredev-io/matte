@@ -213,21 +213,23 @@ export const IconButtons: ComponentStory<typeof Button> = () => {
  */
 export const UploadButton: ComponentStory<typeof Button> = () => {
   return (
-    <div className="story__button">
-      <input
-        accept="image/*"
-        id="icon-button-file"
-        multiple
-        type="file"
-        style={{ display: 'none' }}
-      />
+    <div className="story__button__uploadButton">
+      {/* Upload icon button */}
       <label htmlFor="icon-button-file">
         <IconButton icon={<PlusCircle />} component="span" />
       </label>
       <input
         accept="image/*"
+        id="icon-button-file"
+        multiple={true}
+        type="file"
+        style={{ display: 'none' }}
+      />
+      {/* Upload button with text */}
+      <input
+        accept="image/*"
         id="button-file"
-        multiple
+        multiple={true}
         type="file"
         style={{ display: 'none' }}
       />

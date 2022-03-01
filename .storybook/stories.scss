@@ -13,6 +13,12 @@
         margin: 5px;
       }
     }
+    &__uploadButton {
+      & label {
+        margin: 5px;
+        margin-right: 8px;
+      }
+    }
   }
   &__form-field {
     & .MuiFormControl-root {
