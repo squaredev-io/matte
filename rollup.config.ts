@@ -15,6 +15,7 @@ export default {
       preserveModulesRoot: 'src',
       sourcemap: true,
       plugins: [terser()],
+      exports: 'named',
     },
     {
       // Bundle into CJS for other consumers.
@@ -23,7 +24,7 @@ export default {
       preserveModules: true,
       preserveModulesRoot: 'src',
       sourcemap: true,
-      exports: 'auto',
+      exports: 'named',
       plugins: [terser()],
     },
   ],
