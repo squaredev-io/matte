@@ -63,14 +63,6 @@ export interface ButtonProps {
    * The component used for the root node. Either a string to use a HTML element or a component.
    */
   component?: any;
-  /**
-   * The accept attribute value is an array of strings that defines the file types the file input should accept.
-   */
-  accept?: string[];
-  /**
-   * When multiple is true, the file input allows the user to select more than one file.
-   */
-  multiple?: boolean;
 }
 
 export interface IconButtonProps {
