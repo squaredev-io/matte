@@ -13,6 +13,7 @@ import styles from './list.module.scss';
 export interface ListItemProps {
   avatar?: React.ReactElement;
   circularProgressBar?: React.ReactElement;
+  classNames?: string[];
   primary: string;
   secondary?: string;
   to?: string;
@@ -48,6 +49,7 @@ export interface ListProps {
    * --- | --- | --- | ---
    * avatar | React.ReactElement | An `Avatar` component. If both avatar and icon are set, only avatar will be shown. | -
    * circularProgressBar | React.ReactElement | A 'CircularProgressBar` component. If both progress bar and avatar are set, only avatar will be shown. | -
+   * classNames | string[] | An array of classnames to be passed to ListItem. | -
    * primary | string | Item's primary text. | -
    * secondary | string | Item's secondary text. | -
    * to | string | The URL to follow when the list item is clicked. | -
@@ -74,7 +76,7 @@ export type ListItemBaseProps = ListItemProps & {
     x?: string
   ) => void;
   /**
-   * Classname to be passed to ListItem. It is used internally to pass active class
+   * Classname to be passed to ListItem. It is used internally to pass active class and other classes passed by the user
    */
   className?: string;
   /**
@@ -205,7 +207,7 @@ export const List: React.FC<ListProps> = ({
             <Fragment key={i}>
               {i > 0 && divider && <Divider component="li" light />}
               <li
-                className={clsx({
+                className={clsx(...(item.classNames || []), {
                   active: activeLi === i,
                   [styles.header]: item.header,
                 })}
@@ -240,7 +242,7 @@ export const List: React.FC<ListProps> = ({
               primaryEnd={item.primaryEnd}
               secondaryEnd={item.secondaryEnd}
               handleClick={(e: any) => handleClick(e, item, i)}
-              className={clsx({
+              className={clsx(...(item.classNames || []), {
                 active: activeLi === i,
                 [styles.header]: item.header,
               })}

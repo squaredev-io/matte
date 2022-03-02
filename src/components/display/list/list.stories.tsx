@@ -251,3 +251,24 @@ export const ListInACard = () => {
     </div>
   );
 };
+
+/**
+ * You can use classNames to pass multiple CSS classes to the list item
+ */
+export const CssClasses: ComponentStory<typeof List> = () => {
+  const menuItems = [
+    { primary: 'Inbox', classNames: ['foo', 'bar'] },
+    {
+      primary: 'Drafts',
+      classNames: ['foo', 'bar'],
+      to: '#',
+      routerLink: Link,
+    },
+    { primary: 'Trash' },
+  ];
+  return (
+    <div className="story__list">
+      <List divider items={menuItems} />
+    </div>
+  );
+};
