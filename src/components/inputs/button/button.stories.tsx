@@ -1,8 +1,8 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { UploadCloud, Trash2, MoreVertical, Send } from 'react-feather';
+import { UploadCloud, Trash2, MoreVertical, Send, Upload } from 'react-feather';
 import Link from '@mui/material/Link';
-import { Button, IconButton } from './button.component';
+import { Button, IconButton, UploadButton } from './button.component';
 
 // TODO: Add examples for button with Link
 
@@ -198,6 +198,25 @@ export const IconButtons: ComponentStory<typeof Button> = () => {
       <IconButton icon={<UploadCloud />} />
       <IconButton icon={<Trash2 />} />
       <IconButton icon={<MoreVertical />} />
+    </div>
+  );
+};
+
+/**
+ * File upload buttons used with or without icons. component="span" has to be passed to the button.
+ */
+export const UploadButtons: ComponentStory<typeof UploadButton> = () => {
+  const iconBtn = <IconButton icon={<Upload />} component="span" />;
+  const btn = (
+    <Button variant="contained" component="span">
+      Upload
+    </Button>
+  );
+
+  return (
+    <div className="story__button__uploadButton">
+      <UploadButton button={iconBtn} accept={['image/*']} multiple={false} />
+      <UploadButton button={btn} accept={['image/*']} multiple={false} />
     </div>
   );
 };
