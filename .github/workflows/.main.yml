@@ -1,4 +1,8 @@
-on: push
+name: Publish package
+
+on:
+  push:
+  workflow_dispatch:
 
 jobs:
   publish:
