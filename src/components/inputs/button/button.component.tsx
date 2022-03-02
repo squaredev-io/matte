@@ -64,7 +64,7 @@ export interface ButtonProps {
    */
   component?: any;
   /**
-   * The accept attribute value is a string that defines the file types the file input should accept.
+   * The accept attribute value is an array of strings that defines the file types the file input should accept.
    */
   accept?: string[];
   /**
@@ -90,8 +90,16 @@ export interface IconButtonProps {
    * The component used for the root node. Either a string to use a HTML element or a component.
    */
   component?: any;
+}
+
+export interface UploadButtonProps {
   /**
-   * The accept attribute value is a string that defines the file types the file input should accept.
+   * Any button can be passed to the UploadButton, the component="span" props must be present.
+   */
+  button: any;
+  /**
+   * The accept attribute value is an array of strings that defines the file types the file input should accept.
+   * If it is not passed, every type of file will be accepted.
    */
   accept?: string[];
   /**
@@ -152,8 +160,6 @@ export const Button: FC<ButtonProps> = ({
   type = 'button',
   variant = 'text',
   component,
-  accept,
-  multiple,
 }) => {
   return routerLink ? (
     <MuiButton
@@ -167,8 +173,6 @@ export const Button: FC<ButtonProps> = ({
       to={to}
       type={type}
       variant={variant}
-      accept={accept}
-      multiple={multiple}
       sx={{
         color: getColor(color, variant),
         bgcolor: getBgColor(color, variant),
@@ -192,8 +196,6 @@ export const Button: FC<ButtonProps> = ({
       type={type}
       variant={variant}
       component={component}
-      accept={accept}
-      multiple={multiple}
       sx={{
         color: getColor(color, variant),
         bgcolor: getBgColor(color, variant),
@@ -217,8 +219,6 @@ export const IconButton: FC<IconButtonProps> = ({
   onClick: handleClick,
   className,
   component,
-  accept,
-  multiple,
 }) => {
   return (
     <MuiIconButton
@@ -226,10 +226,31 @@ export const IconButton: FC<IconButtonProps> = ({
       onClick={handleClick}
       disableRipple
       component={component}
-      accept={accept}
-      multiple={multiple}
     >
       {icon}
     </MuiIconButton>
+  );
+};
+
+/**
+ * UploadButton allows users to upload files.
+ */
+export const UploadButton: FC<UploadButtonProps> = ({
+  button,
+  accept = [],
+  multiple,
+}) => {
+  const acceptConcat = accept.join(',');
+  return (
+    <>
+      <label htmlFor="icon-button-file">{button}</label>
+      <input
+        accept={acceptConcat}
+        id="icon-button-file"
+        multiple={multiple}
+        type="file"
+        style={{ display: 'none' }}
+      />
+    </>
   );
 };
