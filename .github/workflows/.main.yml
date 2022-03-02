@@ -2,6 +2,7 @@ name: Publish package
 
 on:
   push:
+    branches: [master]
   workflow_dispatch:
 
 jobs:
@@ -27,3 +28,4 @@ jobs:
           token: ${{ secrets.NPM_TOKEN }}
           dry-run: true
           package: ./dist/package.json
+          check-version: true
