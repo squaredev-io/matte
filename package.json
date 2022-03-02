@@ -1,6 +1,6 @@
 {
   "name": "matte-ui",
-  "version": "0.11.1-beta-v0.1.2",
+  "version": "0.2.0",
   "description": "Matte is a UI component library on top of MUI and other react libraries.",
   "author": "Squaredev",
   "license": "Apache-2.0",
@@ -15,14 +15,14 @@
   "types": "./types/index.d.ts",
   "sideEffects": false,
   "scripts": {
-    "build": "rollup -c",
-    "build:esm": "rm -rf ./dist && rollup   --config rollup.config.ts",
+    "build": "rm -rf ./dist && rollup   --config rollup.config.ts",
     "start": "rollup -c -w",
     "storybook": "start-storybook -s ./ -p 9090",
     "predeploy-storybook": "build-storybook && npm run copy-storybook-assets",
     "deploy-storybook": "storybook-to-ghpages -e storybook-static",
     "copy-storybook-assets": "copyfiles images/* storybook-static",
-    "publish-beta": " npm run build:esm && cp package.json dist && cd dist && npm publish --tag beta"
+    "prepublish": "npm run build && cp package.json dist && cd dist",
+    "publish-beta": "npm publish --tag beta"
   },
   "dependencies": {
     "mathjs": "^10.0.0",
