@@ -26,6 +26,5 @@ jobs:
       - uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}
-          dry-run: true
           package: ./dist/package.json
           check-version: true
