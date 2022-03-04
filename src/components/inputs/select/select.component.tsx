@@ -65,83 +65,93 @@ export interface SelectProps {
    * Whether multiple elements can be selected.
    */
   multiple?: boolean;
+  /**
+   * Pass a ref to the input element.
+   */
+  inputRef?: React.Ref<any>;
 }
 
-export const Select: FC<SelectProps> = ({
-  id,
-  placeholder,
-  disabled = false,
-  multiple = false,
-  value = '',
-  error = false,
-  helperText,
-  label,
-  required = false,
-  items = [],
-  onChange,
-  renderValue,
-}) => {
-  return (
-    <FormControl
-      variant="outlined"
-      className={styles.formControl}
-      error={error}
-    >
-      {label && (
-        <InputLabel
-          variant="standard"
-          className={styles.label}
-          htmlFor={id}
-          disableAnimation
-          required={required}
-          sx={{
-            color: 'common.black',
-            '&.Mui-focused': {
-              color: 'common.black',
-            },
-          }}
-        >
-          {label}
-        </InputLabel>
-      )}
-      <MuiSelect
-        id={id}
-        labelId="select"
-        input={
-          <InputBase
-            id={`${id}-input`}
-            fullWidth
-            classes={{ input: styles.input }}
-            sx={{
-              border: ({ palette }) => `1px solid ${palette.grey[200]}`,
-            }}
-          />
-        }
-        IconComponent={ChevronDown}
-        displayEmpty={!!placeholder}
-        defaultValue={value}
-        disabled={disabled}
-        onChange={onChange}
-        multiple={multiple}
-        value={value}
-        renderValue={renderValue}
+export const Select: FC<SelectProps> = React.forwardRef(
+  (
+    {
+      id,
+      placeholder,
+      disabled = false,
+      multiple = false,
+      value = '',
+      error = false,
+      helperText,
+      label,
+      required = false,
+      items = [],
+      onChange,
+      renderValue,
+    },
+    ref
+  ) => {
+    return (
+      <FormControl
+        variant="outlined"
+        className={styles.formControl}
+        error={error}
       >
-        {placeholder && (
-          <MenuItem className={styles.menuItem} value="">
-            {placeholder}
-          </MenuItem>
+        {label && (
+          <InputLabel
+            variant="standard"
+            className={styles.label}
+            htmlFor={id}
+            disableAnimation
+            required={required}
+            sx={{
+              color: 'common.black',
+              '&.Mui-focused': {
+                color: 'common.black',
+              },
+            }}
+          >
+            {label}
+          </InputLabel>
         )}
-        {items.map((item, i) => (
-          <MenuItem value={item.value} className={styles.menuItem} key={i}>
-            {item.text}
-          </MenuItem>
-        ))}
-      </MuiSelect>
-      {helperText && (
-        <FormHelperText error={error} id={`${id}-helper-text`}>
-          {helperText}
-        </FormHelperText>
-      )}
-    </FormControl>
-  );
-};
+        <MuiSelect
+          id={id}
+          labelId="select"
+          inputRef={ref}
+          input={
+            <InputBase
+              id={`${id}-input`}
+              fullWidth
+              classes={{ input: styles.input }}
+              sx={{
+                border: ({ palette }) => `1px solid ${palette.grey[200]}`,
+              }}
+            />
+          }
+          IconComponent={ChevronDown}
+          displayEmpty={!!placeholder}
+          defaultValue={value}
+          disabled={disabled}
+          onChange={onChange}
+          multiple={multiple}
+          value={value}
+          renderValue={renderValue}
+        >
+          {placeholder && (
+            <MenuItem className={styles.menuItem} value="">
+              {placeholder}
+            </MenuItem>
+          )}
+          {items.map((item, i) => (
+            <MenuItem value={item.value} className={styles.menuItem} key={i}>
+              {item.text}
+            </MenuItem>
+          ))}
+        </MuiSelect>
+        {helperText && (
+          <FormHelperText error={error} id={`${id}-helper-text`}>
+            {helperText}
+          </FormHelperText>
+        )}
+      </FormControl>
+    );
+  }
+);
