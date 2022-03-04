@@ -72,83 +72,89 @@ export interface TextFieldProps {
 /**
  * Text fields are used within forms to submit or edit information.
  */
-export const TextField: FC<TextFieldProps> = ({
-  id,
-  placeholder,
-  disabled = false,
-  icon,
-  value,
-  defaultValue,
-  error = false,
-  helperText,
-  label,
-  required = false,
-  onChange: handleChange,
-  inputRef,
-  name,
-  type,
-  pattern,
-}) => {
-  return (
-    <FormControl className={styles.formControl} fullWidth variant="outlined">
-      {label && (
-        <MuiInputLabel
-          variant="standard"
-          className={styles.label}
-          htmlFor={id}
-          disableAnimation
-          shrink
-          required={required}
-          sx={{
-            color: 'common.black',
-            '&.Mui-focused': {
+export const TextField: FC<TextFieldProps> = React.forwardRef(
+  (
+    {
+      id,
+      placeholder,
+      disabled = false,
+      icon,
+      value,
+      defaultValue,
+      error = false,
+      helperText,
+      label,
+      required = false,
+      onChange: handleChange,
+      name,
+      type,
+      pattern,
+    },
+    ref
+  ) => {
+    return (
+      <FormControl className={styles.formControl} fullWidth variant="outlined">
+        {label && (
+          <MuiInputLabel
+            variant="standard"
+            className={styles.label}
+            htmlFor={id}
+            disableAnimation
+            shrink
+            required={required}
+            sx={{
               color: 'common.black',
+              '&.Mui-focused': {
+                color: 'common.black',
+              },
+            }}
+          >
+            {label}
+          </MuiInputLabel>
+        )}
+        <MuiOutlinedInput
+          id={id}
+          placeholder={placeholder}
+          className={styles.textField}
+          value={value}
+          defaultValue={defaultValue}
+          disabled={disabled}
+          error={error}
+          fullWidth
+          required={required}
+          onChange={handleChange}
+          inputRef={ref}
+          name={name}
+          type={type}
+          inputProps={{
+            pattern,
+          }}
+          startAdornment={
+            icon ? (
+              <InputAdornment position="start">{icon}</InputAdornment>
+            ) : null
+          }
+          sx={{
+            '& .MuiOutlinedInput-notchedOutline': {
+              borderColor: ({ palette }) => palette.grey[200],
+            },
+            '&:hover .MuiOutlinedInput-notchedOutline': {
+              borderColor: ({ palette }) => palette.grey[200],
+            },
+            '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+              borderColor: 'primary.main',
+            },
+            '&.Mui-error .MuiOutlinedInput-notchedOutline': {
+              borderColor: 'error.main',
             },
           }}
-        >
-          {label}
-        </MuiInputLabel>
-      )}
-      <MuiOutlinedInput
-        id={id}
-        placeholder={placeholder}
-        className={styles.textField}
-        value={value}
-        defaultValue={defaultValue}
-        disabled={disabled}
-        error={error}
-        fullWidth
-        required={required}
-        onChange={handleChange}
-        inputRef={inputRef}
-        name={name}
-        type={type}
-        inputProps={{
-          pattern,
-        }}
-        startAdornment={
-          icon ? <InputAdornment position="start">{icon}</InputAdornment> : null
-        }
-        sx={{
-          '& .MuiOutlinedInput-notchedOutline': {
-            borderColor: ({ palette }) => palette.grey[200],
-          },
-          '&:hover .MuiOutlinedInput-notchedOutline': {
-            borderColor: ({ palette }) => palette.grey[200],
-          },
-          '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-            borderColor: 'primary.main',
-          },
-          '&.Mui-error .MuiOutlinedInput-notchedOutline': {
-            borderColor: 'error.main',
-          },
-        }}
-      />
-      {helperText && (
-        <FormHelperText error={error} id={`${id}-helper-text`}>
-          {helperText}
-        </FormHelperText>
-      )}
-    </FormControl>
-  );
-};
+        />
+        {helperText && (
+          <FormHelperText error={error} id={`${id}-helper-text`}>
+            {helperText}
+          </FormHelperText>
+        )}
+      </FormControl>
+    );
+  }
+);
