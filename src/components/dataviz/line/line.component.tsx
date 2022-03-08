@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import useTheme from '@mui/styles/useTheme';
+import { useTheme } from '@mui/styles';
 import { ResponsiveLine, LineSvgProps } from '@nivo/line';
 import { MatteTheme } from '../../utilities/createMatteTheme.component';
 
