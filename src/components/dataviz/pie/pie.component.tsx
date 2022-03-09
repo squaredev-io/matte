@@ -1,5 +1,5 @@
 import React, { FC } from 'react';
-import useTheme from '@mui/styles/useTheme';
+import { useTheme } from '@mui/styles';
 import { ResponsivePie, PieSvgProps } from '@nivo/pie';
 import { MatteTheme } from '../../utilities/createMatteTheme.component';
 
