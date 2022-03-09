@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Select } from './select.component';
 import { Box, SelectChangeEvent } from '@mui/material';
@@ -13,39 +13,64 @@ export default {
 } as ComponentMeta<typeof Select>;
 
 export const Selects: ComponentStory<typeof Select> = () => {
+  const [items, setItems] = useState('');
+
   const selectItems = [
     { value: 1, text: '1' },
     { value: '2', text: '2' },
     { value: 3, text: '3' },
   ];
 
+  const handleChange = (event: any) => {
+    setItems(event.target.value);
+    console.log('change');
+  };
+
   return (
     <div className="story__form-field">
-      <Select id="simple-select" items={selectItems} />
+      <Select
+        id="simple-select"
+        items={selectItems}
+        onChange={handleChange}
+        value={items}
+      />
       <Select
         id="select-with-placeholder"
-        placeholder="Pick a value"
         items={selectItems}
-        value=""
+        onChange={handleChange}
+        value={items}
+        placeholder="Pick a value"
       />
       <Select
         id="disabled-select"
         items={selectItems}
+        onChange={handleChange}
+        value={items}
         placeholder="Disabled select"
         disabled
       />
       <Select
         id="select-with-error"
+        items={selectItems}
+        onChange={handleChange}
+        value={items}
         error
         helperText="You got some error, check again"
-        items={selectItems}
       />
-      <Select id="select-with-label" label="Some label" items={selectItems} />
+      <Select
+        id="select-with-label"
+        items={selectItems}
+        onChange={handleChange}
+        value={items}
+        label="Some label"
+      />
       <Select
         id="required-select"
         label="Required"
         items={selectItems}
+        onChange={handleChange}
         required
+        value={items}
       />
     </div>
   );
