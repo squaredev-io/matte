@@ -1,0 +1,30 @@
+.textField {
+  font-size: 0.875rem;
+  margin-bottom: 16px;
+  :global {
+    .MuiOutlinedInput-notchedOutline {
+      border-radius: 2px;
+      border-color: var(--grey-200);
+    }
+    .MuiInputBase-input.MuiOutlinedInput-input {
+      padding: 8px 16px;
+      height: 19px;
+    }
+    :hover .MuiOutlinedInput-notchedOutline {
+      border-width: 1px;
+      border-color: var(--grey-200);
+    }
+    .Mui-focused .MuiOutlinedInput-notchedOutline {
+      border-width: 1px;
+      border-color: var(--primary-main);
+    }
+  }
+}
+
+.label {
+  font-size: 0.875rem;
+  line-height: 1.4rem;
+  margin-bottom: 8px;
+  transform: initial;
+  position: relative;
+}

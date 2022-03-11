@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { DatePicker } from './datePicker.component';
 
@@ -11,13 +11,25 @@ export default {
 } as ComponentMeta<typeof DatePicker>;
 
 export const DatePickers: ComponentStory<typeof DatePicker> = () => {
-  const [value, setValue] = React.useState<Date | null>(null);
+  const [value, setValue] = useState(new Date());
   const handleChange = (newValue: any) => {
     setValue(newValue);
   };
   return (
-    <div className="story__form-field">
-      <DatePicker value={value} onChange={handleChange} />
+    <div className="story__datePicker">
+      <DatePicker value={value} onChange={handleChange} label="Choose a date" />
+      <DatePicker
+        value={value}
+        onChange={handleChange}
+        label="Disabled picker"
+        disabled
+      />
+      <DatePicker
+        value={value}
+        onChange={handleChange}
+        label="Read only picker"
+        readOnly
+      />
     </div>
   );
 };
