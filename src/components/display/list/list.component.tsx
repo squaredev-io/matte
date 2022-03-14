@@ -11,18 +11,18 @@ import styles from './list.module.scss';
 // TODO: how to solve the component problem?
 
 export interface ListItemProps {
-  avatar?: React.ReactElement;
-  circularProgressBar?: React.ReactElement;
+  avatar?: React.ReactNode;
+  circularProgressBar?: React.ReactNode;
   classNames?: string[];
-  primary: string;
-  secondary?: string;
+  primary: React.ReactNode;
+  secondary?: React.ReactNode;
   to?: string;
   handleClick?: React.MouseEventHandler;
-  icon?: React.ReactElement;
-  primaryEnd?: string | number;
-  secondaryEnd?: string | number;
+  icon?: React.ReactNode;
+  primaryEnd?: React.ReactNode;
+  secondaryEnd?: React.ReactNode;
   header?: boolean;
-  routerLink?: any; //TODO: Fix type
+  routerLink?: any;
 }
 
 export interface ListProps {
