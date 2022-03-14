@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import { DatePicker } from './datePicker.component';
+import { DatePicker, DateTimePicker, TimePicker } from './datePicker.component';
 
 export default {
   title: 'Components/Inputs/DatePicker',
@@ -16,7 +16,7 @@ export const DatePickers: ComponentStory<typeof DatePicker> = () => {
     setValue(newValue);
   };
   return (
-    <div className="story__datePicker">
+    <>
       <DatePicker value={value} onChange={handleChange} label="Choose a date" />
       <DatePicker
         value={value}
@@ -30,6 +30,58 @@ export const DatePickers: ComponentStory<typeof DatePicker> = () => {
         label="Read only picker"
         readOnly
       />
-    </div>
+    </>
+  );
+};
+
+export const DateTimePickers: ComponentStory<typeof DateTimePicker> = () => {
+  const [value, setValue] = useState(new Date());
+  const handleChange = (newValue: any) => {
+    setValue(newValue);
+  };
+  return (
+    <>
+      <DateTimePicker
+        value={value}
+        onChange={handleChange}
+        label="Choose a date and time"
+      />
+      <DateTimePicker
+        value={value}
+        onChange={handleChange}
+        label="Disabled picker"
+        disabled
+      />
+      <DateTimePicker
+        value={value}
+        onChange={handleChange}
+        label="Read only picker"
+        readOnly
+      />
+    </>
+  );
+};
+
+export const TimePickers: ComponentStory<typeof TimePicker> = () => {
+  const [value, setValue] = useState(new Date());
+  const handleChange = (newValue: any) => {
+    setValue(newValue);
+  };
+  return (
+    <>
+      <TimePicker value={value} onChange={handleChange} label="Choose a time" />
+      <TimePicker
+        value={value}
+        onChange={handleChange}
+        label="Disabled picker"
+        disabled
+      />
+      <TimePicker
+        value={value}
+        onChange={handleChange}
+        label="Read only picker"
+        readOnly
+      />
+    </>
   );
 };
