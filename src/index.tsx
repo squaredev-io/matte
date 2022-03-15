@@ -18,6 +18,7 @@ export * from './components/emptyStates/emptyState.component';
 export * from './components/inputs/button/button.component';
 export * from './components/inputs/select/select.component';
 export * from './components/inputs/textField/textField.component';
+export * from './components/inputs/datePicker/datePicker.component';
 export * from './components/navigation/breadcrumbs/breadcrumbs.component';
 export * from './components/navigation/menu/menu.component';
 export * from './components/structures/card/card.component';
