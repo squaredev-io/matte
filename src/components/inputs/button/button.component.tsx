@@ -1,5 +1,6 @@
 import React, { FC, MouseEventHandler } from 'react';
 import MuiButton from '@mui/material/Button';
+import { ButtonProps as ButtonPropsMui } from '@mui/material/Button/Button';
 import MuiIconButton from '@mui/material/IconButton';
 import styles from './button.module.scss';
 
@@ -13,7 +14,7 @@ export type ButtonColor =
 export type ButtonVariant = 'contained' | 'outlined' | 'text';
 
 export type ButtonSize = 'small' | 'medium' | 'large';
-export interface ButtonProps {
+export interface ButtonProps extends ButtonPropsMui {
   /**
    * The content of the button.
    */
@@ -152,6 +153,7 @@ export const Button: FC<ButtonProps> = ({
   type = 'button',
   variant = 'text',
   component,
+  ...rest
 }) => {
   return routerLink ? (
     <MuiButton
@@ -174,6 +176,7 @@ export const Button: FC<ButtonProps> = ({
           borderColor: getColor(color, variant),
         },
       }}
+      {...rest}
     >
       {children}
     </MuiButton>
@@ -197,6 +200,7 @@ export const Button: FC<ButtonProps> = ({
           borderColor: getColor(color, variant),
         },
       }}
+      {...rest}
     >
       {children}
     </MuiButton>
