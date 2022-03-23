@@ -41,6 +41,13 @@ export const TextFields: ComponentStory<typeof TextField> = () => {
         label="Required field"
         required
       />
+      <TextField
+        id="textarea-input"
+        placeholder="Textarea field"
+        label="Textarea field"
+        multiline
+        rows={3}
+      />
     </div>
   );
 };
