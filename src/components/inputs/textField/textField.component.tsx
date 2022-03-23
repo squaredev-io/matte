@@ -67,6 +67,22 @@ export interface TextFieldProps {
    * The pattern attribute of the input
    */
   pattern?: string;
+  /**
+   * If true, a textarea element is rendered instead of an input.
+   */
+  multiline?: true;
+  /**
+   * Number of rows to display when multiline option is set to true.
+   */
+  rows?: number | string;
+  /**
+   * Minimum number of rows to display when multiline option is set to true.
+   */
+  minRows?: number | string;
+  /**
+   * Maximum number of rows to display when multiline option is set to true.
+   */
+  maxRows?: number | string;
 }
 
 /**
@@ -89,6 +105,10 @@ export const TextField: FC<TextFieldProps> = React.forwardRef(
       name,
       type,
       pattern,
+      multiline,
+      rows,
+      minRows,
+      maxRows,
     },
     ref
   ) => {
@@ -126,6 +146,10 @@ export const TextField: FC<TextFieldProps> = React.forwardRef(
           inputRef={ref}
           name={name}
           type={type}
+          multiline={multiline}
+          rows={rows}
+          minRows={minRows}
+          maxRows={maxRows}
           inputProps={{
             pattern,
           }}
