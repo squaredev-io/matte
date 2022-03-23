@@ -43,8 +43,8 @@ export const TextFields: ComponentStory<typeof TextField> = () => {
       />
       <TextField
         id="textarea-input"
-        placeholder="Textarea field"
-        label="Textarea field"
+        placeholder="Textarea"
+        label="Textarea"
         multiline
         rows={3}
       />
