@@ -32,6 +32,8 @@
     "@nivo/line": "0.74.1",
     "@nivo/pie": "^0.74.1",
     "@nivo/tooltip": "^0.74.1",
+    "@react-aria/ssr": "^3.1.2",
+    "@react-aria/utils": "^3.11.3",
     "date-fns": "^2.28.0",
     "mathjs": "^10.0.0",
     "react-copy-to-clipboard": "^5.0.3",
