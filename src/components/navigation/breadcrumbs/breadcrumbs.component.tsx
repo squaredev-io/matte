@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import MuiBreadcrumbs from '@mui/material/Breadcrumbs';
 import styles from './breadcrumbs.module.scss';
+import { Breadcrumbs as MuiBreadcrumbs } from '@mui/material';
 
 export interface BreadcrumbsProps {
   /**

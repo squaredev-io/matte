@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import Link from '@mui/material/Link';
 import { Edit, Trash2 } from 'react-feather';
 import { Table, Column, TableData } from './table.component';
 import { CardBody, Card } from '../../structures/card/card.component';
+import { Link } from '@mui/material';
 
 export default {
   title: 'Components/Display/Table',

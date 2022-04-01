@@ -1,10 +1,8 @@
 import React, { FC } from 'react';
-import MuiStepper from '@mui/material/Stepper';
-import Step from '@mui/material/Step';
-import StepLabel from '@mui/material/StepLabel';
-import StepContent from '@mui/material/StepContent';
 import { Button } from '../../inputs/button/button.component';
 import styles from './stepper.module.scss';
+
+import { Stepper as MuiStepper, Step, StepLabel, StepContent } from '@mui/material';
 
 export interface stepProps {
   label?: string;

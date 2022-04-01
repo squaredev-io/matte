@@ -1,15 +1,12 @@
 import React, { FC, useEffect, useState } from 'react';
-import Drawer from '@mui/material/Drawer';
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import Divider from '@mui/material/Divider';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import { Menu as MenuIcon, ChevronLeft, LogOut, User } from 'react-feather';
 import { IconButton } from '../../inputs/button/button.component';
 import { List, ListItemProps } from '../../display/list/list.component';
 import { Menu } from '../../navigation/menu/menu.component';
 import clsx from 'clsx';
 import styles from './layout.module.scss';
+
+import { Drawer, AppBar, Toolbar, Divider, useMediaQuery } from '@mui/material';
 
 export interface LayoutProps {
   children?: React.ReactNode;

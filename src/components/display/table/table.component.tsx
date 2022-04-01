@@ -1,17 +1,21 @@
 import React from 'react';
-import MuiTable from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Checkbox from '@mui/material/Checkbox';
-import Box from '@mui/material/Box';
 import { MoreVertical, Copy } from 'react-feather';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { IconButton } from '../../inputs/button/button.component';
-import { Menu, MenuItem } from '../../navigation/menu/menu.component';
+import { Menu } from '../../navigation/menu/menu.component';
+import type { MenuItemType } from '../../navigation/menu/menu.component';
 import { MatteTheme } from '../../utilities/createMatteTheme.component';
 import styles from './table.module.scss';
+
+import {
+  Table as MuiTable,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
+  Checkbox,
+  Box,
+} from '@mui/material';
 
 /**
  * Interface for a table's column
@@ -58,7 +62,7 @@ export interface TableProps<DataType> {
    * * `icon`: If set, an icon is showed before text.
    * * `text`: Item's text.
    */
-  actions?: MenuItem[];
+  actions?: MenuItemType[];
   /**
    * An array of objects with the following properties:
    *

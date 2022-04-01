@@ -5,8 +5,7 @@ import {
   TimePicker as MUITimePicker,
   LocalizationProvider,
 } from '@mui/lab';
-import { TextField } from '@mui/material';
-import MuiInputLabel from '@mui/material/InputLabel';
+import { TextField, InputLabel as MuiInputLabel } from '@mui/material';
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import styles from './datePicker.module.scss';
 

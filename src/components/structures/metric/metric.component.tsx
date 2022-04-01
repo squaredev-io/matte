@@ -1,10 +1,10 @@
 import React, { FC } from 'react';
-import Box from '@mui/material/Box';
 import { chain } from 'mathjs';
 import { ArrowUp, ArrowDown } from 'react-feather';
 import { Serie } from '@nivo/line';
 import { Line } from '../../dataviz/line/line.component';
 import styles from './metric.module.scss';
+import { Box } from '@mui/material';
 
 export interface MetricProps {
   /**

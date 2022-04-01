@@ -1,10 +1,13 @@
 import React, { FC } from 'react';
-import MuiInputLabel from '@mui/material/InputLabel';
-import MuiOutlinedInput from '@mui/material/OutlinedInput';
-import FormControl from '@mui/material/FormControl';
-import FormHelperText from '@mui/material/FormHelperText';
-import InputAdornment from '@mui/material/InputAdornment';
 import styles from './textField.module.scss';
+
+import {
+  InputLabel as MuiInputLabel,
+  OutlinedInput as MuiOutlinedInput,
+  FormControl,
+  FormHelperText,
+  InputAdornment,
+} from '@mui/material';
 
 export interface TextFieldProps {
   /**

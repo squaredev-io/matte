@@ -1,10 +1,13 @@
 import React, { FC } from 'react';
-import MuiDialog from '@mui/material/Dialog';
-import MuiDialogActions from '@mui/material/DialogActions';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import useMediaQuery from '@mui/material/useMediaQuery';
 import styles from './dialog.module.scss';
+
+import {
+  Dialog as MuiDialog,
+  DialogActions as MuiDialogActions,
+  Box,
+  Typography,
+  useMediaQuery,
+} from '@mui/material';
 
 export interface DialogProps {
   /**

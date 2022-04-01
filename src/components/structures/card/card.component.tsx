@@ -1,14 +1,17 @@
 import React, { FC } from 'react';
-import MuiCard from '@mui/material/Card';
-import CardHeader from '@mui/material/CardHeader';
-import CardContent from '@mui/material/CardContent';
-import MuiCardActions from '@mui/material/CardActions';
-import CardMedia from '@mui/material/CardMedia';
-import CardActionArea from '@mui/material/CardActionArea';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
 import clsx from 'clsx';
 import styles from './card.module.scss';
+
+import {
+  Card as MuiCard,
+  CardHeader,
+  CardContent,
+  CardActions as MuiCardActions,
+  CardMedia,
+  CardActionArea,
+  Typography,
+  Box,
+} from '@mui/material';
 
 export interface CardProps {
   /**

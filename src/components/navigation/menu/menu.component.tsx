@@ -1,18 +1,21 @@
 import React, { FC, MouseEvent } from 'react';
-import Popper from '@mui/material/Popper';
 import {
   usePopupState,
   bindToggle,
   bindPopper,
 } from 'material-ui-popup-state/hooks';
-import Paper from '@mui/material/Paper';
-import MenuItem from '@mui/material/MenuItem';
-import MenuList from '@mui/material/MenuList';
-import Fade from '@mui/material/Fade';
-import ClickAwayListener from '@mui/material/ClickAwayListener';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import Typography from '@mui/material/Typography';
 import styles from './menu.module.scss';
+
+import {
+  Popper,
+  Paper,
+  MenuItem,
+  MenuList,
+  Fade,
+  ClickAwayListener,
+  ListItemIcon,
+  Typography,
+} from '@mui/material';
 
 export interface MenuProps {
   /**
@@ -37,7 +40,7 @@ export interface MenuProps {
    * * `icon`: If set, an icon is showed before text.
    * * `text`: Item's text.
    */
-  items: MenuItem[];
+  items: MenuItemType[];
   /**
    * How the menu will be displayed with regards to the anchor. Check
    * [here](https://material-ui.com/components/popper/#positioned-popper) for positioning.
@@ -57,7 +60,7 @@ export interface MenuProps {
     | 'top';
 }
 
-export interface MenuItem {
+export interface MenuItemType {
   /**
    * A function that will be executed on item's `onClick` method,
    * e.g. `(e) => console.log(e)`. By default, `e`, the React's synthetic event, is passed to that

@@ -1,8 +1,8 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { UploadCloud, Trash2, MoreVertical, Send, Upload } from 'react-feather';
-import Link from '@mui/material/Link';
 import { Button, IconButton, UploadButton } from './button.component';
+import { Link } from '@mui/material';
 
 // TODO: Add examples for button with Link
 

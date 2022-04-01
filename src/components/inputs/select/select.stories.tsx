@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { Select } from './select.component';
-import { Box, SelectChangeEvent } from '@mui/material';
-import Chip from '@mui/material/Chip';
+import { Box, SelectChangeEvent, Chip } from '@mui/material';
 
 export default {
   title: 'Components/Inputs/Select',

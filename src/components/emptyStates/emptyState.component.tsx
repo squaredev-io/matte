@@ -1,9 +1,9 @@
 import React, { FC, MouseEventHandler } from 'react';
-import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
 import { Plus } from 'react-feather';
 import { Button } from '../inputs/button/button.component';
 import styles from './emptyState.module.scss';
+
+import { Container, Grid } from '@mui/material';
 
 export interface EmptyStateProps {
   /**
