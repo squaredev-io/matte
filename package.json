@@ -25,7 +25,7 @@
     "publish-beta": "npm publish --tag beta"
   },
   "dependencies": {
-    "@mui/base": "5.0.0-alpha.67",
+    "@mui/base": "^5.0.0-alpha.67",
     "@mui/lab": "^5.0.0-alpha.72",
     "@nivo/bar": "^0.74.1",
     "@nivo/core": "0.74.1",
