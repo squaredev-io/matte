@@ -2,7 +2,8 @@ import React from 'react';
 import { MoreVertical, Copy } from 'react-feather';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { IconButton } from '../../inputs/button/button.component';
-import { Menu, MenuItem } from '../../navigation/menu/menu.component';
+import { Menu } from '../../navigation/menu/menu.component';
+import type { MenuItemType } from '../../navigation/menu/menu.component';
 import { MatteTheme } from '../../utilities/createMatteTheme.component';
 import styles from './table.module.scss';
 
@@ -61,7 +62,7 @@ export interface TableProps<DataType> {
    * * `icon`: If set, an icon is showed before text.
    * * `text`: Item's text.
    */
-  actions?: MenuItem[];
+  actions?: MenuItemType[];
   /**
    * An array of objects with the following properties:
    *
