@@ -1,13 +1,16 @@
 import React, { FC, MouseEventHandler } from 'react';
-import MuiSelect from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';
-import InputLabel from '@mui/material/InputLabel';
-import InputBase from '@mui/material/InputBase';
-import FormControl from '@mui/material/FormControl';
-import FormHelperText from '@mui/material/FormHelperText';
 import { ChevronDown } from 'react-feather';
 import { MatteTheme } from '../../utilities/createMatteTheme.component';
 import styles from './select.module.scss';
+
+import {
+  Select as MuiSelect,
+  MenuItem,
+  InputLabel,
+  InputBase,
+  FormControl,
+  FormHelperText,
+} from '@mui/material';
 
 export interface Items {
   value: string | number;

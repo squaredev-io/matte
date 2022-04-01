@@ -1,6 +1,5 @@
-import { Theme as MuiTheme, createTheme } from '@mui/material';
+import { Theme as MuiTheme, createTheme, adaptV4Theme } from '@mui/material';
 import { Theme as NivoTheme, Colors } from '@nivo/core';
-import { adaptV4Theme } from '@mui/material/styles';
 
 export type ColorSchemes = {
   colorShemes: { [key: string]: Colors };

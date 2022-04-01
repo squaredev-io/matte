@@ -1,7 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
-import Link from '@mui/material/Link';
 import { Breadcrumbs } from './breadcrumbs.component';
+import { Link } from '@mui/material';
 
 export default {
   title: 'Components/Navigation/Breadcrumbs',

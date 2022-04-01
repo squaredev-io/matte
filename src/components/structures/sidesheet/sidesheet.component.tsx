@@ -1,10 +1,9 @@
 import React, { FC } from 'react';
-import Drawer from '@mui/material/Drawer';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
 import { X } from 'react-feather';
 import { IconButton } from '../../inputs/button/button.component';
 import styles from './sidesheet.module.scss';
+
+import { Drawer, Box, Typography } from '@mui/material';
 
 export interface SidesheetProps {
   /**

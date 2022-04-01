@@ -1,6 +1,6 @@
 import React from 'react';
-import GlobalStyles from '@mui/material/GlobalStyles';
 import { MatteTheme } from './createMatteTheme.component';
+import { GlobalStyles } from '@mui/material';
 
 /**
  * Creates CSS variables from MUI theme properties

@@ -1,10 +1,10 @@
 import React from 'react';
-import Link from '@mui/material/Link';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { AlertTriangle, Check, Trash2, Mail, Inbox } from 'react-feather';
 import { List } from './list.component';
 import { Avatar } from '../avatar/avatar.component';
 import { Card, CardBody } from '../../structures/card/card.component';
+import { Link } from '@mui/material';
 
 export default {
   title: 'Components/Display/List',

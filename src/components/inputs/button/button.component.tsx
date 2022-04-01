@@ -1,8 +1,11 @@
 import React, { FC, MouseEventHandler } from 'react';
-import MuiButton from '@mui/material/Button';
-import { ButtonProps as ButtonPropsMui } from '@mui/material/Button/Button';
-import MuiIconButton from '@mui/material/IconButton';
 import styles from './button.module.scss';
+
+import {
+  Button as MuiButton,
+  ButtonProps as ButtonPropsMui,
+  IconButton as MuiIconButton,
+} from '@mui/material';
 
 export type ButtonColor =
   | 'primary'

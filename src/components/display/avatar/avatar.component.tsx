@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
-import MuiAvatar from '@mui/material/Avatar';
 import styles from './avatar.module.scss';
+import { Avatar as MuiAvatar } from '@mui/material';
 
 export type AvatarVariant = 'rounded' | 'square' | 'circular' | undefined;
 

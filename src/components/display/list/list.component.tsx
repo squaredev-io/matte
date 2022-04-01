@@ -1,12 +1,15 @@
 import React, { Fragment, MouseEvent } from 'react';
-import MuiList from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
-import ListItemText from '@mui/material/ListItemText';
-import ListItemAvatar from '@mui/material/ListItemAvatar';
-import Divider from '@mui/material/Divider';
 import clsx from 'clsx';
 import styles from './list.module.scss';
+
+import {
+  List as MuiList,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  ListItemAvatar,
+  Divider,
+} from '@mui/material';
 
 // TODO: how to solve the component problem?
 
