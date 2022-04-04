@@ -109,6 +109,7 @@ export const Menu: FC<MenuProps> = ({
         : [e];
     if (item.handleClick) {
       item.handleClick(...params);
+      popupState.close();
     }
   };
 
