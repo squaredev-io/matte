@@ -1,8 +1,7 @@
 import React, { Fragment, MouseEvent } from 'react';
 import clsx from 'clsx';
 import styles from './list.module.scss';
-import { useId } from '@react-aria/utils';
-import { SSRProvider } from '@react-aria/ssr';
+
 import {
   List as MuiList,
   ListItem,
@@ -181,7 +180,7 @@ const ListItemLink = ({
  * containing primary and supplemental actions, which are represented by icons
  * and text.
  */
-const MainList: React.FC<ListProps> = ({
+export const List: React.FC<ListProps> = ({
   className,
   handleClickParams,
   items,
@@ -208,7 +207,7 @@ const MainList: React.FC<ListProps> = ({
       {items.map((item, i) => {
         if (item.routerLink) {
           return (
-            <Fragment key={useId()}>
+            <Fragment key={i}>
               {i > 0 && divider && <Divider component="li" light />}
               <li
                 className={clsx(...(item.classNames || []), {
@@ -234,7 +233,7 @@ const MainList: React.FC<ListProps> = ({
           );
         }
         return (
-          <Fragment key={useId()}>
+          <Fragment key={i}>
             {i > 0 && divider && <Divider component="li" light />}
             <ListItemBase
               avatar={item.avatar}
@@ -258,9 +257,3 @@ const MainList: React.FC<ListProps> = ({
     </MuiList>
   );
 };
-
-export const List: React.FC<ListProps> = (props) => (
-  <SSRProvider>
-    <MainList {...props} />
-  </SSRProvider>
-);
