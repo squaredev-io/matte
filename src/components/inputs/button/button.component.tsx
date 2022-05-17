@@ -102,6 +102,26 @@ export interface UploadButtonProps {
    * When multiple is true, the file input allows the user to select more than one file.
    */
   multiple?: boolean;
+  /**
+   * onChange to be called when the file input changes.
+   */
+  onChange?: any;
+  /**
+   * handleBlur event, this is used for useForm() to get the form data.
+   */
+  handleBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
+  /**
+   * name of the input field, used for useForm() to get the form data.
+   */
+  name?: string;
+  /**
+   * ref of the input field, used for useForm() to get the form data.
+   */
+  ref?: React.Ref<HTMLInputElement>;
+  /**
+   * value of the input field, used for useForm() to get the form data.
+   */
+  value?: string;
 }
 
 /**
@@ -238,6 +258,10 @@ export const UploadButton: FC<UploadButtonProps> = ({
   button,
   accept = [],
   multiple,
+  onChange,
+  handleBlur,
+  name,
+  ref,
 }) => {
   const acceptConcat = accept.join(',');
   return (
@@ -247,6 +271,10 @@ export const UploadButton: FC<UploadButtonProps> = ({
         accept={acceptConcat}
         id="icon-button-file"
         multiple={multiple}
+        onChange={onChange}
+        onBlur={handleBlur}
+        name={name}
+        ref={ref}
         type="file"
         style={{ display: 'none' }}
       />
