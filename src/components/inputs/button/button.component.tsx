@@ -102,6 +102,10 @@ export interface UploadButtonProps {
    * When multiple is true, the file input allows the user to select more than one file.
    */
   multiple?: boolean;
+  /**
+   * onChange to be called when the file input changes.
+   */
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => any;
 }
 
 /**
@@ -238,6 +242,7 @@ export const UploadButton: FC<UploadButtonProps> = ({
   button,
   accept = [],
   multiple,
+  onChange,
 }) => {
   const acceptConcat = accept.join(',');
   return (
@@ -247,6 +252,7 @@ export const UploadButton: FC<UploadButtonProps> = ({
         accept={acceptConcat}
         id="icon-button-file"
         multiple={multiple}
+        onChange={onChange}
         type="file"
         style={{ display: 'none' }}
       />
