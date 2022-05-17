@@ -105,23 +105,7 @@ export interface UploadButtonProps {
   /**
    * onChange to be called when the file input changes.
    */
-  onChange?: any;
-  /**
-   * handleBlur event, this is used for useForm() to get the form data.
-   */
-  handleBlur?: (event: React.FocusEvent<HTMLInputElement>) => void;
-  /**
-   * name of the input field, used for useForm() to get the form data.
-   */
-  name?: string;
-  /**
-   * ref of the input field, used for useForm() to get the form data.
-   */
-  ref?: React.Ref<HTMLInputElement>;
-  /**
-   * value of the input field, used for useForm() to get the form data.
-   */
-  value?: string;
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => any;
 }
 
 /**
@@ -259,9 +243,6 @@ export const UploadButton: FC<UploadButtonProps> = ({
   accept = [],
   multiple,
   onChange,
-  handleBlur,
-  name,
-  ref,
 }) => {
   const acceptConcat = accept.join(',');
   return (
@@ -272,9 +253,6 @@ export const UploadButton: FC<UploadButtonProps> = ({
         id="icon-button-file"
         multiple={multiple}
         onChange={onChange}
-        onBlur={handleBlur}
-        name={name}
-        ref={ref}
         type="file"
         style={{ display: 'none' }}
       />
