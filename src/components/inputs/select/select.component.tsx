@@ -19,6 +19,10 @@ export interface Items {
 
 export interface SelectProps {
   /**
+   * CSS class name
+   */
+  className?: string;
+  /**
    * Whether the `input` element is disabled.
    */
   disabled?: boolean;
@@ -77,6 +81,7 @@ export interface SelectProps {
 export const Select: FC<SelectProps> = React.forwardRef(
   (
     {
+      className,
       id,
       placeholder,
       disabled = false,
@@ -117,6 +122,7 @@ export const Select: FC<SelectProps> = React.forwardRef(
         )}
         <MuiSelect
           id={id}
+          className={className}
           labelId="select"
           inputRef={ref}
           input={
