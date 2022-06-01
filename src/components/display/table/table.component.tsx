@@ -107,9 +107,9 @@ export interface TableProps<DataType> {
    */
   sorting?: boolean;
   /**
-   * Column title by which the sorting will be implemented.
+   * Column field by which the sorting will be implemented.
    */
-  orderBy?: any;
+  orderBy?: string;
   /**
    * Order of the items, it can be either ascending (asc) or descending (desc).
    */
@@ -117,7 +117,7 @@ export interface TableProps<DataType> {
   /**
    * Function to implement the sorting of the items.
    */
-  handleSorting?: any;
+  handleSorting?: (...args: any[]) => any;
 }
 
 const getCellContent = (row: any, col: any, selected: number[]) => {
@@ -213,9 +213,9 @@ export const Table = <DataType extends any>({
                   />
                 ) : sorting ? (
                   <TableSortLabel
-                    active={orderBy === col.title}
-                    direction={orderBy === col.title ? order : 'asc'}
-                    onClick={(e) => handleSorting(e, col.title, order)}
+                    active={orderBy === col.field}
+                    direction={orderBy === col.field ? order : 'asc'}
+                    onClick={(e) => handleSorting(e, col.field, order)}
                   >
                     {col.title}
                   </TableSortLabel>

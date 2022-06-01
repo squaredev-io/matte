@@ -86,22 +86,22 @@ export const SortingTable: ComponentStory<typeof Table> = () => {
 
   type Order = 'asc' | 'desc';
   const [orderBy, setOrderBy] = useState();
-  const [order, setOrder] = React.useState<Order>('asc');
+  const [order, setOrder] = useState<Order>('asc');
 
-  const handleSorting = async (
+  const handleSorting = (
     event: React.MouseEvent<unknown>,
-    title: any,
+    field: any,
     order: any
   ) => {
     let currentOrder: Order;
 
-    if (orderBy === title) {
+    if (orderBy === field) {
       currentOrder = order === 'asc' ? 'desc' : 'asc';
     } else {
       currentOrder = 'asc';
     }
 
-    setOrderBy(title);
+    setOrderBy(field);
     setOrder(currentOrder);
 
     console.log(event);
