@@ -15,6 +15,7 @@ import {
   TableRow,
   Checkbox,
   Box,
+  TableSortLabel,
 } from '@mui/material';
 
 /**
@@ -101,6 +102,22 @@ export interface TableProps<DataType> {
    * An array to hold the index of the rows the checkbox is checked for
    */
   selected?: number[];
+  /**
+   * If `true`, sorting functionality will be applied.
+   */
+  sorting?: boolean;
+  /**
+   * Column title by which the sorting will be implemented.
+   */
+  orderBy?: any;
+  /**
+   * Order of the items, it can be either ascending (asc) or descending (desc).
+   */
+  order?: 'asc' | 'desc';
+  /**
+   * Function to implement the sorting of the items.
+   */
+  handleSorting?: any;
 }
 
 const getCellContent = (row: any, col: any, selected: number[]) => {
@@ -167,6 +184,10 @@ export const Table = <DataType extends any>({
   striped = false,
   handleSelectAll,
   selected = [],
+  sorting,
+  orderBy,
+  order,
+  handleSorting,
 }: TableProps<DataType>) => {
   // Create anchor for actions menu that will appear in each row
   const anchor = <IconButton icon={<MoreVertical />} />;
@@ -190,6 +211,14 @@ export const Table = <DataType extends any>({
                     onChange={handleSelectAll}
                     className={styles.checkbox}
                   />
+                ) : sorting ? (
+                  <TableSortLabel
+                    active={orderBy === col.title}
+                    direction={orderBy === col.title ? order : 'asc'}
+                    onClick={(e) => handleSorting(e, col.title, order)}
+                  >
+                    {col.title}
+                  </TableSortLabel>
                 ) : (
                   col.title
                 )}

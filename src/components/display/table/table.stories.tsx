@@ -63,6 +63,66 @@ export const Tables: ComponentStory<typeof Table> = () => {
 };
 
 /**
+ * When `sorting` is set to true, sorting functionality will be implemented.
+ */
+export const SortingTable: ComponentStory<typeof Table> = () => {
+  const columns: Column<MockData>[] = [
+    { title: '#', field: 'index' },
+    { title: 'Name', field: 'name' },
+    { title: 'Surname', field: 'surname' },
+    { title: 'Birth year', field: 'birthYear' },
+  ];
+
+  const data: MockData[] = [
+    {
+      index: 1,
+      name: 'Daenerys',
+      surname: 'Targaryen',
+      birthYear: 1977,
+    },
+    { index: 2, name: 'Jon', surname: 'Snow', birthYear: 1980 },
+    { index: 3, name: 'Arya', surname: 'Stark', birthYear: 1987 },
+  ];
+
+  type Order = 'asc' | 'desc';
+  const [orderBy, setOrderBy] = useState();
+  const [order, setOrder] = React.useState<Order>('asc');
+
+  const handleSorting = async (
+    event: React.MouseEvent<unknown>,
+    title: any,
+    order: any
+  ) => {
+    let currentOrder: Order;
+
+    if (orderBy === title) {
+      currentOrder = order === 'asc' ? 'desc' : 'asc';
+    } else {
+      currentOrder = 'asc';
+    }
+
+    setOrderBy(title);
+    setOrder(currentOrder);
+
+    console.log(event);
+  };
+
+  return (
+    <div className="story__table">
+      <Table<MockData>
+        columns={columns}
+        data={data}
+        striped
+        sorting
+        orderBy={orderBy}
+        order={order}
+        handleSorting={handleSorting}
+      />
+    </div>
+  );
+};
+
+/**
  * When `striped` is set to true, odd rows will be shown with a background color
  */
 export const Striped: ComponentStory<typeof Table> = () => {
