@@ -215,7 +215,9 @@ export const Table = <DataType extends any>({
                   <TableSortLabel
                     active={orderBy === col.field}
                     direction={orderBy === col.field ? order : 'asc'}
-                    onClick={(e) => handleSorting(e, col.field, order)}
+                    onClick={(event) =>
+                      handleSorting?.(event, col.field, order)
+                    }
                   >
                     {col.title}
                   </TableSortLabel>
