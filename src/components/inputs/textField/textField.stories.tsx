@@ -31,6 +31,18 @@ export const TextFields: ComponentStory<typeof TextField> = () => {
         helperText="You got some error, check again"
       />
       <TextField
+        id="input-with-label-left"
+        placeholder="Input with left-align label"
+        label="Label left"
+        labelLeft
+      />
+      <TextField
+        id="input-with-label-left-2"
+        placeholder="Input with left-align label"
+        label="Label with a different length"
+        labelLeft
+      />
+      <TextField
         id="input-with-label"
         placeholder="Input with label"
         label="Some label"

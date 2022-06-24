@@ -7,6 +7,7 @@ import {
   FormControl,
   FormHelperText,
   InputAdornment,
+  Box,
 } from '@mui/material';
 
 export interface TextFieldProps {
@@ -86,6 +87,10 @@ export interface TextFieldProps {
    * Maximum number of rows to display when multiline option is set to true.
    */
   maxRows?: number | string;
+  /**
+   * When set to true, label is shown on the left.
+   */
+  labelLeft?: boolean;
 }
 
 /**
@@ -112,74 +117,150 @@ export const TextField: FC<TextFieldProps> = React.forwardRef(
       rows,
       minRows,
       maxRows,
+      labelLeft,
     },
     ref
   ) => {
     return (
       <FormControl className={styles.formControl} fullWidth variant="outlined">
-        {label && (
-          <MuiInputLabel
-            variant="standard"
-            className={styles.label}
-            htmlFor={id}
-            disableAnimation
-            shrink
-            required={required}
+        {label && labelLeft ? (
+          <Box
             sx={{
-              color: 'common.black',
-              '&.Mui-focused': {
-                color: 'common.black',
-              },
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'flex-end',
             }}
           >
-            {label}
-          </MuiInputLabel>
-        )}
-        <MuiOutlinedInput
-          id={id}
-          placeholder={placeholder}
-          className={styles.textField}
-          value={value}
-          defaultValue={defaultValue}
-          disabled={disabled}
-          error={error}
-          fullWidth
-          required={required}
-          onChange={handleChange}
-          inputRef={ref}
-          name={name}
-          type={type}
-          multiline={multiline}
-          rows={rows}
-          minRows={minRows}
-          maxRows={maxRows}
-          inputProps={{
-            pattern,
-          }}
-          startAdornment={
-            icon ? (
-              <InputAdornment position="start">{icon}</InputAdornment>
-            ) : null
-          }
-          sx={{
-            '& .MuiOutlinedInput-notchedOutline': {
-              borderColor: ({ palette }) => palette.grey[200],
-            },
-            '&:hover .MuiOutlinedInput-notchedOutline': {
-              borderColor: ({ palette }) => palette.grey[200],
-            },
-            '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
-              borderColor: 'primary.main',
-            },
-            '&.Mui-error .MuiOutlinedInput-notchedOutline': {
-              borderColor: 'error.main',
-            },
-          }}
-        />
-        {helperText && (
-          <FormHelperText error={error} id={`${id}-helper-text`}>
-            {helperText}
-          </FormHelperText>
+            <MuiInputLabel
+              variant="standard"
+              className={`${styles.label} ${styles.labelLeft}`}
+              htmlFor={id}
+              disableAnimation
+              required={required}
+              sx={{
+                color: 'common.black',
+                '&.Mui-focused': {
+                  color: 'common.black',
+                },
+              }}
+            >
+              {label}
+            </MuiInputLabel>
+            <MuiOutlinedInput
+              id={id}
+              placeholder={placeholder}
+              className={styles.textField}
+              value={value}
+              defaultValue={defaultValue}
+              disabled={disabled}
+              error={error}
+              required={required}
+              onChange={handleChange}
+              inputRef={ref}
+              name={name}
+              type={type}
+              multiline={multiline}
+              rows={rows}
+              minRows={minRows}
+              maxRows={maxRows}
+              inputProps={{
+                pattern,
+              }}
+              startAdornment={
+                icon ? (
+                  <InputAdornment position="start">{icon}</InputAdornment>
+                ) : null
+              }
+              sx={{
+                '& .MuiOutlinedInput-notchedOutline': {
+                  borderColor: ({ palette }) => palette.grey[200],
+                },
+                '&:hover .MuiOutlinedInput-notchedOutline': {
+                  borderColor: ({ palette }) => palette.grey[200],
+                },
+                '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                  borderColor: 'primary.main',
+                },
+                '&.Mui-error .MuiOutlinedInput-notchedOutline': {
+                  borderColor: 'error.main',
+                },
+                flex: '1',
+                marginLeft: '16px',
+              }}
+            />
+            {helperText && (
+              <FormHelperText error={error} id={`${id}-helper-text`}>
+                {helperText}
+              </FormHelperText>
+            )}
+          </Box>
+        ) : (
+          <>
+            {label && (
+              <MuiInputLabel
+                variant="standard"
+                className={styles.label}
+                htmlFor={id}
+                disableAnimation
+                shrink
+                required={required}
+                sx={{
+                  color: 'common.black',
+                  '&.Mui-focused': {
+                    color: 'common.black',
+                  },
+                }}
+              >
+                {label}
+              </MuiInputLabel>
+            )}
+            <MuiOutlinedInput
+              id={id}
+              placeholder={placeholder}
+              className={styles.textField}
+              value={value}
+              defaultValue={defaultValue}
+              disabled={disabled}
+              error={error}
+              fullWidth
+              required={required}
+              onChange={handleChange}
+              inputRef={ref}
+              name={name}
+              type={type}
+              multiline={multiline}
+              rows={rows}
+              minRows={minRows}
+              maxRows={maxRows}
+              inputProps={{
+                pattern,
+              }}
+              startAdornment={
+                icon ? (
+                  <InputAdornment position="start">{icon}</InputAdornment>
+                ) : null
+              }
+              sx={{
+                '& .MuiOutlinedInput-notchedOutline': {
+                  borderColor: ({ palette }) => palette.grey[200],
+                },
+                '&:hover .MuiOutlinedInput-notchedOutline': {
+                  borderColor: ({ palette }) => palette.grey[200],
+                },
+                '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+                  borderColor: 'primary.main',
+                },
+                '&.Mui-error .MuiOutlinedInput-notchedOutline': {
+                  borderColor: 'error.main',
+                },
+              }}
+            />
+            {helperText && (
+              <FormHelperText error={error} id={`${id}-helper-text`}>
+                {helperText}
+              </FormHelperText>
+            )}
+          </>
         )}
       </FormControl>
     );
