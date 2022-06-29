@@ -48,6 +48,16 @@ export const TextFields: ComponentStory<typeof TextField> = () => {
         multiline
         rows={3}
       />
+      <TextField
+        id="numeric-input"
+        placeholder="Numeric input"
+        label="Numeric input"
+        inputProps={{
+          type: 'number',
+          min: 0,
+          max: 10,
+        }}
+      />
     </div>
   );
 };
