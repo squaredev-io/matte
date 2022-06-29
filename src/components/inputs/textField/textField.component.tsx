@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { FC } from 'react';
 import styles from './textField.module.scss';
 
@@ -8,6 +9,7 @@ import {
   FormHelperText,
   InputAdornment,
 } from '@mui/material';
+import { TextFieldProps as MuiTextFieldProps } from '@mui/material';
 
 export interface TextFieldProps {
   /**
@@ -86,6 +88,10 @@ export interface TextFieldProps {
    * Maximum number of rows to display when multiline option is set to true.
    */
   maxRows?: number | string;
+  /**
+   * Input attribute as props
+   */
+  inputProps?: MuiTextFieldProps['inputProps'];
 }
 
 /**
@@ -112,6 +118,7 @@ export const TextField: FC<TextFieldProps> = React.forwardRef(
       rows,
       minRows,
       maxRows,
+      inputProps = {},
     },
     ref
   ) => {
@@ -155,6 +162,7 @@ export const TextField: FC<TextFieldProps> = React.forwardRef(
           maxRows={maxRows}
           inputProps={{
             pattern,
+            ...inputProps,
           }}
           startAdornment={
             icon ? (
@@ -185,3 +193,4 @@ export const TextField: FC<TextFieldProps> = React.forwardRef(
     );
   }
 );
+TextField.displayName = 'TextField';
