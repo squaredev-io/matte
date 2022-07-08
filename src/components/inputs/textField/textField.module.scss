@@ -28,10 +28,26 @@
 }
 // see: https://github.com/css-modules/css-modules/issues/295
 
+:global {
+  :local(.label) {
+    &.MuiInputLabel-root {
+      color: black;
+    }
+  }
+}
+
+:global {
+  :local(.label) {
+    &.Mui-focused {
+      color: black;
+    }
+  }
+}
+
 .textFieldWrapper {
   display: flex;
   align-items: center;
-  justify-content: flex-end
+  justify-content: flex-end;
 }
 
 .label {
@@ -40,9 +56,6 @@
   margin-bottom: 8px;
   transform: initial;
   position: relative;
-  // '&.Mui-focused': {
-  //   color: palette.common.black,
-  // },
 }
 
 .labelLeft {

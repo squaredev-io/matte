@@ -130,21 +130,13 @@ export const TextField: FC<TextFieldProps> = React.forwardRef(
     return (
       <FormControl className={styles.formControl} fullWidth variant="outlined">
         {label && labelLeft ? (
-          <div className={styles.textFieldWrapper}
-     
-          >
+          <div className={styles.textFieldWrapper}>
             <MuiInputLabel
               variant="standard"
               className={`${styles.label} ${styles.labelLeft}`}
               htmlFor={id}
               disableAnimation
               required={required}
-              sx={{
-                color: 'common.black',
-                '&.Mui-focused': {
-                  color: 'common.black',
-                },
-              }}
             >
               {label}
             </MuiInputLabel>
@@ -207,12 +199,6 @@ export const TextField: FC<TextFieldProps> = React.forwardRef(
                 disableAnimation
                 shrink
                 required={required}
-                sx={{
-                  color: 'common.black',
-                  '&.Mui-focused': {
-                    color: 'common.black',
-                  },
-                }}
               >
                 {label}
               </MuiInputLabel>
