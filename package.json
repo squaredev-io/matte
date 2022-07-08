@@ -1,10 +1,6 @@
 {
   "name": "matte-ui",
-<<<<<<< HEAD
-  "version": "0.12.7",
-=======
-  "version": "0.12.8",
->>>>>>> master
+  "version": "0.12.9",
   "description": "Matte is a UI component library on top of MUI and other react libraries.",
   "author": "Squaredev",
   "license": "Apache-2.0",
