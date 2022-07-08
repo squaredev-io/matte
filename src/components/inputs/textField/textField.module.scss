@@ -28,6 +28,12 @@
 }
 // see: https://github.com/css-modules/css-modules/issues/295
 
+.textFieldWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end
+}
+
 .label {
   font-size: 0.875rem;
   line-height: 1.4rem;

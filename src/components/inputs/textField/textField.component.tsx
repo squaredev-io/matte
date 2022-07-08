@@ -8,7 +8,6 @@ import {
   FormControl,
   FormHelperText,
   InputAdornment,
-  Box,
 } from '@mui/material';
 import { TextFieldProps as MuiTextFieldProps } from '@mui/material';
 
@@ -131,12 +130,8 @@ export const TextField: FC<TextFieldProps> = React.forwardRef(
     return (
       <FormControl className={styles.formControl} fullWidth variant="outlined">
         {label && labelLeft ? (
-          <Box
-            sx={{
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'flex-end',
-            }}
+          <div className={styles.textFieldWrapper}
+     
           >
             <MuiInputLabel
               variant="standard"
@@ -201,7 +196,7 @@ export const TextField: FC<TextFieldProps> = React.forwardRef(
                 {helperText}
               </FormHelperText>
             )}
-          </Box>
+          </div>
         ) : (
           <>
             {label && (
