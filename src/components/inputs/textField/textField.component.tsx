@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React, { FC } from 'react';
 import styles from './textField.module.scss';
 
@@ -9,6 +10,7 @@ import {
   InputAdornment,
   Box,
 } from '@mui/material';
+import { TextFieldProps as MuiTextFieldProps } from '@mui/material';
 
 export interface TextFieldProps {
   /**
@@ -91,6 +93,10 @@ export interface TextFieldProps {
    * When set to true, label is shown on the left.
    */
   labelLeft?: boolean;
+  /**
+   * Input attribute as props
+   */
+  inputProps?: MuiTextFieldProps['inputProps'];
 }
 
 /**
@@ -118,6 +124,7 @@ export const TextField: FC<TextFieldProps> = React.forwardRef(
       minRows,
       maxRows,
       labelLeft,
+      inputProps = {},
     },
     ref
   ) => {
@@ -165,6 +172,7 @@ export const TextField: FC<TextFieldProps> = React.forwardRef(
               maxRows={maxRows}
               inputProps={{
                 pattern,
+                ...inputProps,
               }}
               startAdornment={
                 icon ? (
@@ -266,3 +274,4 @@ export const TextField: FC<TextFieldProps> = React.forwardRef(
     );
   }
 );
+TextField.displayName = 'TextField';
