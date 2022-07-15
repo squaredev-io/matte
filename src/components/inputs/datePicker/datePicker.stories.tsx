@@ -30,6 +30,12 @@ export const DatePickers: ComponentStory<typeof DatePicker> = () => {
         label="Read only picker"
         readOnly
       />
+      <DatePicker
+        value={value}
+        onChange={handleChange}
+        label="Some label"
+        labelLeft
+      />
     </>
   );
 };
