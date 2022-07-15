@@ -76,6 +76,10 @@ export interface SelectProps {
    * Pass a ref to the input element.
    */
   inputRef?: React.Ref<any>;
+  /**
+   * When set to true, label is shown on the left.
+   */
+  labelLeft?: boolean;
 }
 
 export const Select: FC<SelectProps> = React.forwardRef(
@@ -94,6 +98,7 @@ export const Select: FC<SelectProps> = React.forwardRef(
       items = [],
       onChange,
       renderValue,
+      labelLeft,
     },
     ref
   ) => {
@@ -103,62 +108,127 @@ export const Select: FC<SelectProps> = React.forwardRef(
         className={styles.formControl}
         error={error}
       >
-        {label && (
-          <InputLabel
-            variant="standard"
-            className={styles.label}
-            htmlFor={id}
-            disableAnimation
-            required={required}
-            sx={{
-              color: 'common.black',
-              '&.Mui-focused': {
-                color: 'common.black',
-              },
-            }}
-          >
-            {label}
-          </InputLabel>
-        )}
-        <MuiSelect
-          id={id}
-          className={className}
-          labelId="select"
-          inputRef={ref}
-          input={
-            <InputBase
-              id={`${id}-input`}
-              fullWidth
-              classes={{ input: styles.input }}
-              sx={{
-                border: ({ palette }) => `1px solid ${palette.grey[200]}`,
-              }}
-            />
-          }
-          IconComponent={ChevronDown}
-          displayEmpty={!!placeholder}
-          defaultValue={value}
-          disabled={disabled}
-          onChange={onChange}
-          multiple={multiple}
-          value={value}
-          renderValue={renderValue}
-        >
-          {placeholder && (
-            <MenuItem className={styles.menuItem} value="">
-              {placeholder}
-            </MenuItem>
-          )}
-          {items.map((item, i) => (
-            <MenuItem value={item.value} className={styles.menuItem} key={i}>
-              {item.text}
-            </MenuItem>
-          ))}
-        </MuiSelect>
-        {helperText && (
-          <FormHelperText error={error} id={`${id}-helper-text`}>
-            {helperText}
-          </FormHelperText>
+        {label && labelLeft ? (
+          <div className={styles.selectWrapper}>
+            <InputLabel
+              variant="standard"
+              className={`${styles.label} ${styles.labelLeft}`}
+              htmlFor={id}
+              disableAnimation
+              required={required}
+            >
+              {label}
+            </InputLabel>
+            <MuiSelect
+              id={id}
+              className={className}
+              labelId="select"
+              inputRef={ref}
+              input={
+                <InputBase
+                  id={`${id}-input`}
+                  fullWidth
+                  className={styles.leftInputBase}
+                  classes={{ input: styles.input }}
+                  sx={{
+                    border: ({ palette }) => `1px solid ${palette.grey[200]}`,
+                  }}
+                />
+              }
+              IconComponent={ChevronDown}
+              displayEmpty={!!placeholder}
+              defaultValue={value}
+              disabled={disabled}
+              onChange={onChange}
+              multiple={multiple}
+              value={value}
+              renderValue={renderValue}
+            >
+              {placeholder && (
+                <MenuItem className={styles.menuItem} value="">
+                  {placeholder}
+                </MenuItem>
+              )}
+              {items.map((item, i) => (
+                <MenuItem
+                  value={item.value}
+                  className={styles.menuItem}
+                  key={i}
+                >
+                  {item.text}
+                </MenuItem>
+              ))}
+            </MuiSelect>
+            {helperText && (
+              <FormHelperText error={error} id={`${id}-helper-text`}>
+                {helperText}
+              </FormHelperText>
+            )}
+          </div>
+        ) : (
+          <>
+            {label && (
+              <InputLabel
+                variant="standard"
+                className={styles.label}
+                htmlFor={id}
+                disableAnimation
+                required={required}
+                sx={{
+                  color: 'common.black',
+                  '&.Mui-focused': {
+                    color: 'common.black',
+                  },
+                }}
+              >
+                {label}
+              </InputLabel>
+            )}
+            <MuiSelect
+              id={id}
+              className={className}
+              labelId="select"
+              inputRef={ref}
+              input={
+                <InputBase
+                  id={`${id}-input`}
+                  fullWidth
+                  classes={{ input: styles.input }}
+                  sx={{
+                    border: ({ palette }) => `1px solid ${palette.grey[200]}`,
+                  }}
+                />
+              }
+              IconComponent={ChevronDown}
+              displayEmpty={!!placeholder}
+              defaultValue={value}
+              disabled={disabled}
+              onChange={onChange}
+              multiple={multiple}
+              value={value}
+              renderValue={renderValue}
+            >
+              {placeholder && (
+                <MenuItem className={styles.menuItem} value="">
+                  {placeholder}
+                </MenuItem>
+              )}
+              {items.map((item, i) => (
+                <MenuItem
+                  value={item.value}
+                  className={styles.menuItem}
+                  key={i}
+                >
+                  {item.text}
+                </MenuItem>
+              ))}
+            </MuiSelect>
+            {helperText && (
+              <FormHelperText error={error} id={`${id}-helper-text`}>
+                {helperText}
+              </FormHelperText>
+            )}
+          </>
         )}
       </FormControl>
     );

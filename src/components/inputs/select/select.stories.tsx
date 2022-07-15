@@ -41,6 +41,15 @@ export const Selects: ComponentStory<typeof Select> = () => {
         placeholder="Pick a value"
       />
       <Select
+        id="select-align-left"
+        items={selectItems}
+        onChange={handleChange}
+        value={items}
+        placeholder="Pick a value"
+        label="Some label"
+        labelLeft
+      />
+      <Select
         id="disabled-select"
         items={selectItems}
         onChange={handleChange}
