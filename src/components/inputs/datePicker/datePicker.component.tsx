@@ -105,6 +105,10 @@ export interface DateTimePickerProps {
    * The value of the picker.
    */
   value?: any;
+  /**
+   * When set to true, label is shown on the left.
+   */
+  labelLeft?: boolean;
 }
 
 export interface TimePickerProps {
@@ -144,6 +148,10 @@ export interface TimePickerProps {
    * The value of the picker.
    */
   value?: any;
+  /**
+   * When set to true, label is shown on the left.
+   */
+  labelLeft?: boolean;
 }
 
 export const DatePicker: FC<DatePickerProps> = React.forwardRef(
@@ -241,6 +249,7 @@ export const DateTimePicker: FC<DateTimePickerProps> = React.forwardRef(
       open,
       readOnly,
       value,
+      labelLeft,
     },
     ref
   ) => {
@@ -257,24 +266,47 @@ export const DateTimePicker: FC<DateTimePickerProps> = React.forwardRef(
           open={open}
           renderInput={(params) => (
             <>
-              {label && (
-                <MuiInputLabel
-                  variant="standard"
-                  className={styles.label}
-                  disableAnimation
-                  htmlFor={id}
-                  shrink
-                >
-                  {label}
-                </MuiInputLabel>
+              {label && labelLeft ? (
+                <div className={styles.datePickerWrapper}>
+                  <MuiInputLabel
+                    variant="standard"
+                    className={`${styles.label} ${styles.labelLeft}`}
+                    disableAnimation
+                    htmlFor={id}
+                    shrink
+                  >
+                    {label}
+                  </MuiInputLabel>
+                  <TextField
+                    id={id}
+                    className={`${styles.textField} ${styles.textFieldLeft}`}
+                    inputRef={ref}
+                    {...params}
+                    fullWidth
+                  />
+                </div>
+              ) : (
+                <>
+                  {label && (
+                    <MuiInputLabel
+                      variant="standard"
+                      className={styles.label}
+                      disableAnimation
+                      htmlFor={id}
+                      shrink
+                    >
+                      {label}
+                    </MuiInputLabel>
+                  )}
+                  <TextField
+                    id={id}
+                    className={styles.textField}
+                    inputRef={ref}
+                    {...params}
+                    fullWidth
+                  />
+                </>
               )}
-              <TextField
-                id={id}
-                className={styles.textField}
-                inputRef={ref}
-                {...params}
-                fullWidth
-              />
             </>
           )}
         />
@@ -297,6 +329,7 @@ export const TimePicker: FC<TimePickerProps> = React.forwardRef(
       open,
       readOnly,
       value,
+      labelLeft,
     },
     ref
   ) => {
@@ -311,24 +344,47 @@ export const TimePicker: FC<TimePickerProps> = React.forwardRef(
           open={open}
           renderInput={(params) => (
             <>
-              {label && (
-                <MuiInputLabel
-                  variant="standard"
-                  className={styles.label}
-                  disableAnimation
-                  htmlFor={id}
-                  shrink
-                >
-                  {label}
-                </MuiInputLabel>
+              {label && labelLeft ? (
+                <div className={styles.datePickerWrapper}>
+                  <MuiInputLabel
+                    variant="standard"
+                    className={`${styles.label} ${styles.labelLeft}`}
+                    disableAnimation
+                    htmlFor={id}
+                    shrink
+                  >
+                    {label}
+                  </MuiInputLabel>
+                  <TextField
+                    id={id}
+                    className={`${styles.textField} ${styles.textFieldLeft}`}
+                    inputRef={ref}
+                    {...params}
+                    fullWidth
+                  />
+                </div>
+              ) : (
+                <>
+                  {label && (
+                    <MuiInputLabel
+                      variant="standard"
+                      className={styles.label}
+                      disableAnimation
+                      htmlFor={id}
+                      shrink
+                    >
+                      {label}
+                    </MuiInputLabel>
+                  )}
+                  <TextField
+                    id={id}
+                    className={styles.textField}
+                    inputRef={ref}
+                    {...params}
+                    fullWidth
+                  />
+                </>
               )}
-              <TextField
-                id={id}
-                className={styles.textField}
-                inputRef={ref}
-                {...params}
-                fullWidth
-              />
             </>
           )}
         />
