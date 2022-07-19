@@ -21,6 +21,27 @@
   }
 }
 
+.textFieldLeft {
+  margin-bottom: 0px;
+  margin-left: 16px;
+}
+
+:global {
+  :local(.label) {
+    &.MuiInputLabel-root {
+      color: black;
+    }
+  }
+}
+
+:global {
+  :local(.label) {
+    &.Mui-focused {
+      color: black;
+    }
+  }
+}
+
 .label {
   font-size: 0.875rem;
   line-height: 1.4rem;
@@ -28,4 +49,17 @@
   transform: initial;
   position: relative;
   color: black;
+}
+
+.datePickerWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-bottom: 16px;
+}
+
+.labelLeft {
+  margin-bottom: 0px;
+  text-align: right;
+  width: 30%;
 }

@@ -30,6 +30,12 @@ export const DatePickers: ComponentStory<typeof DatePicker> = () => {
         label="Read only picker"
         readOnly
       />
+      <DatePicker
+        value={value}
+        onChange={handleChange}
+        label="Some label"
+        labelLeft
+      />
     </>
   );
 };
@@ -58,6 +64,12 @@ export const DateTimePickers: ComponentStory<typeof DateTimePicker> = () => {
         label="Read only picker"
         readOnly
       />
+      <DateTimePicker
+        value={value}
+        onChange={handleChange}
+        label="Some label"
+        labelLeft
+      />
     </>
   );
 };
@@ -81,6 +93,12 @@ export const TimePickers: ComponentStory<typeof TimePicker> = () => {
         onChange={handleChange}
         label="Read only picker"
         readOnly
+      />
+      <TimePicker
+        value={value}
+        onChange={handleChange}
+        label="Some label"
+        labelLeft
       />
     </>
   );

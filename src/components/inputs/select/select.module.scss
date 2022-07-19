@@ -34,3 +34,35 @@
   //   borderColor: '#FF3366', //error
   // },
 }
+
+:global {
+  :local(.label) {
+    &.MuiInputLabel-root {
+      color: black;
+    }
+  }
+}
+
+:global {
+  :local(.label) {
+    &.Mui-focused {
+      color: black;
+    }
+  }
+}
+
+.selectWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.labelLeft {
+  margin-bottom: 0px;
+  text-align: right;
+  width: 30%;
+}
+
+.leftInputBase {
+  margin-left: 16px;
+}
