@@ -223,6 +223,7 @@ export const TextField: FC<TextFieldProps> = React.forwardRef(
               maxRows={maxRows}
               inputProps={{
                 pattern,
+                ...inputProps,
               }}
               startAdornment={
                 icon ? (
