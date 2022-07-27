@@ -4,11 +4,10 @@ import {
   DateTimePicker as MUIDateTimePicker,
   TimePicker as MUITimePicker,
   LocalizationProvider,
-} from '@mui/lab';
+} from '@mui/x-date-pickers';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { TextField, InputLabel as MuiInputLabel } from '@mui/material';
-import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import styles from './datePicker.module.scss';
-
 export interface DatePickerProps {
   /**
    * Whether the `datePicker` element is disabled.
