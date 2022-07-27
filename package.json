@@ -27,6 +27,7 @@
   "dependencies": {
     "@mui/base": "^5.0.0-alpha.67",
     "@mui/lab": "^5.0.0-alpha.72",
+    "@mui/x-date-pickers": "^5.0.0-beta.2",
     "@nivo/bar": "^0.74.1",
     "@nivo/core": "0.74.1",
     "@nivo/line": "0.74.1",
