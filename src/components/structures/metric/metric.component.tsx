@@ -38,7 +38,7 @@ const getVariation = (data: Serie[]): number => {
     .multiply(100)
     .divide(previousThanLastMonthVal)
     .round(2)
-    .done();
+    .done() as number;
 };
 
 const Variation: FC<VariantProps> = ({ data }) => {
