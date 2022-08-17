@@ -67,7 +67,7 @@ export const Dialog: FC<DialogProps> = ({
   toggleDialog,
   disableEscapeKeyDown = false,
   fullWidth = false,
-  maxWidth,
+  maxWidth = 'sm',
 }) => {
   /**
    * Sets to true when screen size is smaller than 600px
