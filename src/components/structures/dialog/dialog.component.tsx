@@ -66,7 +66,7 @@ export const Dialog: FC<DialogProps> = ({
   title,
   toggleDialog,
   disableEscapeKeyDown = false,
-  fullWidth,
+  fullWidth = false,
   maxWidth,
 }) => {
   /**
