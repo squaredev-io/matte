@@ -31,6 +31,14 @@ export interface DialogProps {
    * @default false
    */
   disableEscapeKeyDown?: boolean;
+  /**
+   * If true, the dialog stretches to maxWidth.
+   */
+  fullWidth?: boolean;
+  /**
+   * Determine the max-width of the dialog. The dialog width grows with the size of the screen. Set to false to disable maxWidth.
+   */
+  maxWidth?: 'xs' | 'sm' | 'md' | 'lg' | 'xl' | false;
 }
 
 /**
@@ -58,6 +66,8 @@ export const Dialog: FC<DialogProps> = ({
   title,
   toggleDialog,
   disableEscapeKeyDown = false,
+  fullWidth = false,
+  maxWidth = 'sm',
 }) => {
   /**
    * Sets to true when screen size is smaller than 600px
@@ -84,6 +94,8 @@ export const Dialog: FC<DialogProps> = ({
       onClose={toggleDialog}
       fullScreen={fullScreen}
       disableEscapeKeyDown={disableEscapeKeyDown}
+      fullWidth={fullWidth}
+      maxWidth={maxWidth}
     >
       <div className={styles.header}>
         <Typography className={styles.title} component="h6">
