@@ -37,6 +37,11 @@ export interface TabsProps {
    * In `fullWidth` mode the tabs will take up all the available space.
    */
   variant?: TabsVariant;
+  /**
+   * The index of the tab that's initially selected.
+   * It needs to be the same as the index.
+   */
+  value?: number;
 }
 
 /**
@@ -47,6 +52,7 @@ export const Tabs: FC<TabsProps> = ({
   className,
   tabs,
   variant = 'standard',
+  value = 0,
 }) => {
   // Handle ripple effect
   // Create a refs for a loop with a weak map
@@ -62,7 +68,7 @@ export const Tabs: FC<TabsProps> = ({
   // };
 
   // Active state
-  const [active, setActive] = useState(0);
+  const [active, setActive] = useState(value);
 
   const handleClick = (i: number) => {
     setActive(i);
