@@ -89,6 +89,22 @@ export interface DateTimePickerProps {
    */
   minDate?: any;
   /**
+   *     Max time acceptable time. For input validation date part of passed object will be ignored if disableIgnoringDatePartForTimeValidation not specified.
+   */
+  maxTime?: any;
+  /**
+   *     Min time acceptable time. For input validation date part of passed object will be ignored if disableIgnoringDatePartForTimeValidation not specified.
+   */
+  minTime?: any;
+  /**
+   *     Maximal selectable moment of time with binding to date, to set max time in each day use maxTime.
+   */
+  maxDateTime?: any;
+  /**
+   *     Minimal selectable moment of time with binding to date, to set min time in each day use minTime.
+   */
+  minDateTime?: any;
+  /**
    *   Make picker read only.
    */
   readOnly?: boolean;
@@ -244,6 +260,10 @@ export const DateTimePicker: FC<DateTimePickerProps> = React.forwardRef(
       label,
       maxDate,
       minDate,
+      maxTime,
+      minTime,
+      maxDateTime,
+      minDateTime,
       onChange,
       open,
       readOnly,
@@ -259,6 +279,10 @@ export const DateTimePicker: FC<DateTimePickerProps> = React.forwardRef(
           inputFormat={inputFormat}
           maxDate={maxDate}
           minDate={minDate}
+          maxTime={maxTime}
+          minTime={minTime}
+          maxDateTime={maxDateTime}
+          minDateTime={minDateTime}
           onChange={onChange}
           readOnly={readOnly}
           value={value}
